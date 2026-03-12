@@ -1,37 +1,27 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.iOS;
 
 public class WaveParry : MonoBehaviour
 {
     public Vector3 boxSize = new Vector3(2f, 2f, 2f);
     
-    //mauvaise touche = perd une vie
-    public void Parry(InputAction.CallbackContext context)
+    public void Parry(Guid id)
     {
-        if (!context.started) return;
-        
         Collider[] hits = Physics.OverlapBox(transform.position, boxSize / 2, Quaternion.identity);
-
+        
         foreach (var hit in hits)
         {
-            if (!hit.TryGetComponent(out WaveType waveType)) return;
+            if (!hit.TryGetComponent(out WaveType waveType)) continue;
             Debug.Log("wave type: " + waveType);
-            InputControl control = context.control;
-            if (control is KeyControl keyControl)
-            {
-                Key keyPressed = keyControl.keyCode;
 
-                if (keyPressed == Key.Space /*key de la wave*/ )
-                {
-                    //score ++
-                }
-                else
-                {
-                    //perd vie
-                    return;
-                }
+            if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
+            {
+                Debug.Log("score +++++");
+            }
+            else
+            {
+                Debug.Log("perdu");
             }
             hit.gameObject.SetActive(false);
             //pulling system
