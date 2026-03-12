@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public UnityEvent<Vector2> PlayerMovementEvent;
     public UnityEvent<string> WaveParryEvent;
+    public UnityEvent PauseEvent;
 
     public void CallPlayerMovement(InputAction.CallbackContext ctx)
     {
@@ -21,6 +22,14 @@ public class PlayerController : MonoBehaviour
         if (ctx.started)
         {
             WaveParryEvent.Invoke(ctx.control.displayName);
+        }
+    }
+
+    public void CallPauseEvent(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            PauseEvent.Invoke();
         }
     }
 }
