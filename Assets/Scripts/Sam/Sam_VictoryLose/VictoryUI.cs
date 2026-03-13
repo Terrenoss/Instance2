@@ -8,10 +8,14 @@ public class VictoryUI : MonoBehaviour
     public GameObject containerVictory;
     [SerializeField] private float timeBeforeShowVictoryMenu = 3f;
     [SerializeField] private SceneAsset mainMenu;
+    [SerializeField] private CheckVictory checkVictory;
 
     private void Start()
     {
-        EventManager.Instance.Victory += TimerVictoryCinematic;
+        if (checkVictory != null)
+        {
+            checkVictory.OnVictory += TimerVictoryCinematic;
+        }
 
         containerVictory.SetActive(false);
     }
@@ -49,6 +53,9 @@ public class VictoryUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Instance.Victory -= TimerVictoryCinematic;
+        if (checkVictory != null)
+        {
+            checkVictory.OnVictory -= TimerVictoryCinematic;
+        }
     }
 }

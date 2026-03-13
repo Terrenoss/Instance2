@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 
 public class CheckVictory : MonoBehaviour
 {
+    public event Action OnVictory;
+
     private void OnTriggerEnter (Collider coll)
     {
-        if (coll.gameObject.GetComponent<PlayerHealth>() != null)
+        if (coll.gameObject.TryGetComponent(out PlayerHealth playerHealth))
         {
-            EventManager.Instance.VictoryFunc();
+            OnVictory?.Invoke();
         }
     }
 }

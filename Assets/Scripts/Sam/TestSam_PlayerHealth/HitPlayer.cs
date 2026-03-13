@@ -4,9 +4,9 @@ public class HitPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.GetComponent<PlayerHealth>() != null)
+        if (coll.gameObject.TryGetComponent(out PlayerHealth playerHealth))
         {
-            EventManager.Instance.PlayerHitFunc();
+            playerHealth.TakeDamage();
         }
     }
 }

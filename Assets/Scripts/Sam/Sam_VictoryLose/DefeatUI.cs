@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 public class DefeatUI : MonoBehaviour
 {
     public GameObject containerDefeat;
+    
     [SerializeField] private float timeBeforeShowDefeatMenu = 1f;
     [SerializeField] private SceneAsset mainMenu;
+    [SerializeField] private PlayerHealth playerHealth;
 
     private void Start()
     {
-        EventManager.Instance.PlayerDeath += TimerDefeatCinematic;
+        if (playerHealth != null)
+        {
+            playerHealth.OnPlayerDeath += TimerDefeatCinematic;
+        }
 
         containerDefeat.SetActive(false);
     }
@@ -49,6 +54,9 @@ public class DefeatUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Instance.Victory -= TimerDefeatCinematic;
+        if (playerHealth != null)
+        {
+            playerHealth.OnPlayerDeath -= TimerDefeatCinematic;
+        }
     }
 }

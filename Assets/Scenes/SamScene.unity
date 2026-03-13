@@ -451,7 +451,7 @@ Transform:
   m_GameObject: {fileID: 347862818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.25, z: 27.5}
+  m_LocalPosition: {x: 32.1, y: -1.25, z: 27.5}
   m_LocalScale: {x: 20, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -881,6 +881,7 @@ GameObject:
   - component: {fileID: 674443482}
   - component: {fileID: 674443486}
   - component: {fileID: 674443487}
+  - component: {fileID: 674443488}
   m_Layer: 0
   m_Name: Sphere (player)
   m_TagString: Untagged
@@ -1021,6 +1022,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sam_Life
   health: 3
+  scoreManager: {fileID: 674443488}
+--- !u!114 &674443488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674443481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15447d29c1cb7745b8fb6a9cae38790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  passiveScore: 10
+  passiveScoreTimer: 1
+  parryScore: 200
+  scoreMultiplier: 2
+  actualScoreMultiplier: 1
 --- !u!1 &728766003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,8 +2171,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -3544,6 +3563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4346d0665bd91e5408b1e36dcee03d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthImages
+  playerHealth: {fileID: 674443487}
   healthPoint1: {fileID: 1005282836}
   healthPoint2: {fileID: 1460169908}
   healthPoint3: {fileID: 288831845}
@@ -3703,6 +3723,7 @@ MonoBehaviour:
   containerVictory: {fileID: 1498739929}
   timeBeforeShowVictoryMenu: 3
   mainMenu: {fileID: 102900000, guid: b544ad6d5ad2cd542ae3a032c9f28be1, type: 3}
+  checkVictory: {fileID: 1501518103}
 --- !u!114 &1835879289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3718,6 +3739,7 @@ MonoBehaviour:
   containerDefeat: {fileID: 1504338487}
   timeBeforeShowDefeatMenu: 1
   mainMenu: {fileID: 102900000, guid: b544ad6d5ad2cd542ae3a032c9f28be1, type: 3}
+  playerHealth: {fileID: 674443487}
 --- !u!1 &1879796830
 GameObject:
   m_ObjectHideFlags: 0
