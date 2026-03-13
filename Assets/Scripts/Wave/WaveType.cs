@@ -21,7 +21,6 @@ public class WaveData
 public class WaveType : MonoBehaviour
 {    
     public WaveTypeEnum waveTypeEnum;
-    //[SerializeField] InputAction inputAction;
     [SerializeField] private PlayerInput playerInput;
     private List<Guid> bindingList = new();
     private Renderer rend;

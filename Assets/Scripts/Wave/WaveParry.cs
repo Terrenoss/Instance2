@@ -13,17 +13,17 @@ public class WaveParry : MonoBehaviour
         foreach (var hit in hits)
         {
             if (!hit.TryGetComponent(out WaveType waveType)) continue;
-            Debug.Log("wave type: " + waveType);
 
             if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
             {
-                Debug.Log("score +++++");
+                //score ++
             }
             else
             {
-                Debug.Log("perdu");
+                //perd une vie
             }
-            hit.gameObject.SetActive(false);
+            hit.TryGetComponent(out SplineMover waveMover);
+            waveMover.UpdateWave(false);
             //pulling system
         }
     }
