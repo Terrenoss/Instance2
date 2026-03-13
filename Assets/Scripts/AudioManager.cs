@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] _sounds;
-    private float _timeBetweenMusics;
+    [SerializeField] private Sound[] _sounds;
 
     void Awake()
     {
@@ -23,28 +21,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    #region music
     private void Start()
     {
-        PlaySound("Music");
+        PlaySound("MainMusic");
     }
-    private void Update()
-    {
-        _timeBetweenMusics += Time.deltaTime;
-        if (_timeBetweenMusics >= GetLength("Music"))
-        {
-            PlaySound("Music");
-        }
-    }
-    #endregion
 
-    #region sfx
     public void PlaySound(string name)
     {
         try
         {
             Sound s = Array.Find(_sounds, sound => sound.Name == name);
             s.Source.Play();
+            s.Source.volume = s.Volume;
         }
         catch
         {
@@ -58,6 +46,7 @@ public class AudioManager : MonoBehaviour
         {
             Sound s = Array.Find(_sounds, sound => sound.Name == name);
             s.Source.PlayOneShot(s.Source.clip, s.Source.volume);
+            s.Source.volume = s.Volume;
         }
         catch
         {
@@ -77,7 +66,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void StopSound(string name)
-    { //pas utilisé
+    {
         try
         {
             Sound s = Array.Find(_sounds, sound => sound.Name == name);
@@ -90,7 +79,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void stopAllSounds()
-    { //pas utilisé
+    {
         foreach (Sound s in _sounds)
         {
             if (s.Source.isPlaying)
@@ -99,9 +88,7 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    #endregion
 
-    #region settings
     public void ChangeVolume(string name, float volume)
     {
         Sound s = Array.Find(_sounds, sound => sound.Name == name);
@@ -116,37 +103,36 @@ public class AudioManager : MonoBehaviour
 
     public void FadeVolume(string name, float duration, float targetVolume)
     {
-        StartCoroutine(FadeVolumeCoroutine(name, duration, targetVolume));
+        try
+        {
+            StartCoroutine(FadeVolumeCoroutine(name, duration, targetVolume));
+        }
+        catch
+        {
+            Debug.LogWarning(name + " sound not found");
+        }
     }
 
     private IEnumerator FadeVolumeCoroutine(string name, float duration, float targetVolume)
     {
         Sound s = Array.Find(_sounds, sound => sound.Name == name);
         float startVolume = s.Source.volume;
+        float timer = 0;
 
-        while (s.Source.volume > 0)
+        while (s.Source.volume != targetVolume)
         {
-            s.Source.volume -= startVolume * Time.deltaTime / duration;
+            s.Source.volume = Mathf.Lerp(startVolume, targetVolume, timer/duration);
+            timer += Time.deltaTime;
 
             yield return null;
         }
 
-        s.Source.Stop();
-        s.Source.volume = startVolume;
         yield return null;
     }
-    #endregion
 
-    #region parameters
     public float GetLength(string name)
     {
         Sound s = Array.Find(_sounds, sound => sound.Name == name);
         return s.Source.clip.length;
     }
-    #endregion
-
-
-    //placer dans nimporte quel scrypt avec le bon nom dans les "" pour jouer un son
-    //FindObjectOfType<AudioManager>().X("");
-    //X is the name of the function called
 }
