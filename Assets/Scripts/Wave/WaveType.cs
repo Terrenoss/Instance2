@@ -41,7 +41,7 @@ public class WaveType : MonoBehaviour
         InputAction action = playerInput.actions["Parry"];
         ReadOnlyArray<InputBinding> bindings = action.bindings;
 
-        foreach (var binding in bindings)
+        foreach (InputBinding binding in bindings)
         {
             Guid key = binding.id;
             bindingList.Add(key);

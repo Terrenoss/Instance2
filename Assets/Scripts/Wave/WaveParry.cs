@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveParry : MonoBehaviour
@@ -10,7 +9,7 @@ public class WaveParry : MonoBehaviour
     {
         Collider[] hits = Physics.OverlapBox(transform.position, boxSize / 2, Quaternion.identity);
         
-        foreach (var hit in hits)
+        foreach (Collider hit in hits)
         {
             if (!hit.TryGetComponent(out WaveType waveType)) continue;
 
