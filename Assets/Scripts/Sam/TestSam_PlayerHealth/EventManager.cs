@@ -4,7 +4,7 @@ using System;
 public class EventManager : MonoBehaviour
 {
     private static EventManager instance;
-    public static EventManager Instance => instance;
+    
 
     public event Action PlayerDeath;
     public event Action Victory;
@@ -18,11 +18,6 @@ public class EventManager : MonoBehaviour
         else {
             instance = this;
         }
-    }
-
-    public void PlayerDeathFunc()
-    {
-        PlayerDeath?.Invoke();
     }
     
     public void VictoryFunc()
