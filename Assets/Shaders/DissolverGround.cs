@@ -4,8 +4,8 @@ using UnityEngine;
 public class DissolverGround : MonoBehaviour
 {
     [SerializeField] private float dissolveDuration = 1.2f;
-    [SerializeField] private float minDissolveStrength = 0.2f;
-    [SerializeField] private float maxDissolveStrength = 0.6f;
+    [SerializeField] private float minDissolveStrength = 0.1f;
+    [SerializeField] private float maxDissolveStrength = 0.2f;
     private float dissolveStrength;
 
     public void Start()
@@ -42,16 +42,4 @@ public class DissolverGround : MonoBehaviour
         }
         StartCoroutine(Dissolve());
     }
-
-    //public IEnumerator WaitALittle()
-    //{
-    //    float elapsedTime = 0;
-
-    //    while (elapsedTime < 0.5f)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    StartCoroutine(DownPosition());
-    //}
 }

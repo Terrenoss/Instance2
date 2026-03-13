@@ -25,13 +25,13 @@ public class Dissolver : MonoBehaviour
             dissolveStrength = Mathf.Lerp(0, 1, elapsedTime / dissolveDuration);
             material.SetFloat("_DissolveStrength", dissolveStrength);
 
-            //childrenTransform.localScale = new Vector3(childrenTransform.localScale.x + elapsedTime / dissolveDuration / 8,
-            //                                           childrenTransform.localScale.y + elapsedTime / dissolveDuration / 8,
-            //                                           childrenTransform.localScale.z + elapsedTime / dissolveDuration / 8);
+            childrenTransform.localScale = new Vector3(childrenTransform.localScale.x + elapsedTime / dissolveDuration / 20,
+                                                       childrenTransform.localScale.y + elapsedTime / dissolveDuration / 20,
+                                                       childrenTransform.localScale.z + elapsedTime / dissolveDuration / 20);
 
-            //childrenTransform.position = new Vector3(childrenTransform.position.x,
-            //                                         childrenTransform.position.y - elapsedTime / dissolveDuration / 16,
-            //                                         childrenTransform.position.z);
+            childrenTransform.position = new Vector3(childrenTransform.position.x,
+                                                     childrenTransform.position.y - elapsedTime / dissolveDuration / 40,
+                                                     childrenTransform.position.z);
             yield return null;
         }
     }
