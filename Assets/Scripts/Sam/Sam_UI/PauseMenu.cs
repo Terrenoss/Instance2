@@ -10,8 +10,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Instance.PlayerDeath += PausedGame;
-
         containerPause.SetActive(false);
     }
 
@@ -50,10 +48,5 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(mainMenu.name);
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.Instance.PlayerDeath -= PausedGame;
     }
 }

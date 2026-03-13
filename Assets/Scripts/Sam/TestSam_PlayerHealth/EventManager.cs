@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance => instance;
 
     public event Action PlayerDeath;
+    public event Action Victory;
     public event Action PlayerHit;
 
     private void Awake()
@@ -22,6 +23,11 @@ public class EventManager : MonoBehaviour
     public void PlayerDeathFunc()
     {
         PlayerDeath?.Invoke();
+    }
+    
+    public void VictoryFunc()
+    {
+        Victory?.Invoke();
     }
 
     public void PlayerHitFunc()
