@@ -41,7 +41,7 @@ public class SplineMover : MonoBehaviour
 
     }
 
-    void UpdateWave(bool isActive)
+    public void UpdateWave(bool isActive)
     {
         gameObject.GetComponent<BoxCollider>().enabled = isActive;
         gameObject.GetComponent<MeshRenderer>().enabled = isActive;
