@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -5,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public UnityEvent<Vector2> PlayerMovementEvent;
-    public UnityEvent<string> WaveParryEvent;
+    public UnityEvent<Guid> WaveParryEvent;
     public UnityEvent PauseEvent;
 
     public void CallPlayerMovement(InputAction.CallbackContext ctx)
@@ -21,7 +22,18 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started)
         {
-            WaveParryEvent.Invoke(ctx.control.displayName);
+            Guid parryID;
+            int index = 0;
+            
+            foreach (InputControl inputControl in ctx.action.controls)
+            {
+                if (inputControl.displayName == ctx.control.displayName)
+                {
+                    break;
+                }
+                index++;
+            }
+            WaveParryEvent.Invoke(ctx.action.bindings[index].id);
         }
     }
 

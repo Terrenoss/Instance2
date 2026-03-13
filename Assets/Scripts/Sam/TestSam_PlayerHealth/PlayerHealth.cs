@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] public int health = 3;
+    public int health = 3;
+    [SerializeField] private ScoreManager scoreManager;
 
     private void Start()
     {
@@ -11,15 +12,17 @@ public class PlayerHealth : MonoBehaviour
 
     private void Hit()
     {
-        health--;
+        TakeDamage();
+        EventManager.Instance.PlayerHitFunc();
 
         if (health <= 0 ) {
             EventManager.Instance.PlayerDeathFunc();
         }
     }
 
-    private void OnDestroy()
+    public void TakeDamage()
     {
-        EventManager.Instance.PlayerHit -= Hit;
+        health--;
+        scoreManager.DecreaseMultiplier();
     }
 }
