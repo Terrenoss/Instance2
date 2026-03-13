@@ -45,7 +45,6 @@ public class WaveType : MonoBehaviour
         {
             Guid key = binding.id;
             bindingList.Add(key);
-            Debug.Log(key);
         }
         waveParam[WaveTypeEnum.wave1].keyId = bindingList[0];
         waveParam[WaveTypeEnum.wave2].keyId = bindingList[1];

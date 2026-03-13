@@ -7,6 +7,7 @@ public class SplineMover : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] [Range(0,1)] private float waveEndPosition;
     [SerializeField] private bool isWave = false;
+    [SerializeField] private PlayerHealth playerHealth;
 
     private float currentSplineProgression;
     private float splineLength;
@@ -27,7 +28,7 @@ public class SplineMover : MonoBehaviour
             if (isWave)
             {
                 //pulling system
-                //perd une vie
+                playerHealth.TakeDamage();
             }
             isDisable = true;
         }
