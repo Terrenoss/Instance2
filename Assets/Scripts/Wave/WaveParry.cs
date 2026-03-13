@@ -1,39 +1,43 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.iOS;
 
 public class WaveParry : MonoBehaviour
 {
-    public Vector3 boxSize = new Vector3(2f, 2f, 2f);
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private float perfectDistance = 0.4f;
+    [SerializeField] private Vector3 boxSize = new(2f, 2f, 2f);
     
-    //mauvaise touche = perd une vie
-    public void Parry(InputAction.CallbackContext context)
+    [SerializeField] private PlayerHealth playerHealth;
+
+
+    public void Parry(Guid id)
     {
-        if (!context.started) return;
-        
         Collider[] hits = Physics.OverlapBox(transform.position, boxSize / 2, Quaternion.identity);
-
-        foreach (var hit in hits)
+        
+        foreach (Collider hit in hits)
         {
-            if (!hit.TryGetComponent(out WaveType waveType)) return;
-            Debug.Log("wave type: " + waveType);
-            InputControl control = context.control;
-            if (control is KeyControl keyControl)
-            {
-                Key keyPressed = keyControl.keyCode;
+            if (!hit.TryGetComponent(out WaveType waveType)) continue;
+            
+            float distance = Vector3.Distance(transform.position, hit.transform.position);
 
-                if (keyPressed == Key.Space /*key de la wave*/ )
+            if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
+            {
+                if (distance <= perfectDistance)
                 {
-                    //score ++
+                    scoreManager.AddParryScore();
+                    scoreManager.IncreaseMultiplier();
                 }
                 else
                 {
-                    //perd vie
-                    return;
+                    scoreManager.AddParryScore();
                 }
             }
-            hit.gameObject.SetActive(false);
+            else
+            {
+                playerHealth.TakeDamage();
+            }
+            hit.TryGetComponent(out SplineMover waveMover);
+            waveMover.UpdateWave(false);
             //pulling system
         }
     }
@@ -42,5 +46,13 @@ public class WaveParry : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, boxSize);
+        
+        DrawCube(perfectDistance * 2, Color.green);
+    }
+
+    void DrawCube(float size, Color color)
+    {
+        Gizmos.color = color;
+        Gizmos.DrawWireCube(transform.position, new Vector3(size, size, size));
     }
 }

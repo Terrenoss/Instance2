@@ -6,6 +6,8 @@ public class SplineMover : MonoBehaviour
     public SplineContainer splineToFollow;
     [SerializeField] private float speed = 5f;
     [SerializeField] [Range(0,1)] private float waveEndPosition;
+    [SerializeField] private bool isWave = false;
+    [SerializeField] private PlayerHealth playerHealth;
 
     private float currentSplineProgression;
     private float splineLength;
@@ -23,8 +25,11 @@ public class SplineMover : MonoBehaviour
         if (currentSplineProgression > waveEndPosition && !isDisable)
         {
             UpdateWave(false);
-            //pulling system
-            //perd une vie
+            if (isWave)
+            {
+                //pulling system
+                playerHealth.TakeDamage();
+            }
             isDisable = true;
         }
 
@@ -41,7 +46,7 @@ public class SplineMover : MonoBehaviour
 
     }
 
-    void UpdateWave(bool isActive)
+    public void UpdateWave(bool isActive)
     {
         gameObject.GetComponent<BoxCollider>().enabled = isActive;
         gameObject.GetComponent<MeshRenderer>().enabled = isActive;
