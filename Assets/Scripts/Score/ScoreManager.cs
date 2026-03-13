@@ -32,8 +32,6 @@ public class ScoreManager : MonoBehaviour
     private void AddScore(int amount)
     {
         actualScore += amount * actualScoreMultiplier;
-        Debug.Log("Score: " + actualScore);
-        Debug.Log("actualScoreMultiplier: " + actualScoreMultiplier);
     }
 
     public void AddParryScore()

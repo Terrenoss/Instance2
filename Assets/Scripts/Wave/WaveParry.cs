@@ -6,6 +6,9 @@ public class WaveParry : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private float perfectDistance = 0.4f;
     [SerializeField] private Vector3 boxSize = new(2f, 2f, 2f);
+    
+    [SerializeField] private PlayerHealth playerHealth;
+
 
     public void Parry(Guid id)
     {
@@ -31,7 +34,7 @@ public class WaveParry : MonoBehaviour
             }
             else
             {
-                //perd une vie
+                playerHealth.TakeDamage();
             }
             hit.TryGetComponent(out SplineMover waveMover);
             waveMover.UpdateWave(false);
