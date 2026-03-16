@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class PlayerHealthImages : MonoBehaviour
 {
+    [SerializeField] private PlayerHealth playerHealth;
+    
     private List<Image> healthPoints = new List<Image>();
+    
     [SerializeField] private Image healthPoint1;
     [SerializeField] private Image healthPoint2;
     [SerializeField] private Image healthPoint3;
@@ -13,7 +16,10 @@ public class PlayerHealthImages : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Instance.PlayerHit += UpdateHealthPoint;
+        if (playerHealth != null)
+        {
+            playerHealth.OnPlayerHit += UpdateHealthPoint;
+        }
 
         healthPoints.Add(healthPoint1);
         healthPoints.Add(healthPoint2);
@@ -27,11 +33,17 @@ public class PlayerHealthImages : MonoBehaviour
     private void UpdateHealthPoint()
     {
         hitTaken++;
-        healthPoints[healthPoints.Count - hitTaken].enabled = false;
+        if (hitTaken <= healthPoints.Count)
+        {
+            healthPoints[healthPoints.Count - hitTaken].enabled = false;
+        }
     }
 
     private void OnDestroy()
     {
-        EventManager.Instance.PlayerHit -= UpdateHealthPoint;
+        if (playerHealth != null)
+        {
+            playerHealth.OnPlayerHit -= UpdateHealthPoint;
+        }
     }
 }
