@@ -38,7 +38,6 @@ public class WaveParry : MonoBehaviour
             }
             hit.TryGetComponent(out SplineMover waveMover);
             waveMover.UpdateWave(false);
-            //pulling system
         }
     }
 

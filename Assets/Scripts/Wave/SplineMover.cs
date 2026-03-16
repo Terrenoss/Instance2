@@ -8,12 +8,11 @@ public class SplineMover : MonoBehaviour
     [SerializeField] [Range(0,1)] private float waveEndPosition;
     [SerializeField] private bool isWave = false;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PoolingSystem poolingSystem;
 
     private float currentSplineProgression;
     private float splineLength;
-    private Vector3 wavePosition = Vector3.zero;
-    private Vector3 splineUpVector = Vector3.zero;
-    private bool isDisable = false;
+    private bool isDisable = true;
 
     void Start()
     {
@@ -22,34 +21,42 @@ public class SplineMover : MonoBehaviour
 
     void Update()
     {
-        if (currentSplineProgression > waveEndPosition && !isDisable)
+        if (isDisable) return;
+
+        currentSplineProgression -= (speed / splineLength) * Time.deltaTime;
+
+        transform.position = splineToFollow.EvaluatePosition(currentSplineProgression);
+        transform.rotation = Quaternion.LookRotation(transform.forward, splineToFollow.EvaluateUpVector(currentSplineProgression));
+
+        if (currentSplineProgression <= waveEndPosition)
         {
             UpdateWave(false);
-            if (isWave)
-            {
-                //pulling system
+
+            if (isWave && playerHealth != null)
                 playerHealth.TakeDamage();
-            }
-            isDisable = true;
         }
+    }
 
-        if (isDisable) return;
-        
-        currentSplineProgression += (speed / splineLength) * Time.deltaTime;
-
-        wavePosition = splineToFollow.EvaluatePosition(currentSplineProgression);
-        transform.position = wavePosition;
-        
-        splineUpVector = splineToFollow.EvaluateUpVector(currentSplineProgression);
-        
-        transform.rotation = Quaternion.LookRotation(transform.forward, splineUpVector);
-
+    public void ResetWave()
+    {
+        currentSplineProgression = 1f;
+        UpdateWave(true);
+        isDisable = false;
     }
 
     public void UpdateWave(bool isActive)
     {
-        gameObject.GetComponent<BoxCollider>().enabled = isActive;
-        gameObject.GetComponent<MeshRenderer>().enabled = isActive;
+        if (isActive == false)
+        {
+            if (poolingSystem != null)
+                poolingSystem.Release(gameObject);
+        }
+        BoxCollider collider = gameObject.GetComponent<BoxCollider>();
+        if (collider) collider.enabled = isActive;
+
+        MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
+        if (renderer) renderer.enabled = isActive;
+
         isDisable = !isActive;
     }
 }

@@ -52,6 +52,17 @@ public class WaveType : MonoBehaviour
         waveParam[WaveTypeEnum.wave4].keyId = bindingList[3];
     }
 
+    public void SetWaveType(WaveTypeSelection waveType)
+    {
+        waveTypeEnum = (WaveTypeEnum)waveType;
+        if (rend == null)
+        {
+            rend = GetComponent<Renderer>();
+        }
+
+        rend.material.color = waveParam[waveTypeEnum].color;    
+    }
+
     void OnValidate()
     {
         if (rend == null)
