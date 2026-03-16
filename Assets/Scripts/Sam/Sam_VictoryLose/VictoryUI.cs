@@ -7,7 +7,7 @@ public class VictoryUI : MonoBehaviour
 {
     public GameObject containerVictory;
     [SerializeField] private float timeBeforeShowVictoryMenu = 3f;
-    [SerializeField] private SceneAsset mainMenu;
+    [SerializeField] private string mainMenu;
     [SerializeField] private CheckVictory checkVictory;
 
     private void Start()
@@ -48,7 +48,7 @@ public class VictoryUI : MonoBehaviour
         PauseMenu.isGamePaused = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(mainMenu.name);
+        SceneManager.LoadScene(mainMenu);
     }
 
     private void OnDestroy()

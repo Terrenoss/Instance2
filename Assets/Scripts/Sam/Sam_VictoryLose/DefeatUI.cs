@@ -8,7 +8,7 @@ public class DefeatUI : MonoBehaviour
     public GameObject containerDefeat;
     
     [SerializeField] private float timeBeforeShowDefeatMenu = 1f;
-    [SerializeField] private SceneAsset mainMenu;
+    [SerializeField] private string mainMenu;
     [SerializeField] private PlayerHealth playerHealth;
 
     private void Start()
@@ -49,7 +49,7 @@ public class DefeatUI : MonoBehaviour
         PauseMenu.isGamePaused = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(mainMenu.name);
+        SceneManager.LoadScene(mainMenu);
     }
 
     private void OnDestroy()
