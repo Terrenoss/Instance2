@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private SceneAsset level;
+    [SerializeField] private string scene;
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(level.name);
+        SceneManager.LoadScene(scene);
         Cursor.visible = false;
     }
 

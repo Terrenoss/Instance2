@@ -1,16 +1,30 @@
+using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] public int health = 3;
+    public int health = 3;
+    
+    [SerializeField] private ScoreManager scoreManager;
 
-    private void OnTriggerEnter(Collider coll)
+    public event Action OnPlayerHit;
+    public event Action OnPlayerDeath;
+
+    public void TakeDamage()
     {
         health--;
-        EventManager.Instance.PlayerHitFunc();
-
+        scoreManager.DecreaseMultiplier();
+        
+        OnPlayerHit?.Invoke();
+        
         if (health <= 0 ) {
-            EventManager.Instance.PlayerDeathFunc();
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        OnPlayerDeath?.Invoke();
+        gameObject.SetActive(false);
     }
 }
