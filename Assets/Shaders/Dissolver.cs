@@ -38,6 +38,9 @@ public class Dissolver : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        StartDisolving();
+        if (coll.gameObject.GetComponent<DissolverDetec>() != null)
+        {
+           // StartDisolving();
+        }
     }
 }

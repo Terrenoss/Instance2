@@ -6,22 +6,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject containerPause;
     public bool isGamePaused = false;
     [SerializeField] private string mainMenu;
-    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private Settings settingsLogic;
 
     private void Start()
     {
         isGamePaused = false;
         Time.timeScale = 1;
         
-        if (containerPause != null)
-        {
-            containerPause.SetActive(false);
-        }
-        
-        if (settingsPanel != null)
-        {
-            settingsPanel.SetActive(false);
-        }
+        if (containerPause != null) containerPause.SetActive(false);
     }
 
     public void TogglePause()
@@ -29,14 +21,10 @@ public class PauseMenu : MonoBehaviour
         Debug.Log(">>> PauseMenu.TogglePause() was called! isGamePaused currently = " + isGamePaused);
         if (isGamePaused)
         {
-            if (settingsPanel != null && settingsPanel.activeSelf)
+            if (settingsLogic != null && settingsLogic.IsSettingsPanelActive())
             {
                 Debug.Log(">>> Closing settings panel and reopening pause menu.");
-                settingsPanel.SetActive(false);
-                if (containerPause != null)
-                {
-                    containerPause.SetActive(true);
-                }
+                settingsLogic.HideSettingsMenu();
             }
             else
             {
@@ -52,11 +40,13 @@ public class PauseMenu : MonoBehaviour
     public void PausedGame()
     {
         isGamePaused = true;
-        if (settingsPanel != null)
-        {
-            settingsPanel.SetActive(false);
-        }
         Time.timeScale = 0;
+        
+        if (settingsLogic != null && settingsLogic.IsSettingsPanelActive())
+        {
+            settingsLogic.HideSettingsMenu();
+        }
+
         if (containerPause != null)
         {
             containerPause.SetActive(true);
@@ -70,6 +60,12 @@ public class PauseMenu : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = 1;
+        
+        if (settingsLogic != null && settingsLogic.IsSettingsPanelActive())
+        {
+            settingsLogic.HideSettingsMenu();
+        }
+
         if (containerPause != null)
         {
             containerPause.SetActive(false);
@@ -81,13 +77,9 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowSettingMenu()
     {
-        if (containerPause != null)
+        if (settingsLogic != null)
         {
-            containerPause.SetActive(false);
-        }
-        if (settingsPanel != null)
-        {
-            settingsPanel.SetActive(!settingsPanel.activeSelf);
+            settingsLogic.ShowSettingsMenu();
         }
     }
 
@@ -99,5 +91,17 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(mainMenu);
         Debug.Log("Paused Game " + isGamePaused);
+    }
+
+    private void OnDisable()
+    {
+        // Forcer la remise à la normale du temps si le menu est désactivé
+        Time.timeScale = 1;
+    }
+
+    private void OnDestroy()
+    {
+        // Sécurité ultime lors du déchargement de la scène
+        Time.timeScale = 1;
     }
 }
