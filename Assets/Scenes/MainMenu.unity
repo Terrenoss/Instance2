@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 1570112263}
   - component: {fileID: 1570112267}
   m_Layer: 5
-  m_Name: UI
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d3d62cb346c714ca3d03e2ff8cf15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  scene: BeatGame
+  scene: GameScene
 --- !u!1 &1607561636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,19 +1426,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1926066434}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 77532a6f9b111ad49a3882683ed9ce24, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1926066434
 MonoBehaviour:
   m_ObjectHideFlags: 0

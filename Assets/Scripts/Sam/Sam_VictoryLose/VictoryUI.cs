@@ -8,15 +8,13 @@ public class VictoryUI : MonoBehaviour
     public GameObject containerVictory;
     [SerializeField] private float timeBeforeShowVictoryMenu = 3f;
     [SerializeField] private string mainMenu;
-    [SerializeField] private Spawner spawner;
     [SerializeField] private CheckVictory checkVictory;
-    [SerializeField] private PauseMenu pauseMenu;
 
     private void Start()
     {
-        if (spawner != null)
+        if (checkVictory != null)
         {
-            spawner.OnVictory += TimerVictoryCinematic;
+            checkVictory.OnVictory += TimerVictoryCinematic;
         }
 
         containerVictory.SetActive(false);
@@ -39,7 +37,7 @@ public class VictoryUI : MonoBehaviour
     {
         Time.timeScale = 0;
         containerVictory.SetActive(true);
-        if (pauseMenu != null) pauseMenu.isGamePaused = true;
+        PauseMenu.isGamePaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -47,7 +45,7 @@ public class VictoryUI : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1;
-        if (pauseMenu != null) pauseMenu.isGamePaused = false;
+        PauseMenu.isGamePaused = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(mainMenu);
@@ -55,9 +53,9 @@ public class VictoryUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (spawner != null)
+        if (checkVictory != null)
         {
-            spawner.OnVictory -= TimerVictoryCinematic;
+            checkVictory.OnVictory -= TimerVictoryCinematic;
         }
     }
 }

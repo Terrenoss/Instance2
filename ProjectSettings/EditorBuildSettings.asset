@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 184597e5e5ed8e648b5196483a5de5fe
-  - enabled: 1
-    path: Assets/Scenes/Beatmap/BeatGame.unity
-    guid: aeadc684a22867c478bdb390504e84e3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

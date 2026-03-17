@@ -13,15 +13,8 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started)
         {
-            try
-            {
-                Vector2 mvmntInput = ctx.ReadValue<Vector2>();
-                PlayerMovementEvent.Invoke(mvmntInput);
-            }
-            catch (InvalidOperationException)
-            {
-                Debug.LogError("Erreur : La fonction de mouvement a essayé de lire un bouton ! Vérifiez vos événements (Events) dans le Player Input (Inspecteur Unity) : vous avez très probablement assigné CallPlayerMovement à l'action Pause.");
-            }
+            Vector2 mvmntInput = ctx.ReadValue<Vector2>();
+            PlayerMovementEvent.Invoke(mvmntInput);
         }
     }
 
@@ -29,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.started)
         {
+            Guid parryID;
             int index = 0;
             
             foreach (InputControl inputControl in ctx.action.controls)
@@ -45,10 +39,8 @@ public class PlayerController : MonoBehaviour
 
     public void CallPauseEvent(InputAction.CallbackContext ctx)
     {
-        Debug.Log(">>> PlayerController.CallPauseEvent() detected! Phase: " + ctx.phase);
         if (ctx.started)
         {
-            Debug.Log(">>> Invoking PauseEvent!");
             PauseEvent.Invoke();
         }
     }
