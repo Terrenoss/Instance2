@@ -3603,6 +3603,28 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1070126063}
   m_SourcePrefab: {fileID: 100100000, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+--- !u!114 &1358165562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2548774301343240875, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1358165563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6939991403487110639, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1368371073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,6 +5577,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 2088929034}
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1358165563}
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: multiplierText
+      value: 
+      objectReference: {fileID: 1358165562}
     - target: {fileID: 2616171707670941111, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: m_Name
       value: Player
