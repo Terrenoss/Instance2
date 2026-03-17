@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 public class SplineMover : MonoBehaviour
 {
     public SplineContainer splineToFollow;
-    [SerializeField] private float speed = 5f;
+    public float speed = 5f;
     [SerializeField] [Range(0,1)] private float waveEndPosition;
     [SerializeField] private bool isWave = false;
     [SerializeField] private PlayerHealth playerHealth;
