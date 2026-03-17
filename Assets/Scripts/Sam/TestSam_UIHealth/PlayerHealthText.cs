@@ -8,26 +8,17 @@ public class PlayerHealthText : MonoBehaviour
 
     private void Start()
     {
-        if (playerHealth != null)
-        {
-            playerHealth.OnPlayerHit += UpdateHeathText;
-        }
+        EventManager.Instance.PlayerHit += UpdateHeathText;
         UpdateHeathText();
     }
 
     public void UpdateHeathText()
     {
-        if (playerHealth != null)
-        {
-            playerHealthText.text = "Health: " + playerHealth.health;
-        }
+        playerHealthText.text = "Health: " + playerHealth.health;
     }
 
     private void OnDestroy()
     {
-        if (playerHealth != null)
-        {
-            playerHealth.OnPlayerHit -= UpdateHeathText;
-        }
+        EventManager.Instance.PlayerHit -= UpdateHeathText;
     }
 }
