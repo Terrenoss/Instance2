@@ -4,15 +4,15 @@ public class SaveableDatas
 {
     private string _fileName;
 
-    private Dictionary<string, int> _savedInts;
-    private Dictionary<string, float> _savedFloats;
-    private Dictionary<string, string> _savedStrings;
-    private Dictionary<string, bool> _savedBools;
+    private Dictionary<string, int> _savedInts = new();
+    private Dictionary<string, float> _savedFloats = new();
+    private Dictionary<string, string> _savedStrings = new();
+    private Dictionary<string, bool> _savedBools = new();
 
-    private Dictionary<string, int[]> _savedIntArrays;
-    private Dictionary<string, float[]> _savedFloatArrays;
-    private Dictionary<string, string[]> _savedStringArrays;
-    private Dictionary<string, bool[]> _savedBoolArrays;
+    private Dictionary<string, int[]> _savedIntArrays = new();
+    private Dictionary<string, float[]> _savedFloatArrays = new();
+    private Dictionary<string, string[]> _savedStringArrays = new();
+    private Dictionary<string, bool[]> _savedBoolArrays = new();
 
     public SaveableDatas(string fileName)
     {
