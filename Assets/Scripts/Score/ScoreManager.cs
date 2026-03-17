@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
             spawner.OnVictory += CheckBestScore;
         }
         
-        LoadScore();
+        //LoadScore();
         StartCoroutine(PassiveScoreRoutine());
         baseScoreMultiplier =  actualScoreMultiplier;
         Debug.Log("Best Score: " + bestScore);
@@ -74,7 +74,7 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text =  actualScoreMultiplier.ToString();
     }
     
-    private void SaveScore()
+    /*private void SaveScore()
     {
         SaveableDatas datas = new SaveableDatas("BestScore");
 
@@ -95,7 +95,7 @@ public class ScoreManager : MonoBehaviour
         {
             bestScore = 0;
         }
-    }
+    }*/
 
     private void CheckBestScore()
     {
@@ -103,9 +103,6 @@ public class ScoreManager : MonoBehaviour
         {
             bestScore = actualScore;
         }
-        SaveScore();
-        spawner.OnVictory -= CheckBestScore;
-        Debug.Log("Final Score: " + bestScore);
-        Debug.Log("hi");
+        //SaveScore();
     }
 }
