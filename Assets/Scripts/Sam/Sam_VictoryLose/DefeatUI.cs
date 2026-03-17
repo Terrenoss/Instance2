@@ -10,6 +10,7 @@ public class DefeatUI : MonoBehaviour
     [SerializeField] private float timeBeforeShowDefeatMenu = 1f;
     [SerializeField] private string mainMenu;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PauseMenu pauseMenu;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class DefeatUI : MonoBehaviour
     {
         Time.timeScale = 0;
         containerDefeat.SetActive(true);
-        PauseMenu.isGamePaused = true;
+        if (pauseMenu != null) pauseMenu.isGamePaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -46,7 +47,7 @@ public class DefeatUI : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1;
-        PauseMenu.isGamePaused = false;
+        if (pauseMenu != null) pauseMenu.isGamePaused = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(mainMenu);

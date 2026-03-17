@@ -1,4 +1,6 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(LevelExporter))]
@@ -16,3 +18,4 @@ public class LevelExporterEditor : Editor
         }
     }
 }
+#endif

@@ -1,4 +1,6 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(LevelObject))]
@@ -21,3 +23,4 @@ public class LevelObjectEditor : Editor
         }
     }
 }
+#endif
