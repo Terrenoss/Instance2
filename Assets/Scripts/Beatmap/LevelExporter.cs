@@ -25,7 +25,7 @@ public class LevelExporter : MonoBehaviour
                 Debug.LogWarning("Block without LevelObject: " + block.name);
                 continue;
             }
-            
+
             ExportData entry = new ExportData
             {
                 time = GetTime(block),
@@ -36,18 +36,19 @@ public class LevelExporter : MonoBehaviour
 
             data.Add(entry);
         }
+
         data.Sort((a, b) => a.time.CompareTo(b.time));
 
         ExportWrapper wrapper = new ExportWrapper { objects = data };
 
-        string folderPath = Application.dataPath + "/Levels";
+        // ✅ Nouveau chemin
+        string folderPath = Path.Combine(Application.persistentDataPath, "Levels");
 
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
 
-        string fileName = "level.json";
-        string path = Path.Combine(folderPath, fileName);        
-        
+        string path = Path.Combine(folderPath, "level.json");
+
         File.WriteAllText(path, JsonUtility.ToJson(wrapper, true));
         Debug.Log("Level exported to: " + path);
     }
@@ -66,9 +67,7 @@ public class LevelExporter : MonoBehaviour
     float GetTime(Transform block)
     {
         float distanceZ = Mathf.Abs(block.position.z - player.position.z);
-        float time = distanceZ / speed;
-
-        return time;
+        return distanceZ / speed;
     }
 }
 
