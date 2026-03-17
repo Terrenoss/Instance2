@@ -22,7 +22,6 @@ public class Spawner : MonoBehaviour
     private int nextNoteIndex = 0;
     public event Action OnVictory;
 
-
     void Start()
     {
         LoadLevel();
@@ -37,7 +36,7 @@ public class Spawner : MonoBehaviour
             Spawn(notes[nextNoteIndex]);
             nextNoteIndex++;
         }
-        
+
         if (nextNoteIndex >= notes.Count && poolingSystem.AreAllBlocksInactive())
         {
             OnVictory?.Invoke();
@@ -46,14 +45,25 @@ public class Spawner : MonoBehaviour
 
     void LoadLevel()
     {
-        string path = Application.dataPath + "/Levels/level.json";        
-        if (!File.Exists(path))
+        string persistentPath = Path.Combine(Application.persistentDataPath, "Levels/level.json");
+        string streamingPath = Path.Combine(Application.streamingAssetsPath, "Levels/level.json");
+
+        if (!File.Exists(persistentPath))
         {
-            Debug.LogError("Level JSON not found: " + path);
-            return;
+            if (File.Exists(streamingPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(persistentPath));
+                File.Copy(streamingPath, persistentPath);
+                Debug.Log("Level copied from StreamingAssets to persistentDataPath");
+            }
+            else
+            {
+                Debug.LogError("No level found in StreamingAssets or persistentDataPath");
+                return;
+            }
         }
 
-        string json = File.ReadAllText(path);
+        string json = File.ReadAllText(persistentPath);
         ExportWrapper wrapper = JsonUtility.FromJson<ExportWrapper>(json);
         notes = wrapper.objects;
 
