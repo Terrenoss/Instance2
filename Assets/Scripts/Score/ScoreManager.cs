@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     
     [SerializeField] private int parryScore = 200;
     
+    [SerializeField] private int maxMultiplier = 10;
     [SerializeField] private int scoreMultiplier = 2;
     [SerializeField] private int actualScoreMultiplier = 1;
     private int baseScoreMultiplier = 1;
@@ -42,6 +43,10 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseMultiplier()
     {
         actualScoreMultiplier *= scoreMultiplier;
+        if (actualScoreMultiplier >= maxMultiplier)
+        {
+            actualScoreMultiplier = maxMultiplier;
+        }
     }
 
     //call when player take damage
