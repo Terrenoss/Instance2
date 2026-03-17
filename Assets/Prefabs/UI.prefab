@@ -1605,9 +1605,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8182686815142461285}
-  - {fileID: 6787661463341402489}
-  - {fileID: 5330261778944361529}
   - {fileID: 7253617249650924771}
   - {fileID: 4118416251259325348}
   - {fileID: 3236316980585684746}
@@ -1615,6 +1612,9 @@ RectTransform:
   - {fileID: 4503139937161896068}
   - {fileID: 7004971647914230554}
   - {fileID: 2211291274239393959}
+  - {fileID: 8182686815142461285}
+  - {fileID: 6787661463341402489}
+  - {fileID: 5330261778944361529}
   - {fileID: 6526009191279916838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 7366358706048207567}
   - component: {fileID: 4519931177486980395}
   - component: {fileID: 7015064882724380865}
+  - component: {fileID: 3778850832130698543}
   m_Layer: 5
   m_Name: Progress Canvas
   m_TagString: Untagged
@@ -2010,6 +2011,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3778850832130698543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730219225368112130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f57ca0b897ddf4ba086f9c655c5192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressBarController
+  spawner: {fileID: 0}
+  fillImage: {fileID: 3711845232638372577}
 --- !u!1 &5206411890600264029
 GameObject:
   m_ObjectHideFlags: 0

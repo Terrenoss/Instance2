@@ -2377,7 +2377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &881025449
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3575,8 +3575,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4730219225368112130, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1358165564}
   m_SourcePrefab: {fileID: 100100000, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+--- !u!114 &1358165562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3711845232638372577, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &1358165563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4730219225368112130, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358165564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358165563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f57ca0b897ddf4ba086f9c655c5192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressBarController
+  spawner: {fileID: 2088929034}
+  fillImage: {fileID: 1358165562}
 --- !u!1 &1368371073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5531,6 +5564,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1734755157606350471, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.81
+      objectReference: {fileID: 0}
     - target: {fileID: 2376778811321803221, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CallPauseEvent
@@ -5543,6 +5580,14 @@ PrefabInstance:
       propertyPath: _grid
       value: 
       objectReference: {fileID: 1183283143}
+    - target: {fileID: 3907584845644893880, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035934107470587459, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.129
+      objectReference: {fileID: 0}
     - target: {fileID: 8199349035487606841, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.25
