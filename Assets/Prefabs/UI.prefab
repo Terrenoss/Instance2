@@ -1329,7 +1329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   containerPause: {fileID: 9181617521407446786}
+  isGamePaused: 1
   mainMenu: MainMenu
+  settingsPanel: {fileID: 0}
 --- !u!114 &8717937941778171386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,6 +1348,7 @@ MonoBehaviour:
   timeBeforeShowVictoryMenu: 0.5
   mainMenu: MainMenu
   checkVictory: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &5573744596720694023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,6 +1365,7 @@ MonoBehaviour:
   timeBeforeShowDefeatMenu: 0.5
   mainMenu: MainMenu
   playerHealth: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!114 &2170413374507201562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2899,7 +2903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8182686815142461285
 RectTransform:
   m_ObjectHideFlags: 0
