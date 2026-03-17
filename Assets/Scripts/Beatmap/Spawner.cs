@@ -10,10 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SplineContainer leftSpline;
     [SerializeField] private SplineContainer centerSpline;
     [SerializeField] private SplineContainer rightSpline;
-
-    [Header("Prefabs")]
-    [SerializeField] private GameObject cubePrefab;
-    [SerializeField] private GameObject wavePrefab;
+    [SerializeField] private SplineMover splineMover;
     
     private float levelTime = 0f;
     [SerializeField] private PoolingSystem poolingSystem;
@@ -21,6 +18,9 @@ public class Spawner : MonoBehaviour
     private List<ExportData> notes = new List<ExportData>();
     private int nextNoteIndex = 0;
     public event Action OnVictory;
+    
+    public float LevelDuration { get; private set; }
+    public float CurrentTime => levelTime;
 
     void Start()
     {
@@ -68,6 +68,17 @@ public class Spawner : MonoBehaviour
         notes = wrapper.objects;
 
         notes.Sort((a, b) => a.time.CompareTo(b.time));
+
+        if (notes.Count > 0)
+        {
+            float splineLength = GetSplineLength(centerSpline);
+
+            float speed = splineMover.speed;
+
+            float travelTime = splineLength / speed;
+
+            LevelDuration = notes[notes.Count - 1].time + travelTime;
+        }
     }
     
     void Spawn(ExportData data)
@@ -106,5 +117,21 @@ public class Spawner : MonoBehaviour
         {
             wave.SetWaveType(data.waveType);
         }
+    }
+    
+    float GetSplineLength(SplineContainer spline, int resolution = 50)
+    {
+        float length = 0f;
+        Vector3 previousPoint = spline.EvaluatePosition(0f);
+
+        for (int i = 1; i <= resolution; i++)
+        {
+            float t = i / (float)resolution;
+            Vector3 point = spline.EvaluatePosition(t);
+            length += Vector3.Distance(previousPoint, point);
+            previousPoint = point;
+        }
+
+        return length;
     }
 }
