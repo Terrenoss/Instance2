@@ -8,7 +8,7 @@ public class Grid : MonoBehaviour
     [SerializeField] private Vector2 _tileSize = Vector2.one;
     private List<Tile> _tileGrid = new List<Tile>();
 
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < _numRows; i++)
         {
