@@ -996,6 +996,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b92cab8bd140314b80be463396b7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPlayer
+--- !u!114 &245648288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6844381588521893863, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &344443532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6136505585992123145, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77532a6f9b111ad49a3882683ed9ce24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
 --- !u!1 &385409990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b92cab8bd140314b80be463396b7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPlayer
+--- !u!114 &386869869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 706187875482358738, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,14 +3509,34 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 637738544}
+    - target: {fileID: 2170413374507201562, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: playerHealthText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548774301343240875, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548774301343240875, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4272967313792498296, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 5573744596720694023, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 344443532}
+    - target: {fileID: 5573744596720694023, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 637738544}
+    - target: {fileID: 6136505585992123145, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: settingsPanel
+      value: 
+      objectReference: {fileID: 2063362517}
     - target: {fileID: 7551597397472340394, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3568,6 +3621,22 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 2088929034}
+    - target: {fileID: 8717937941778171386, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 344443532}
+    - target: {fileID: 8773206443605583603, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: healthPoint1
+      value: 
+      objectReference: {fileID: 2081507181}
+    - target: {fileID: 8773206443605583603, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: healthPoint2
+      value: 
+      objectReference: {fileID: 245648288}
+    - target: {fileID: 8773206443605583603, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: healthPoint3
+      value: 
+      objectReference: {fileID: 386869869}
     - target: {fileID: 8773206443605583603, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: playerHealth
       value: 
@@ -4956,6 +5025,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b92cab8bd140314b80be463396b7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPlayer
+--- !u!1 &2063362517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7275992365567651308, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2079612538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5100,6 +5174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b92cab8bd140314b80be463396b7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPlayer
+--- !u!114 &2081507181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1194551462987577118, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &2081904908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,30 +5612,6 @@ PrefabInstance:
       propertyPath: _grid
       value: 
       objectReference: {fileID: 1183283143}
-    - target: {fileID: 3549387605794951131, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 637738544}
-    - target: {fileID: 3669198116324286492, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3669198116324286492, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3669198116324286492, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907584845644893880, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 5035934107470587459, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.59
-      objectReference: {fileID: 0}
     - target: {fileID: 8199349035487606841, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.25

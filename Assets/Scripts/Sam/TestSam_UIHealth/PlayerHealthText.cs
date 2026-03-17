@@ -8,6 +8,10 @@ public class PlayerHealthText : MonoBehaviour
 
     private void Start()
     {
+        if (playerHealth == null)
+        {
+            playerHealth.gameObject.SetActive(false);
+        }
         if (playerHealth != null)
         {
             playerHealth.OnPlayerHit += UpdateHeathText;
