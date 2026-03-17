@@ -16,7 +16,7 @@ public class Dissolver : MonoBehaviour
     public IEnumerator Dissolve() 
     {
         Material material = GetComponentInChildren<Renderer>().material;
-        //Transform childrenTransform = GetComponentInChildren<Transform>();
+        
         float elapsedTime = 0;
         
         while (elapsedTime < dissolveDuration)
@@ -38,9 +38,6 @@ public class Dissolver : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        // to check if collide with the good trigger, addes Audio Source on it
-        if (coll.GetComponent<AudioSource>() != null) {
-            StartDisolving();
-        }
+        StartDisolving();
     }
 }
