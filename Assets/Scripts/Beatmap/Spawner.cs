@@ -40,6 +40,7 @@ public class Spawner : MonoBehaviour
         if (nextNoteIndex >= notes.Count && poolingSystem.AreAllBlocksInactive())
         {
             OnVictory?.Invoke();
+            Debug.Log("caca");
         }
     }
 

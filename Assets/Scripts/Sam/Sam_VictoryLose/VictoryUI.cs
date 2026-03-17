@@ -9,7 +9,6 @@ public class VictoryUI : MonoBehaviour
     [SerializeField] private float timeBeforeShowVictoryMenu = 3f;
     [SerializeField] private string mainMenu;
     [SerializeField] private Spawner spawner;
-    [SerializeField] private CheckVictory checkVictory;
     [SerializeField] private PauseMenu pauseMenu;
 
     private void Start()
