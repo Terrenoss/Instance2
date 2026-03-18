@@ -8,6 +8,15 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private string mainMenu;
     [SerializeField] private Settings settingsLogic;
 
+    private void Awake()
+    {
+        if (settingsLogic != null)
+        {
+            settingsLogic.OnSettingsOpened += HandleSettingsOpened;
+            settingsLogic.OnSettingsClosed += HandleSettingsClosed;
+        }
+    }
+
     private void Start()
     {
         isGamePaused = false;
@@ -93,6 +102,22 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Paused Game " + isGamePaused);
     }
 
+    private void HandleSettingsOpened()
+    {
+        if (containerPause != null)
+        {
+            containerPause.SetActive(false);
+        }
+    }
+
+    private void HandleSettingsClosed()
+    {
+        if (containerPause != null && isGamePaused)
+        {
+            containerPause.SetActive(true);
+        }
+    }
+
     private void OnDisable()
     {
         // Forcer la remise à la normale du temps si le menu est désactivé
@@ -101,6 +126,12 @@ public class PauseMenu : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (settingsLogic != null)
+        {
+            settingsLogic.OnSettingsOpened -= HandleSettingsOpened;
+            settingsLogic.OnSettingsClosed -= HandleSettingsClosed;
+        }
+
         // Sécurité ultime lors du déchargement de la scène
         Time.timeScale = 1;
     }

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private PauseMenu pauseMenu;
+
+    public event Action OnSettingsOpened;
+    public event Action OnSettingsClosed;
 
     private void Start()
     {
@@ -15,15 +18,12 @@ public class Settings : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
-        if (pauseMenu != null && pauseMenu.containerPause != null)
-        {
-            pauseMenu.containerPause.SetActive(false);
-        }
-
         if (settingsPanel != null)
         {
             settingsPanel.SetActive(true);
         }
+
+        OnSettingsOpened?.Invoke();
     }
 
     public void HideSettingsMenu()
@@ -33,10 +33,7 @@ public class Settings : MonoBehaviour
             settingsPanel.SetActive(false);
         }
 
-        if (pauseMenu != null && pauseMenu.containerPause != null)
-        {
-            pauseMenu.containerPause.SetActive(true);
-        }
+        OnSettingsClosed?.Invoke();
     }
 
     public void ToggleSettingsMenu()

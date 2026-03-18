@@ -45,10 +45,8 @@ public class PlayerController : MonoBehaviour
 
     public void CallPauseEvent(InputAction.CallbackContext ctx)
     {
-        Debug.Log(">>> PlayerController.CallPauseEvent() detected! Phase: " + ctx.phase);
         if (ctx.started)
         {
-            Debug.Log(">>> Invoking PauseEvent!");
             PauseEvent.Invoke();
         }
     }

@@ -996,6 +996,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b92cab8bd140314b80be463396b7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPlayer
+--- !u!1 &279435579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3752792057707688283, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+  m_PrefabInstance: {fileID: 1358165561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385409990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3572,6 +3577,10 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 2088929034}
+    - target: {fileID: 8717937941778171386, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: containerVictory
+      value: 
+      objectReference: {fileID: 279435579}
     - target: {fileID: 8773206443605583603, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: playerHealth
       value: 

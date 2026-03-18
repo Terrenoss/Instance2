@@ -6,8 +6,6 @@ public class Dissolver : MonoBehaviour
     [SerializeField] private float dissolveDuration = 1.2f;
     private float dissolveStrength;
 
-    public Transform childrenTransform;
-
     public void StartDisolving()
     {
         StartCoroutine(Dissolve());
@@ -25,22 +23,22 @@ public class Dissolver : MonoBehaviour
             dissolveStrength = Mathf.Lerp(0, 1, elapsedTime / dissolveDuration);
             material.SetFloat("_DissolveStrength", dissolveStrength);
 
-            childrenTransform.localScale = new Vector3(childrenTransform.localScale.x + elapsedTime / dissolveDuration / 20,
-                                                       childrenTransform.localScale.y + elapsedTime / dissolveDuration / 20,
-                                                       childrenTransform.localScale.z + elapsedTime / dissolveDuration / 20);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + elapsedTime / dissolveDuration / 20,
+                gameObject.transform.localScale.y + elapsedTime / dissolveDuration / 20,
+                gameObject.transform.localScale.z + elapsedTime / dissolveDuration / 20);
 
-            childrenTransform.position = new Vector3(childrenTransform.position.x,
-                                                     childrenTransform.position.y - elapsedTime / dissolveDuration / 40,
-                                                     childrenTransform.position.z);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                                                     gameObject.transform.position.y - elapsedTime / dissolveDuration / 40,
+                                                     gameObject.transform.position.z);
             yield return null;
         }
     }
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.GetComponent<DissolverDetec>() != null)
+        if (coll.gameObject.GetComponent<DissolverDetec>())
         {
-           // StartDisolving();
+           StartDisolving();
         }
     }
 }
