@@ -1,17 +1,18 @@
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
 {
     public static void SaveData(SaveableDatas datas)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-
         string path = Application.persistentDataPath + $"/{datas.GetFileName()}.wad";
-        FileStream stream = new FileStream(path, FileMode.Create);
 
-        formatter.Serialize(stream, datas);
+        string dataToStore = JsonUtility.ToJson(datas, true);
+
+        FileStream stream = new FileStream(path, FileMode.Create);
+        StreamWriter writer = new StreamWriter(stream);
+        writer.Write(dataToStore);
+
         stream.Close();
     }
 
@@ -20,9 +21,10 @@ public class SaveSystem
         string path = Application.persistentDataPath + $"/{fileName}.wad";
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-            SaveableDatas datas = formatter.Deserialize(stream) as SaveableDatas;
+            StreamReader reader = new StreamReader(stream);
+            string dataToLoad = reader.ReadToEnd();
+            SaveableDatas datas = JsonUtility.FromJson<SaveableDatas>(dataToLoad);
             stream.Close();
             return datas;
         }
