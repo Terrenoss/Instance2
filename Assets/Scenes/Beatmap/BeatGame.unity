@@ -1091,25 +1091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
---- !u!1 &331125120 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1344343553114657828, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-  m_PrefabInstance: {fileID: 569192626}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &331125125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331125120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f57ca0b897ddf4ba086f9c655c5192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProgressBarController
-  spawner: {fileID: 2088929034}
-  fillImage: {fileID: 2121242657}
 --- !u!1 &385409990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1557,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 637738544}
+    - target: {fileID: 3285687547513686953, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 2088929034}
     - target: {fileID: 3778850832130698543, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: spawner
       value: 
@@ -1588,10 +1573,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 637738544}
-    - target: {fileID: 7428938796480331092, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 5594241175399742250, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 2088929034}
     - target: {fileID: 7551597397472340394, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1672,10 +1657,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7838277016142023848, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8717937941778171386, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
       propertyPath: spawner
       value: 
@@ -1687,13 +1668,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1835166569847498200, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1222758663}
-    - targetCorrespondingSourceObject: {fileID: 1344343553114657828, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 331125125}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
 --- !u!1 &622273228
 GameObject:
@@ -3998,25 +3973,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
---- !u!1 &1222758658 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1835166569847498200, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-  m_PrefabInstance: {fileID: 569192626}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1222758663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222758658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f57ca0b897ddf4ba086f9c655c5192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProgressBarController
-  spawner: {fileID: 2088929034}
-  fillImage: {fileID: 2121246968}
 --- !u!1 &1368371073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6013,28 +5969,6 @@ Transform:
   - {fileID: 723708026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2121242657 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5325366547374544181, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-  m_PrefabInstance: {fileID: 569192626}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &2121246968 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4771638277835908297, guid: 89853e1378286d246ad94fa5af3f0dc5, type: 3}
-  m_PrefabInstance: {fileID: 569192626}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &885303500685380014
 PrefabInstance:
   m_ObjectHideFlags: 0
