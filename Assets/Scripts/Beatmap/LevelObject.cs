@@ -18,6 +18,7 @@ public class LevelObject : MonoBehaviour
 {
     public ObstacleType type;
     public WaveTypeSelection waveType;
+    public bool isParryKeyVisible;
 
     private void OnDrawGizmos()
     {
