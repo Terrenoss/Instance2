@@ -12,7 +12,7 @@ public class RhythmEditorWindow : EditorWindow
     private AudioSource audioSource;
     
     private float currentTime;
-    private float volume = 0.5f;
+    private float volume = 0.15f;
     private bool isRecording = false; 
     
     private float waveformContrast = 1.5f;
@@ -33,18 +33,30 @@ public class RhythmEditorWindow : EditorWindow
         window.Show();
     }
 
+    private LevelObject[] cachedLevelObjects = new LevelObject[0];
+
     private void OnEnable()
     {
         EditorApplication.update += OnEditorUpdate;
+        EditorApplication.hierarchyChanged += OnHierarchyChanged;
         GameObject oldPlayer = GameObject.Find("Hidden_Rhythm_AudioPlayer");
         if (oldPlayer != null) DestroyImmediate(oldPlayer);
+        
+        OnHierarchyChanged();
     }
 
     private void OnDisable()
     {
         EditorApplication.update -= OnEditorUpdate;
+        EditorApplication.hierarchyChanged -= OnHierarchyChanged;
         if (hiddenAudioPlayer != null) DestroyImmediate(hiddenAudioPlayer);
         if (waveformTexture != null) DestroyImmediate(waveformTexture);
+    }
+
+    private void OnHierarchyChanged()
+    {
+        cachedLevelObjects = FindObjectsOfType<LevelObject>();
+        Repaint();
     }
 
     private void OnEditorUpdate()
@@ -132,10 +144,8 @@ public class RhythmEditorWindow : EditorWindow
         if (audioClip != null)
         {
             EditorGUI.BeginChangeCheck();
-            waveformContrast = EditorGUILayout.Slider("Waveform Contrast", waveformContrast, 1f, 8f);
+            waveformContrast = EditorGUILayout.Slider("Waveform Contrast", waveformContrast, 1f, 20f);
             if (EditorGUI.EndChangeCheck()) GenerateWaveformTexture();
-
-            // SUPPRESSION DES BOUTONS ZOOM ET AUTO-SCROLL DE L'INTERFACE
 
             DrawWaveform();
             
@@ -220,7 +230,7 @@ public class RhythmEditorWindow : EditorWindow
                 scrollPosition.x += e.delta.y * 50f; 
                 scrollPosition.x += e.delta.x * 50f;
 
-                autoScroll = false; // On désactive l'auto-scroll pour te laisser regarder
+                autoScroll = false;
             }
 
             e.Use(); 
@@ -228,11 +238,11 @@ public class RhythmEditorWindow : EditorWindow
         }
 
         // Auto-Scroll
-        if (autoScroll && audioSource != null && audioSource.isPlaying)
-        {
-            float currentPlayheadX = totalWidth * (currentTime / audioClip.length);
-            scrollPosition.x = currentPlayheadX - (scrollViewRect.width / 2f);
-        }
+        // if (autoScroll && audioSource != null && audioSource.isPlaying)
+        // {
+        //     float currentPlayheadX = totalWidth * (currentTime / audioClip.length);
+        //     scrollPosition.x = currentPlayheadX - (scrollViewRect.width / 2f);
+        // }
 
         scrollPosition = GUI.BeginScrollView(scrollViewRect, scrollPosition, contentRect);
 
@@ -246,9 +256,10 @@ public class RhythmEditorWindow : EditorWindow
         // --- DESSIN DES ONDES ---
         if (levelExporter != null)
         {
-            LevelObject[] objects = FindObjectsOfType<LevelObject>();
-            foreach (LevelObject obj in objects)
+            foreach (LevelObject obj in cachedLevelObjects)
             {
+                if (obj == null) continue;
+                
                 if (obj.type == ObstacleType.wave)
                 {
                     float timeOfWave = obj.transform.position.z / levelExporter.Speed;
@@ -272,6 +283,12 @@ public class RhythmEditorWindow : EditorWindow
                             {
                                 selectedWave = obj;
                                 Selection.activeGameObject = obj.gameObject;
+                                
+                                if (SceneView.lastActiveSceneView != null)
+                                {
+                                    SceneView.lastActiveSceneView.FrameSelected();
+                                }
+                                
                                 e.Use();
                             }
                         }
@@ -285,6 +302,13 @@ public class RhythmEditorWindow : EditorWindow
         {
             float clickProgress = e.mousePosition.x / totalWidth;
             SetAudioTime(Mathf.Clamp(clickProgress * audioClip.length, 0f, audioClip.length));
+            
+            if (e.type == EventType.MouseDown)
+            {
+                selectedWave = null;
+                Selection.activeGameObject = null;
+            }
+            
             e.Use();
         }
 

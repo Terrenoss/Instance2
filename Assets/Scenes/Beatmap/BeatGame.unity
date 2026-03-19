@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!114 &21001207 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1118761624576211072, guid: bbe9ac2287ee4d847ad884d080ff0239, type: 3}
@@ -457,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &75765577
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &139537476
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +702,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -775,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &147870637
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &198918531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &385409990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!114 &561252553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1118761624576211072, guid: bbe9ac2287ee4d847ad884d080ff0239, type: 3}
@@ -1754,7 +1762,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1830,6 +1838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!114 &637738544 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 814327023246389264, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
@@ -1999,6 +2008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &658079374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2093,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2159,6 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &667174881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,6 +2328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &697239778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,6 +3060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &900281906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,6 +3219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &940601451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,7 +3394,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3455,6 +3470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1094523935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,7 +3555,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3615,6 +3631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1170066712
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,6 +3821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!114 &1183283143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7264296979071333741, guid: 339cb99fb3601ba45be358b02120a464, type: 3}
@@ -3973,6 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1368371073
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,6 +4150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1429420282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1460191384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,7 +4485,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4555,6 +4576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1809957635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4624,7 +4646,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4715,6 +4737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1838857029
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,7 +4787,7 @@ Transform:
   m_GameObject: {fileID: 1838857029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.19, z: -0.5}
+  m_LocalPosition: {x: 2, y: 0.19, z: 8.31}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4893,7 +4916,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4969,6 +4992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1847077246
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,6 +5151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &1858292662
 GameObject:
   m_ObjectHideFlags: 0
@@ -5285,6 +5310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1001 &1897804324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5601,6 +5627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &2079612538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5759,6 +5786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &2081904908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,6 +5945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dissolver
   dissolveDuration: 1.2
+  playerHealth: {fileID: 637738544}
 --- !u!1 &2088929033
 GameObject:
   m_ObjectHideFlags: 0

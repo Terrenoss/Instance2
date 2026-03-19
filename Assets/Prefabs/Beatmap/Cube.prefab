@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5011821740168756051}
   - component: {fileID: 3698991707539478938}
   - component: {fileID: 6865521474598671069}
+  - component: {fileID: 8970019671824769438}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -126,3 +127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestWaveMovement
   waveSpeed: 5
+--- !u!114 &8970019671824769438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803293762686915633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a778d2cc47d02b45aba9ca04f26c051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelObject
+  type: 0
+  waveType: 0
