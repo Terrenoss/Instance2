@@ -21,9 +21,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI multiplierText;
     
-    [SerializeField] private List<TextMeshProUGUI> bestScoreText;
-    [SerializeField] private List<TextMeshProUGUI> bestScoreMultiplierText;
-    [SerializeField] private List<TextMeshProUGUI> scoreFinishText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
+    [SerializeField] private TextMeshProUGUI scoreFinishText;
     
     
     private int actualScore;
@@ -116,13 +116,10 @@ public class ScoreManager : MonoBehaviour
         {
             bestScore = actualScore;
         }
-
-        for (int i = 0; i < bestScoreMultiplierText.Count; i++)
-        {
-            bestScoreText[i].text = bestScore.ToString();
-            bestScoreMultiplierText[i].text = bestScoreMultiplier.ToString();
-            scoreFinishText[i].text = actualScore.ToString();
-        }
+        
+        bestScoreText.text = bestScore.ToString();
+        bestScoreMultiplierText.text = bestScoreMultiplier.ToString();
+        scoreFinishText.text = actualScore.ToString();
         SaveScore();
     }
 }
