@@ -117,6 +117,7 @@ public class Spawner : MonoBehaviour
         if (wave != null)
         {
             wave.SetWaveType(data.waveType);
+            wave.SetParryKeyVisible(data.isParryKeyVisible);
         }
     }
     
