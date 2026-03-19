@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         OnPlayerDeath?.Invoke();
+        scoreManager.CheckBestScore();
         gameObject.SetActive(false);
     }
 }

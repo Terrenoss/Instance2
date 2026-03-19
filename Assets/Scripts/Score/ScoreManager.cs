@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,9 +16,15 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int scoreMultiplier = 2;
     [SerializeField] private int actualScoreMultiplier = 1;
     private int baseScoreMultiplier = 1;
+    private int bestScoreMultiplier = 1;
     
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI multiplierText;
+    
+    [SerializeField] private List<TextMeshProUGUI> bestScoreText;
+    [SerializeField] private List<TextMeshProUGUI> bestScoreMultiplierText;
+    [SerializeField] private List<TextMeshProUGUI> scoreFinishText;
+    
     
     private int actualScore;
 
@@ -28,7 +35,7 @@ public class ScoreManager : MonoBehaviour
             spawner.OnVictory += CheckBestScore;
         }
         
-        //LoadScore();
+        LoadScore();
         StartCoroutine(PassiveScoreRoutine());
         baseScoreMultiplier =  actualScoreMultiplier;
         Debug.Log("Best Score: " + bestScore);
@@ -64,6 +71,12 @@ public class ScoreManager : MonoBehaviour
         {
             actualScoreMultiplier = maxMultiplier;
         }
+
+        if (bestScoreMultiplier < actualScoreMultiplier)
+        {
+            bestScoreMultiplier = actualScoreMultiplier;
+        }
+        
         multiplierText.text =  actualScoreMultiplier.ToString();
     }
 
@@ -74,7 +87,7 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text =  actualScoreMultiplier.ToString();
     }
     
-    /*private void SaveScore()
+    private void SaveScore()
     {
         SaveableDatas datas = new SaveableDatas("BestScore");
 
@@ -95,14 +108,21 @@ public class ScoreManager : MonoBehaviour
         {
             bestScore = 0;
         }
-    }*/
+    }
 
-    private void CheckBestScore()
+    public void CheckBestScore()
     {
         if (actualScore > bestScore)
         {
             bestScore = actualScore;
         }
-        //SaveScore();
+
+        for (int i = 0; i < bestScoreMultiplierText.Count; i++)
+        {
+            bestScoreText[i].text = bestScore.ToString();
+            bestScoreMultiplierText[i].text = bestScoreMultiplier.ToString();
+            scoreFinishText[i].text = actualScore.ToString();
+        }
+        SaveScore();
     }
 }
