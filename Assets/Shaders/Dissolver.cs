@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Dissolver : MonoBehaviour
 {
     [SerializeField] private float dissolveDuration = 1.2f;
+    [SerializeField] private PlayerHealth playerHealth;
     private float dissolveStrength;
+    private Vector3 target;
+    private bool finishedDissolving = false;
+
+    private void Start()
+    {
+        target = gameObject.transform.localScale;
+        playerHealth.OnPlayerDeath += StopDissolving;
+    }
 
     public void StartDisolving()
     {
@@ -36,9 +46,22 @@ public class Dissolver : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
+        if (finishedDissolving) return;
         if (coll.gameObject.GetComponent<DissolverDetec>())
         {
            StartDisolving();
         }
+    }
+
+    private void StopDissolving()
+    {
+        finishedDissolving = true;
+        StopAllCoroutines();
+        gameObject.transform.localScale = target;
+    }
+
+    private void OnDisable()
+    {
+        gameObject.transform.localScale = target;
     }
 }

@@ -9,22 +9,18 @@ public class LevelExporter : MonoBehaviour
     [SerializeField] private Transform blocksParent;
     [SerializeField] private float speed = 10f;
 
+    public float Speed => speed;
+    public Transform BlocksParent => blocksParent;
+
     public void ExportLevel()
     {
-        Transform[] blocks = new Transform[blocksParent.childCount];
-        for (int i = 0; i < blocksParent.childCount; i++)
-            blocks[i] = blocksParent.GetChild(i);
+        LevelObject[] levelObjects = blocksParent.GetComponentsInChildren<LevelObject>();
 
         List<ExportData> data = new List<ExportData>();
 
-        foreach (Transform block in blocks)
+        foreach (LevelObject levelObj in levelObjects)
         {
-            LevelObject levelObj = block.GetComponent<LevelObject>();
-            if (levelObj == null)
-            {
-                Debug.LogWarning("Block without LevelObject: " + block.name);
-                continue;
-            }
+            Transform block = levelObj.transform;
 
             ExportData entry = new ExportData
             {
@@ -41,7 +37,6 @@ public class LevelExporter : MonoBehaviour
 
         ExportWrapper wrapper = new ExportWrapper { objects = data };
 
-        // ✅ Nouveau chemin
         string folderPath = Path.Combine(Application.persistentDataPath, "Levels");
 
         if (!Directory.Exists(folderPath))

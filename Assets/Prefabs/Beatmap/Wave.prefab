@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3335097687717789802}
   - component: {fileID: 7818841118950197164}
   - component: {fileID: -3035121660110286687}
+  - component: {fileID: -1524020747357000759}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -126,3 +127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestWaveMovement
   waveSpeed: 5
+--- !u!114 &-1524020747357000759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276201962351349905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a778d2cc47d02b45aba9ca04f26c051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelObject
+  type: 1
+  waveType: 0

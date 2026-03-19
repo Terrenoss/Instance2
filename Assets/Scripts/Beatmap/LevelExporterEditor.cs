@@ -12,9 +12,10 @@ public class LevelExporterEditor : Editor
 
         LevelExporter exporter = (LevelExporter)target;
 
-        if (GUILayout.Button("Export Level"))
+        GUIStyle bigButtonStyle = new GUIStyle(GUI.skin.button) { fixedHeight = 40, fontStyle = FontStyle.Bold };
+        if (GUILayout.Button("Open Rhythm Editor", bigButtonStyle))
         {
-            exporter.ExportLevel();
+            RhythmEditorWindow.ShowWindow((LevelExporter)target);
         }
     }
 }
