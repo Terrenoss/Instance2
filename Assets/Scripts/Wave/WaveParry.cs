@@ -14,30 +14,41 @@ public class WaveParry : MonoBehaviour
     {
         Collider[] hits = Physics.OverlapBox(transform.position, boxSize / 2, Quaternion.identity);
         
+        if (hits.Length == 0)
+        {
+            playerHealth.TakeDamage();
+            return;
+        }
         foreach (Collider hit in hits)
         {
-            if (!hit.TryGetComponent(out WaveType waveType)) continue;
-            
-            float distance = Vector3.Distance(transform.position, hit.transform.position);
-
-            if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
+            if (hit.TryGetComponent(out WaveType waveType))
             {
-                if (distance <= perfectDistance)
+                float distance = Vector3.Distance(transform.position, hit.transform.position);
+
+                if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
                 {
-                    scoreManager.AddParryScore();
-                    scoreManager.IncreaseMultiplier();
+                    if (distance <= perfectDistance)
+                    {
+                        scoreManager.AddParryScore();
+                        scoreManager.IncreaseMultiplier();
+                    }
+                    else
+                    {
+                        scoreManager.AddParryScore();
+                    }
                 }
                 else
                 {
-                    scoreManager.AddParryScore();
+                    playerHealth.TakeDamage();
                 }
+                hit.TryGetComponent(out SplineMover waveMover);
+                waveMover.UpdateWave(false);
             }
             else
             {
                 playerHealth.TakeDamage();
+                return;
             }
-            hit.TryGetComponent(out SplineMover waveMover);
-            waveMover.UpdateWave(false);
         }
     }
 
