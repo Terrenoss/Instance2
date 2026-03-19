@@ -55,7 +55,15 @@ public class RhythmEditorWindow : EditorWindow
 
     private void OnHierarchyChanged()
     {
-        cachedLevelObjects = FindObjectsOfType<LevelObject>();
+        GameObject container = GameObject.Find("LevelDesign");
+        if (container != null)
+        {
+            cachedLevelObjects = container.GetComponentsInChildren<LevelObject>(true);
+        }
+        else
+        {
+            cachedLevelObjects = new LevelObject[0];
+        }
         Repaint();
     }
 
