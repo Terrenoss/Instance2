@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 4180914887078718937}
   - component: {fileID: 5541569375764516393}
   - component: {fileID: 760035604307362359}
+  - component: {fileID: 3589604684356433568}
   m_Layer: 5
   m_Name: Down (Button)
   m_TagString: Untagged
@@ -257,7 +258,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5541569375764516393}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3589604684356433568}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3589604684356433568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451492249103927867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Parry
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 494724858970996910}
+  _isPartOfComposite: 1
+  _compositeIndex: 1
 --- !u!1 &483134185645520036
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +666,7 @@ GameObject:
   - component: {fileID: 1346154391794399528}
   - component: {fileID: 3299200631861677072}
   - component: {fileID: 5662851616688699529}
+  - component: {fileID: 9089640233257658960}
   m_Layer: 5
   m_Name: Left (Button)
   m_TagString: Untagged
@@ -737,7 +775,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3299200631861677072}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9089640233257658960}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9089640233257658960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906751026652566752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Parry
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 1800723503513805485}
+  _isPartOfComposite: 1
+  _compositeIndex: 2
 --- !u!1 &940897818896913513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1279,7 @@ GameObject:
   - component: {fileID: 400401932184455442}
   - component: {fileID: 7106414883468505966}
   - component: {fileID: 1356728684594589277}
+  - component: {fileID: 2564569623444703513}
   m_Layer: 5
   m_Name: Up (Button)
   m_TagString: Untagged
@@ -1313,7 +1388,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7106414883468505966}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2564569623444703513}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2564569623444703513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955625533382822646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Parry
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 5814864013021470973}
+  _isPartOfComposite: 1
+  _compositeIndex: 0
 --- !u!1 &2684230076198899271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2124,7 @@ GameObject:
   - component: {fileID: 8071606020337558959}
   - component: {fileID: 2004075154248722368}
   - component: {fileID: 5201065475066909513}
+  - component: {fileID: 6248772385284092150}
   m_Layer: 5
   m_Name: Left (Button)
   m_TagString: Untagged
@@ -2121,7 +2233,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2004075154248722368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6248772385284092150}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6248772385284092150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414819037951306565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Move
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 7698839523376142579}
+  _isPartOfComposite: 1
+  _compositeIndex: 1
 --- !u!1 &4550597510310903464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2419,7 @@ GameObject:
   - component: {fileID: 5917920614781736792}
   - component: {fileID: 8067695414858275582}
   - component: {fileID: 7615784330256651526}
+  - component: {fileID: 6815909177043450273}
   m_Layer: 5
   m_Name: Right (Button)
   m_TagString: Untagged
@@ -2379,7 +2528,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8067695414858275582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6815909177043450273}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6815909177043450273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951061453117075900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Move
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 2666512454263047110}
+  _isPartOfComposite: 1
+  _compositeIndex: 2
 --- !u!1 &5238979566593662261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2703,7 @@ GameObject:
   - component: {fileID: 976834644387343524}
   - component: {fileID: 1174978112326397614}
   - component: {fileID: 5921446101435728054}
+  - component: {fileID: 5670183227780543163}
   m_Layer: 5
   m_Name: Right (Button)
   m_TagString: Untagged
@@ -2626,7 +2812,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1174978112326397614}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5670183227780543163}
+        m_TargetAssemblyTypeName: RebindSystem, Assembly-CSharp
+        m_MethodName: Rebind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5670183227780543163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375879063904366803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7628060ab2e7a344998016dbb8fe8852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RebindSystem
+  _inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _actionName: Parry
+  _buttonList:
+  - {fileID: 5201065475066909513}
+  - {fileID: 7615784330256651526}
+  - {fileID: 1356728684594589277}
+  - {fileID: 760035604307362359}
+  - {fileID: 5662851616688699529}
+  - {fileID: 5921446101435728054}
+  _bindingDisplay: {fileID: 2421354148230317472}
+  _isPartOfComposite: 1
+  _compositeIndex: 3
 --- !u!1 &5383361627329058687
 GameObject:
   m_ObjectHideFlags: 0
