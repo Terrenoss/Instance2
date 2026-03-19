@@ -6,7 +6,6 @@ using TMPro;
 public class LevelFinishedUI : MonoBehaviour
 {
     [SerializeField] private GameObject containerUI;
-    [SerializeField] private TMP_Text resultText;
 
     [Header("Timer")]
     [SerializeField] private float timeBeforeShowVictoryMenu = 1f;
@@ -17,8 +16,8 @@ public class LevelFinishedUI : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PauseMenu pauseMenu;
 
-    [SerializeField] private string victoryText;
-    [SerializeField] private string defeatText;
+    [SerializeField] private GameObject victoryImg;
+    [SerializeField] private GameObject defeatImg;
 
     private void Start()
     {
@@ -29,30 +28,32 @@ public class LevelFinishedUI : MonoBehaviour
             playerHealth.OnPlayerDeath += HandleDefeat;
 
         containerUI.SetActive(false);
+        victoryImg.SetActive(false);
+        defeatImg.SetActive(false);
     }
     
     private void HandleVictory()
     {
-        StartCoroutine(StartTimer(timeBeforeShowVictoryMenu, "YOU WIN !"));
+        StartCoroutine(StartTimer(timeBeforeShowVictoryMenu, victoryImg));
     }
 
     private void HandleDefeat()
     {
-        StartCoroutine(StartTimer(timeBeforeShowDefeatMenu, "YOU LOSE !"));
+        StartCoroutine(StartTimer(timeBeforeShowDefeatMenu, defeatImg));
     }
     
-    private IEnumerator StartTimer(float delay, string result)
+    private IEnumerator StartTimer(float delay, GameObject result)
     {
         yield return new WaitForSeconds(delay);
         ShowEndMenu(result);
     }
     
-    private void ShowEndMenu(string result)
+    private void ShowEndMenu(GameObject result)
     {
         Time.timeScale = 0;
 
         containerUI.SetActive(true);
-        resultText.text = result;
+        result.SetActive(true);
 
         if (pauseMenu != null)
             pauseMenu.isGamePaused = true;
