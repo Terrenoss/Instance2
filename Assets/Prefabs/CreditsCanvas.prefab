@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 7438929529237106302}
   - component: {fileID: 8048217771600709207}
   - component: {fileID: 220887337044542814}
+  - component: {fileID: 2710010050360656525}
   m_Layer: 5
   m_Name: CreditsCanvas
   m_TagString: Untagged
@@ -730,6 +731,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2710010050360656525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292866375901986712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259aac2a9c64e514f90f5d80c362a818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreditsBehaviour
+  _speed: 50
+  _duration: 15
+  _baseTransform: {fileID: 6355635152152998367}
+  _textContainer: {fileID: 7801102301604072724}
 --- !u!1 &3881189847385620866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1451,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6355635152152998367}
-  - component: {fileID: 4183553293455749814}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -1465,18 +1481,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4183553293455749814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7801102301604072724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 259aac2a9c64e514f90f5d80c362a818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CreditsBehaviour
-  _speed: 50
-  _duration: 15
-  _baseTransform: {fileID: 6355635152152998367}
