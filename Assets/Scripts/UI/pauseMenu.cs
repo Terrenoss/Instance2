@@ -25,6 +25,11 @@ public class PauseMenu : MonoBehaviour
         if (containerPause != null) containerPause.SetActive(false);
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
     public void TogglePause()
     {
         Debug.Log(">>> PauseMenu.TogglePause() was called! isGamePaused currently = " + isGamePaused);

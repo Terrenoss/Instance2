@@ -27,7 +27,8 @@ public class LevelExporter : MonoBehaviour
                 time = GetTime(block),
                 lane = GetLane(block.position.x),
                 type = levelObj.type,
-                waveType = levelObj.waveType
+                waveType = levelObj.waveType,
+                isParryKeyVisible = levelObj.isParryKeyVisible
             };
 
             data.Add(entry);
@@ -81,6 +82,7 @@ public class ExportData
     public Lane lane;
     public ObstacleType type;
     public WaveTypeSelection waveType;
+    public bool isParryKeyVisible;
 }
 
 [System.Serializable]

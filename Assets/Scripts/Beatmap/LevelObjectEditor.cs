@@ -1,5 +1,4 @@
 using UnityEngine;
-
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -15,6 +14,8 @@ public class LevelObjectEditor : Editor
         if (obj.type == ObstacleType.wave)
         {
             obj.waveType = (WaveTypeSelection)EditorGUILayout.EnumPopup("Wave Type", obj.waveType);
+
+            obj.isParryKeyVisible = EditorGUILayout.Toggle("Is Parry Key Visible", obj.isParryKeyVisible);
         }
 
         if (GUI.changed)
