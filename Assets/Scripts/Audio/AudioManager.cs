@@ -22,10 +22,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        PlaySound("MainMusic");
-    }
+    // private void Start()
+    // {
+    //     PlaySound("MainMusic");
+    // }
 
     public void PlaySound(string name)
     {

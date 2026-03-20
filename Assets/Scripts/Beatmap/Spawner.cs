@@ -11,26 +11,39 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SplineContainer centerSpline;
     [SerializeField] private SplineContainer rightSpline;
     [SerializeField] private SplineMover splineMover;
+    [SerializeField] private AudioManager audioManager;
     
     private float levelTime = 0f;
+    private float musicTimeStart = 0f;
     [SerializeField] private PoolingSystem poolingSystem;
     
     private List<ExportData> notes = new List<ExportData>();
     private int nextNoteIndex = 0;
     public event Action OnVictory;
     
+    private bool isLevelStarted = false;
+    
     public float LevelDuration { get; private set; }
     public float CurrentTime => levelTime;
+
+    [SerializeField] private TimeOffset timeOffset;
 
     void Start()
     {
         LoadLevel();
+        musicTimeStart = timeOffset.totalTime;
     }
 
     void Update()
     {
         levelTime += Time.deltaTime;
 
+        if (levelTime >= musicTimeStart && isLevelStarted == false)
+        {
+            isLevelStarted = true;
+            audioManager.PlaySound("MainMusic");
+        }
+        
         while (nextNoteIndex < notes.Count && levelTime >= notes[nextNoteIndex].time)
         {
             Spawn(notes[nextNoteIndex]);
