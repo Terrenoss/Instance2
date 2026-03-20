@@ -22,8 +22,10 @@ public class RhythmEditorWindow : EditorWindow
     private Vector2 scrollPosition;
     private bool autoScroll = true;
 
-    private Texture2D waveformTexture;
+    private float[] cachedSamples;
     private AudioClip lastProcessedClip;
+    private bool isDraggingWave = false;
+    private float dragOffsetTime = 0f;
 
     [MenuItem("Tools/Rhythm Editor")]
     public static void ShowWindow(LevelExporter exporter = null)
@@ -42,6 +44,7 @@ public class RhythmEditorWindow : EditorWindow
         GameObject oldPlayer = GameObject.Find("Hidden_Rhythm_AudioPlayer");
         if (oldPlayer != null) DestroyImmediate(oldPlayer);
         
+        if (audioClip != null) CacheAudioSamples();
         OnHierarchyChanged();
     }
 
@@ -50,7 +53,6 @@ public class RhythmEditorWindow : EditorWindow
         EditorApplication.update -= OnEditorUpdate;
         EditorApplication.hierarchyChanged -= OnHierarchyChanged;
         if (hiddenAudioPlayer != null) DestroyImmediate(hiddenAudioPlayer);
-        if (waveformTexture != null) DestroyImmediate(waveformTexture);
     }
 
     private void OnHierarchyChanged()
@@ -78,10 +80,17 @@ public class RhythmEditorWindow : EditorWindow
 
     private void OnGUI()
     {
+        // --- DÉSÉLECTION ET PERTE DE FOCUS ---
+        if (Event.current.type == EventType.MouseDown)
+        {
+            GUI.FocusControl(null);
+            Repaint();
+        }
+
         // --- ÉCOUTE DE LA TOUCHE ESPACE (MODE RECORD) ---
         if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Space)
         {
-            if (isRecording && audioSource != null && audioSource.isPlaying && levelExporter != null && wavePrefab != null)
+            if (isRecording && levelExporter != null && wavePrefab != null)
             {
                 float zPos = currentTime * levelExporter.Speed;
                 GameObject newWave = (GameObject)PrefabUtility.InstantiatePrefab(wavePrefab);
@@ -91,7 +100,9 @@ public class RhythmEditorWindow : EditorWindow
                 if (parent != null) newWave.transform.SetParent(parent);
 
                 Undo.RegisterCreatedObjectUndo(newWave, "Spawn Wave"); 
+                GUI.FocusControl(null);
                 Event.current.Use(); 
+                return;
             }
         }
 
@@ -106,7 +117,7 @@ public class RhythmEditorWindow : EditorWindow
         if (EditorGUI.EndChangeCheck())
         {
             currentTime = 0f;
-            GenerateWaveformTexture();
+            CacheAudioSamples();
             if (audioSource != null) audioSource.clip = audioClip;
         }
 
@@ -151,9 +162,7 @@ public class RhythmEditorWindow : EditorWindow
         
         if (audioClip != null)
         {
-            EditorGUI.BeginChangeCheck();
             waveformContrast = EditorGUILayout.Slider("Waveform Contrast", waveformContrast, 1f, 20f);
-            if (EditorGUI.EndChangeCheck()) GenerateWaveformTexture();
 
             DrawWaveform();
             
@@ -175,6 +184,7 @@ public class RhythmEditorWindow : EditorWindow
             GUILayout.Label("Selected Wave Properties", EditorStyles.boldLabel);
             EditorGUI.BeginChangeCheck();
             selectedWave.waveType = (WaveTypeSelection)EditorGUILayout.EnumPopup("Wave Type", selectedWave.waveType);
+            selectedWave.isParryKeyVisible = EditorGUILayout.Toggle("Is Parry Key Visible", selectedWave.isParryKeyVisible);
             if (EditorGUI.EndChangeCheck()) EditorUtility.SetDirty(selectedWave);
             
             GUILayout.Space(5);
@@ -204,11 +214,25 @@ public class RhythmEditorWindow : EditorWindow
     // ==========================================
     // MÉTHODES POUR LE SPECTRE (WAVEFORM)
     // ==========================================
+    private void CacheAudioSamples()
+    {
+        if (audioClip != null)
+        {
+            lastProcessedClip = audioClip;
+            cachedSamples = new float[audioClip.samples * audioClip.channels];
+            audioClip.GetData(cachedSamples, 0);
+        }
+        else
+        {
+            cachedSamples = null;
+        }
+    }
+
     private void DrawWaveform()
     {
-        if (waveformTexture == null || lastProcessedClip != audioClip) GenerateWaveformTexture();
+        if (audioClip != null && lastProcessedClip != audioClip) CacheAudioSamples();
 
-        float totalWidth = waveformTexture.width;
+        float totalWidth = position.width * zoomLevel;
         if (totalWidth < position.width) totalWidth = position.width;
 
         Rect scrollViewRect = GUILayoutUtility.GetRect(position.width, 130);
@@ -216,6 +240,29 @@ public class RhythmEditorWindow : EditorWindow
 
         // --- GESTION DE LA SOURIS (ZOOM ET DÉFILEMENT) ---
         Event e = Event.current;
+        
+        if (e.type == EventType.MouseUp)
+        {
+            isDraggingWave = false;
+        }
+
+        if (isDraggingWave && selectedWave != null && e.type == EventType.MouseDrag)
+        {
+            // Because this is processed before BeginScrollView, e.mousePosition is in window space. 
+            // We must add scrollPosition.x to get the virtual position on the timeline.
+            float virtualMouseX = e.mousePosition.x + scrollPosition.x;
+            
+            float timeAtMouse = (virtualMouseX / totalWidth) * audioClip.length;
+            float newTime = Mathf.Clamp(timeAtMouse - dragOffsetTime, 0f, audioClip.length);
+            float newZPos = newTime * levelExporter.Speed;
+            
+            Undo.RecordObject(selectedWave.transform, "Move Wave");
+            selectedWave.transform.position = new Vector3(selectedWave.transform.position.x, selectedWave.transform.position.y, newZPos);
+            
+            e.Use();
+            Repaint();
+        }
+
         if (e.type == EventType.ScrollWheel && scrollViewRect.Contains(e.mousePosition))
         {
             if (e.control || e.command) 
@@ -224,10 +271,9 @@ public class RhythmEditorWindow : EditorWindow
                 float timeAtMouse = (scrollPosition.x + e.mousePosition.x) / totalWidth;
 
                 zoomLevel -= e.delta.y * 0.2f; 
-                zoomLevel = Mathf.Clamp(zoomLevel, 1f, 10f);
-                GenerateWaveformTexture(); 
+                zoomLevel = Mathf.Clamp(zoomLevel, 1f, 100f);
 
-                float newTotalWidth = waveformTexture.width;
+                float newTotalWidth = position.width * zoomLevel;
                 if (newTotalWidth < position.width) newTotalWidth = position.width;
 
                 scrollPosition.x = (timeAtMouse * newTotalWidth) - e.mousePosition.x;
@@ -254,7 +300,41 @@ public class RhythmEditorWindow : EditorWindow
 
         scrollPosition = GUI.BeginScrollView(scrollViewRect, scrollPosition, contentRect);
 
-        GUI.DrawTexture(contentRect, waveformTexture);
+        // Fond sombre
+        EditorGUI.DrawRect(new Rect(scrollPosition.x, 0, position.width, 100), new Color(0.15f, 0.15f, 0.15f, 1f));
+
+        if (Event.current.type == EventType.Repaint && cachedSamples != null && audioClip != null)
+        {
+            Color waveColor = new Color(1f, 0.6f, 0f, 1f);
+            float startX = scrollPosition.x;
+            float endX = startX + position.width;
+            float unitsPerPixel = audioClip.length / totalWidth; 
+            int sampleRate = audioClip.frequency * audioClip.channels;
+
+            for (float x = startX; x <= endX; x++)
+            {
+                float timeStart = x * unitsPerPixel;
+                float timeEnd = (x + 1) * unitsPerPixel;
+
+                int sStart = Mathf.Clamp(Mathf.FloorToInt(timeStart * sampleRate), 0, cachedSamples.Length);
+                int sEnd = Mathf.Clamp(Mathf.FloorToInt(timeEnd * sampleRate), 0, cachedSamples.Length);
+                int count = sEnd - sStart;
+
+                float max = 0;
+                if (count > 0) 
+                {
+                    for (int j = sStart; j < sEnd; j++)
+                    {
+                        float val = Mathf.Abs(cachedSamples[j]);
+                        if (val > max) max = val;
+                    }
+                }
+                
+                float displayMax = Mathf.Pow(max, waveformContrast);
+                float h = displayMax * 50f;
+                EditorGUI.DrawRect(new Rect(x, 50 - h, 1, h * 2), waveColor);
+            }
+        }
 
         float progress = currentTime / audioClip.length;
         float playheadX = totalWidth * progress;
@@ -291,6 +371,10 @@ public class RhythmEditorWindow : EditorWindow
                             {
                                 selectedWave = obj;
                                 Selection.activeGameObject = obj.gameObject;
+                                isDraggingWave = true;
+                                
+                                float clickTime = (e.mousePosition.x / totalWidth) * audioClip.length;
+                                dragOffsetTime = clickTime - timeOfWave;
                                 
                                 if (SceneView.lastActiveSceneView != null)
                                 {
@@ -306,7 +390,7 @@ public class RhythmEditorWindow : EditorWindow
         }
 
         // Clic sur la Timeline pour changer le temps
-        if (contentRect.Contains(e.mousePosition) && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag))
+        if (contentRect.Contains(e.mousePosition) && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag) && !isDraggingWave)
         {
             float clickProgress = e.mousePosition.x / totalWidth;
             SetAudioTime(Mathf.Clamp(clickProgress * audioClip.length, 0f, audioClip.length));
@@ -323,50 +407,7 @@ public class RhythmEditorWindow : EditorWindow
         GUI.EndScrollView();
     }
 
-    private void GenerateWaveformTexture()
-    {
-        if (audioClip == null) return;
-        
-        lastProcessedClip = audioClip;
-        int width = (int)(position.width * zoomLevel); 
-        if (width < 500) width = 500;
-        int height = 100;
-        
-        waveformTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-        
-        Color[] bgPixels = new Color[width * height];
-        for(int i = 0; i < bgPixels.Length; i++) bgPixels[i] = new Color(0.15f, 0.15f, 0.15f, 1f);
-        waveformTexture.SetPixels(bgPixels);
 
-        float[] samples = new float[audioClip.samples * audioClip.channels];
-        audioClip.GetData(samples, 0);
-
-        int packSize = (samples.Length / width) + 1;
-        Color waveColor = new Color(1f, 0.6f, 0f, 1f);
-
-        for (int i = 0; i < width; i++)
-        {
-            float max = 0;
-            int startIndex = i * packSize;
-            int endIndex = Mathf.Min(startIndex + packSize, samples.Length);
-            
-            for (int j = startIndex; j < endIndex; j++)
-            {
-                if (Mathf.Abs(samples[j]) > max) max = Mathf.Abs(samples[j]);
-            }
-
-            float displayMax = Mathf.Pow(max, waveformContrast); 
-
-            int halfHeight = height / 2;
-            int waveHeight = (int)(displayMax * halfHeight);
-            
-            for (int y = halfHeight - waveHeight; y <= halfHeight + waveHeight; y++)
-            {
-                waveformTexture.SetPixel(i, y, waveColor);
-            }
-        }
-        waveformTexture.Apply();
-    }
 
     // ==========================================
     // MÉTHODES AUDIO ET SYNCHRO
