@@ -6,6 +6,8 @@ public class WaveParry : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private float perfectDistance = 0.4f;
     [SerializeField] private Vector3 boxSize = new(2f, 2f, 2f);
+    private bool parrySuccess = false;
+
     
     [SerializeField] private PlayerHealth playerHealth;
 
@@ -27,6 +29,7 @@ public class WaveParry : MonoBehaviour
 
                 if (id == waveType.waveParam[waveType.waveTypeEnum].keyId)
                 {
+                    parrySuccess = true;
                     if (distance <= perfectDistance)
                     {
                         scoreManager.AddParryScore();
@@ -37,18 +40,15 @@ public class WaveParry : MonoBehaviour
                         scoreManager.AddParryScore();
                     }
                 }
-                else
-                {
-                    playerHealth.TakeDamage();
-                }
                 hit.TryGetComponent(out SplineMover waveMover);
                 waveMover.UpdateWave(false);
+                
+                break;
             }
-            else
-            {
-                playerHealth.TakeDamage();
-                return;
-            }
+        }
+        if (!parrySuccess)
+        {
+            playerHealth.TakeDamage();
         }
     }
 
