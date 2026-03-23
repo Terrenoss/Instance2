@@ -12,9 +12,9 @@ public static class RhythmTimelineRenderer
         EditorGUI.DrawRect(new Rect(scrollPosition.x, 0, positionWidth, TIMELINE_HEIGHT), new Color(0.15f, 0.15f, 0.15f, 1f));
     }
 
-    public static void DrawWaveform(RhythmEditorWindow window, float totalWidth, Vector2 scrollPosition, float positionWidth, float waveformContrast)
+    public static void DrawWaveform(IRhythmEditorContext context, float totalWidth, Vector2 scrollPosition, float positionWidth, float waveformContrast)
     {
-        var audioController = window.audioController;
+        var audioController = context.AudioController;
         if (Event.current.type != EventType.Repaint || audioController.CachedSamples == null || audioController.Clip == null) return;
 
         Color waveColor = new Color(1f, 0.6f, 0f, 1f);
@@ -49,19 +49,19 @@ public static class RhythmTimelineRenderer
         }
     }
 
-    public static void DrawZones(RhythmEditorWindow window, float totalWidth, bool isHoveringWave)
+    public static void DrawZones(IRhythmEditorContext context, float totalWidth, bool isHoveringWave)
     {
-        var audioClip = window.audioController.Clip;
+        var audioClip = context.AudioController.Clip;
         if (audioClip == null) return;
 
-        foreach (var zone in window.zones)
+        foreach (var zone in context.Zones)
         {
             float startXZone = totalWidth * (zone.startTime / audioClip.length);
             float endXZone = totalWidth * (zone.endTime / audioClip.length);
             
             EditorGUI.DrawRect(new Rect(startXZone, 0, endXZone - startXZone, TIMELINE_HEIGHT), zone.zoneColor);
             
-            Color solidColor = window.selectedZones.Contains(zone) 
+            Color solidColor = context.SelectedZones.Contains(zone) 
                 ? new Color(1f - zone.zoneColor.r, 1f - zone.zoneColor.g, 1f - zone.zoneColor.b, 1f) 
                 : new Color(zone.zoneColor.r, zone.zoneColor.g, zone.zoneColor.b, 1f);
 
@@ -77,24 +77,24 @@ public static class RhythmTimelineRenderer
         }
     }
 
-    public static void DrawPlayhead(RhythmEditorWindow window, float totalWidth)
+    public static void DrawPlayhead(IRhythmEditorContext context, float totalWidth)
     {
-        if (window.audioController.Clip == null) return;
-        float progress = window.audioController.CurrentTime / window.audioController.Clip.length;
+        if (context.AudioController.Clip == null) return;
+        float progress = context.AudioController.CurrentTime / context.AudioController.Clip.length;
         float playheadX = totalWidth * progress;
         
         EditorGUI.DrawRect(new Rect(playheadX, 0, 2, TIMELINE_HEIGHT), Color.red);
         EditorGUI.DrawRect(new Rect(playheadX - 4, 0, 10, 10), Color.red);
     }
 
-    public static void DrawWaves(RhythmEditorWindow window, float totalWidth)
+    public static void DrawWaves(IRhythmEditorContext context, float totalWidth)
     {
-        var audioClip = window.audioController.Clip;
-        var levelExporter = window.levelExporter;
+        var audioClip = context.AudioController.Clip;
+        var levelExporter = context.LevelExporter;
         
         if (levelExporter == null || audioClip == null || Event.current.type != EventType.Repaint) return;
 
-        foreach (LevelObject obj in window.cachedLevelObjects)
+        foreach (LevelObject obj in context.CachedLevelObjects)
         {
             if (obj == null || obj.type != ObstacleType.wave) continue;
             
@@ -104,7 +104,7 @@ public static class RhythmTimelineRenderer
             
             if (waveX >= 0 && waveX <= totalWidth)
             {
-                if (window.selectedWaves.Contains(obj))
+                if (context.SelectedWaves.Contains(obj))
                     EditorGUI.DrawRect(new Rect(waveX - 1, 0, 4, TIMELINE_HEIGHT), Color.green);
                 else
                     EditorGUI.DrawRect(new Rect(waveX, 0, 2, TIMELINE_HEIGHT), Color.cyan);

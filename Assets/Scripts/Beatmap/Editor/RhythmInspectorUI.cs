@@ -4,13 +4,16 @@ using UnityEditor;
 
 public static class RhythmInspectorUI
 {
-    public static void DrawHeader(ref bool showHelp)
+    public static void DrawHeader(IRhythmEditorContext context)
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Rhythm Editor", EditorStyles.boldLabel);
+        
+        bool showHelp = context.ShowHelp;
         if (GUILayout.Button("❔ Aide / Raccourcis", GUILayout.Width(140)))
         {
             showHelp = !showHelp;
+            context.ShowHelp = showHelp;
         }
         GUILayout.EndHorizontal();
 
@@ -30,65 +33,65 @@ public static class RhythmInspectorUI
         GUILayout.Space(10);
     }
 
-    public static void DrawSettings(RhythmEditorWindow window)
+    public static void DrawSettings(IRhythmEditorContext context)
     {
         GUILayout.Label("1. Settings", EditorStyles.boldLabel);
         EditorGUI.BeginChangeCheck();
-        AudioClip newClip = (AudioClip)EditorGUILayout.ObjectField("Audio Clip", window.audioController.Clip, typeof(AudioClip), false);
+        AudioClip newClip = (AudioClip)EditorGUILayout.ObjectField("Audio Clip", context.AudioController.Clip, typeof(AudioClip), false);
         if (EditorGUI.EndChangeCheck())
         {
-            window.audioController.SetAudioTime(0f);
-            window.audioController.SetAudioClip(newClip);
+            context.AudioController.SetAudioTime(0f);
+            context.AudioController.SetAudioClip(newClip);
         }
 
-        window.wavePrefab = (GameObject)EditorGUILayout.ObjectField("Wave Prefab", window.wavePrefab, typeof(GameObject), false);
+        context.WavePrefab = (GameObject)EditorGUILayout.ObjectField("Wave Prefab", context.WavePrefab, typeof(GameObject), false);
         GUILayout.Space(15);
     }
 
-    public static void DrawAudioPlayer(RhythmEditorWindow window)
+    public static void DrawAudioPlayer(IRhythmEditorContext context)
     {
         GUILayout.Label("2. Audio Player", EditorStyles.boldLabel);
         EditorGUI.BeginChangeCheck();
-        float newVol = EditorGUILayout.Slider("Volume", window.audioController.volume, 0f, 1f);
+        float newVol = EditorGUILayout.Slider("Volume", context.AudioController.volume, 0f, 1f);
         if (EditorGUI.EndChangeCheck())
         {
-            window.audioController.volume = newVol;
-            if (window.audioController.audioSource != null)
+            context.AudioController.volume = newVol;
+            if (context.AudioController.audioSource != null)
             {
-                window.audioController.audioSource.volume = Mathf.Pow(newVol, 3);
+                context.AudioController.audioSource.volume = Mathf.Pow(newVol, 3);
             }
         }
 
         GUILayout.BeginHorizontal();
-        if (window.audioController.IsPlaying())
+        if (context.AudioController.IsPlaying())
         {
-            if (GUILayout.Button("⏸ Pause", GUILayout.Height(30))) window.audioController.PauseAudio();
+            if (GUILayout.Button("⏸ Pause", GUILayout.Height(30))) context.AudioController.PauseAudio();
         }
         else
         {
-            if (GUILayout.Button("▶ Play", GUILayout.Height(30))) window.audioController.PlayAudio();
+            if (GUILayout.Button("▶ Play", GUILayout.Height(30))) context.AudioController.PlayAudio();
         }
 
-        GUI.backgroundColor = window.isRecording ? new Color(1f, 0.3f, 0.3f) : Color.white;
-        if (GUILayout.Button(window.isRecording ? "🔴 RECORDING ACTIVE" : "⚪ Record Mode", GUILayout.Height(30)))
+        GUI.backgroundColor = context.IsRecording ? new Color(1f, 0.3f, 0.3f) : Color.white;
+        if (GUILayout.Button(context.IsRecording ? "🔴 RECORDING ACTIVE" : "⚪ Record Mode", GUILayout.Height(30)))
         {
-            window.isRecording = !window.isRecording;
+            context.IsRecording = !context.IsRecording;
         }
         GUI.backgroundColor = Color.white;
 
-        if (GUILayout.Button("⏹ Stop", GUILayout.Height(30))) window.audioController.StopAudio();
+        if (GUILayout.Button("⏹ Stop", GUILayout.Height(30))) context.AudioController.StopAudio();
         GUILayout.EndHorizontal();
         GUILayout.Space(20);
     }
 
-    public static void DrawWaveInspector(RhythmEditorWindow window)
+    public static void DrawWaveInspector(IRhythmEditorContext context)
     {
-        if (window.selectedWaves.Count > 0)
+        if (context.SelectedWaves.Count > 0)
         {
-            GUILayout.Label($"Selected Waves Properties ({window.selectedWaves.Count} elements)", EditorStyles.boldLabel);
+            GUILayout.Label($"Selected Waves Properties ({context.SelectedWaves.Count} elements)", EditorStyles.boldLabel);
             
-            WaveTypeSelection currentWaveType = window.selectedWaves[0].waveType;
-            bool currentParryVisible = window.selectedWaves[0].isParryKeyVisible;
+            WaveTypeSelection currentWaveType = context.SelectedWaves[0].waveType;
+            bool currentParryVisible = context.SelectedWaves[0].isParryKeyVisible;
 
             EditorGUI.BeginChangeCheck();
             WaveTypeSelection newWaveType = (WaveTypeSelection)EditorGUILayout.EnumPopup("Wave Type", currentWaveType);
@@ -96,7 +99,7 @@ public static class RhythmInspectorUI
             
             if (EditorGUI.EndChangeCheck())
             {
-                foreach (var wave in window.selectedWaves)
+                foreach (var wave in context.SelectedWaves)
                 {
                     Undo.RecordObject(wave, "Change Wave Properties");
                     wave.waveType = newWaveType;
@@ -109,12 +112,12 @@ public static class RhythmInspectorUI
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("🗑️ Delete Selected Waves", GUILayout.Height(25)))
             {
-                foreach (var wave in window.selectedWaves)
+                foreach (var wave in context.SelectedWaves)
                 {
                     if (wave != null && wave.gameObject != null)
                         Undo.DestroyObjectImmediate(wave.gameObject);
                 }
-                window.selectedWaves.Clear();
+                context.SelectedWaves.Clear();
                 GUI.backgroundColor = Color.white;
                 GUIUtility.ExitGUI();
             }
@@ -123,17 +126,17 @@ public static class RhythmInspectorUI
         }
     }
 
-    public static void DrawZoneInspector(RhythmEditorWindow window)
+    public static void DrawZoneInspector(IRhythmEditorContext context)
     {
-        if (window.selectedZones.Count > 1) 
+        if (context.SelectedZones.Count > 1) 
         {
-            GUILayout.Label($"Selected Zones Properties ({window.selectedZones.Count} elements)", EditorStyles.boldLabel);
+            GUILayout.Label($"Selected Zones Properties ({context.SelectedZones.Count} elements)", EditorStyles.boldLabel);
             
-            float commonProb = window.selectedZones[0].probability;
-            float commonBeat = window.selectedZones[0].beatInterval;
-            float commonLane = window.selectedZones[0].laneOffset;
-            float commonSafety = window.selectedZones[0].safetyMargin;
-            Color commonCol = window.selectedZones[0].zoneColor;
+            float commonProb = context.SelectedZones[0].probability;
+            float commonBeat = context.SelectedZones[0].beatInterval;
+            float commonLane = context.SelectedZones[0].laneOffset;
+            float commonSafety = context.SelectedZones[0].safetyMargin;
+            Color commonCol = context.SelectedZones[0].zoneColor;
 
             EditorGUI.BeginChangeCheck();
             float newProb = EditorGUILayout.Slider("Spawn Density", commonProb, 0f, 1f);
@@ -144,7 +147,7 @@ public static class RhythmInspectorUI
             
             if (EditorGUI.EndChangeCheck())
             {
-                foreach (var z in window.selectedZones)
+                foreach (var z in context.SelectedZones)
                 {
                     z.probability = newProb;
                     z.zoneColor = newCol;
@@ -157,16 +160,16 @@ public static class RhythmInspectorUI
         }
     }
 
-    public static void DrawStatsAndCleanup(RhythmEditorWindow window)
+    public static void DrawStatsAndCleanup(IRhythmEditorContext context)
     {
         GUILayout.Label("Stats & Clean Up", EditorStyles.boldLabel);
         
         int waveCount = 0;
-        foreach (var obj in window.cachedLevelObjects)
+        foreach (var obj in context.CachedLevelObjects)
             if (obj != null && obj.type == ObstacleType.wave) waveCount++;
 
         int procBlocksCount = 0;
-        Transform procBlocksTf = window.levelExporter != null && window.levelExporter.BlocksParent != null ? window.levelExporter.BlocksParent.Find("ProceduralBlocks") : null;
+        Transform procBlocksTf = context.LevelExporter != null && context.LevelExporter.BlocksParent != null ? context.LevelExporter.BlocksParent.Find("ProceduralBlocks") : null;
         if (procBlocksTf != null)
             procBlocksCount = procBlocksTf.childCount;
 
@@ -177,9 +180,9 @@ public static class RhythmInspectorUI
         GUI.backgroundColor = Color.red;
         if (GUILayout.Button("Clear All Waves", GUILayout.Height(30)))
         {
-            foreach (var obj in window.cachedLevelObjects)
+            foreach (var obj in context.CachedLevelObjects)
                 if (obj != null && obj.type == ObstacleType.wave) Undo.DestroyObjectImmediate(obj.gameObject);
-            window.selectedWaves.Clear();
+            context.SelectedWaves.Clear();
         }
         if (GUILayout.Button("Clear Procedural Blocks", GUILayout.Height(30)))
         {
@@ -190,34 +193,34 @@ public static class RhythmInspectorUI
         GUILayout.Space(20);
     }
 
-    public static void DrawProceduralSection(RhythmEditorWindow window)
+    public static void DrawProceduralSection(IRhythmEditorContext context)
     {
         GUILayout.Label("Procedural Generation", EditorStyles.boldLabel);
-        window.cubePrefab = (GameObject)EditorGUILayout.ObjectField("Cube Prefab", window.cubePrefab, typeof(GameObject), false);
+        context.CubePrefab = (GameObject)EditorGUILayout.ObjectField("Cube Prefab", context.CubePrefab, typeof(GameObject), false);
         
         GUILayout.Space(5);
         GUILayout.Label("Frequency Zones:", EditorStyles.boldLabel);
         
-        for (int i = 0; i < window.zones.Count; i++)
+        for (int i = 0; i < context.Zones.Count; i++)
         {
-            if (DrawZoneElement(window, window.zones[i], i)) i--;
+            if (DrawZoneElement(context, context.Zones[i], i)) i--;
         }
         
-        if (GUILayout.Button("Add Zone")) window.zones.Add(new FrequencyZone());
+        if (GUILayout.Button("Add Zone")) context.Zones.Add(new FrequencyZone());
 
         GUILayout.Space(10);
         GUI.backgroundColor = new Color(0.2f, 0.8f, 0.2f);
         if (GUILayout.Button("Generate Procedural Blocks", GUILayout.Height(40)))
         {
-            RhythmProceduralGenerator.GenerateProceduralBlocks(window.levelExporter, window.cubePrefab, window.audioController.Clip, window.zones, window.cachedLevelObjects);
+            RhythmProceduralGenerator.GenerateProceduralBlocks(context.LevelExporter, context.CubePrefab, context.AudioController.Clip, context.Zones, context.CachedLevelObjects);
         }
         GUI.backgroundColor = Color.white;
         GUILayout.Space(20);
     }
 
-    private static bool DrawZoneElement(RhythmEditorWindow window, FrequencyZone zone, int index)
+    private static bool DrawZoneElement(IRhythmEditorContext context, FrequencyZone zone, int index)
     {
-        if (window.selectedZones.Contains(zone)) 
+        if (context.SelectedZones.Contains(zone)) 
             GUI.backgroundColor = new Color(1f, 1f, 0f, 0.5f);
         
         GUILayout.BeginVertical("box");
@@ -233,16 +236,16 @@ public static class RhythmInspectorUI
         
         if (GUILayout.Button("▲", GUILayout.Width(25)) && index > 0)
         {
-            var temp = window.zones[index]; window.zones[index] = window.zones[index - 1]; window.zones[index - 1] = temp;
+            var temp = context.Zones[index]; context.Zones[index] = context.Zones[index - 1]; context.Zones[index - 1] = temp;
         }
-        if (GUILayout.Button("▼", GUILayout.Width(25)) && index < window.zones.Count - 1)
+        if (GUILayout.Button("▼", GUILayout.Width(25)) && index < context.Zones.Count - 1)
         {
-            var temp = window.zones[index]; window.zones[index] = window.zones[index + 1]; window.zones[index + 1] = temp;
+            var temp = context.Zones[index]; context.Zones[index] = context.Zones[index + 1]; context.Zones[index + 1] = temp;
         }
         if (GUILayout.Button("X", GUILayout.Width(25)))
         {
-            if (window.selectedZones.Contains(zone)) window.selectedZones.Remove(zone);
-            window.zones.RemoveAt(index);
+            if (context.SelectedZones.Contains(zone)) context.SelectedZones.Remove(zone);
+            context.Zones.RemoveAt(index);
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
             return true;
@@ -264,13 +267,13 @@ public static class RhythmInspectorUI
         return false;
     }
 
-    public static void DrawActions(RhythmEditorWindow window)
+    public static void DrawActions(IRhythmEditorContext context)
     {
         GUILayout.Label("4. Actions", EditorStyles.boldLabel);
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Export Level to JSON", GUILayout.Height(40)))
         {
-            if (window.levelExporter != null) window.levelExporter.ExportLevel();
+            if (context.LevelExporter != null) context.LevelExporter.ExportLevel();
             else Debug.LogWarning("Veuillez assigner le Level Exporter !");
         }
         GUI.backgroundColor = Color.white;

@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
+using UnityEditor;
 
 public class RhythmAudioController
 {
@@ -20,8 +22,12 @@ public class RhythmAudioController
 
     public void OnEnable()
     {
-        GameObject oldPlayer = GameObject.Find("Hidden_Rhythm_AudioPlayer");
-        if (oldPlayer != null) Object.DestroyImmediate(oldPlayer);
+        int oldPlayerId = SessionState.GetInt("RhythmEditor_HiddenPlayerID", 0);
+        if (oldPlayerId != 0)
+        {
+            GameObject oldPlayer = EditorUtility.InstanceIDToObject(oldPlayerId) as GameObject;
+            if (oldPlayer != null) Object.DestroyImmediate(oldPlayer);
+        }
         
         if (audioClip != null) CacheAudioSamples();
     }
@@ -64,6 +70,8 @@ public class RhythmAudioController
             hiddenAudioPlayer.hideFlags = HideFlags.HideAndDontSave;
             audioSource = hiddenAudioPlayer.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
+            
+            SessionState.SetInt("RhythmEditor_HiddenPlayerID", hiddenAudioPlayer.GetInstanceID());
         }
         
         audioSource.clip = audioClip;
@@ -106,3 +114,4 @@ public class RhythmAudioController
         return audioSource != null && audioSource.isPlaying;
     }
 }
+#endif

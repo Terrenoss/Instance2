@@ -13,3 +13,20 @@ public class FrequencyZone
     
     public Color zoneColor = new Color(0f, 1f, 0f, 0.3f);
 }
+
+public interface IRhythmEditorContext
+{
+    RhythmAudioController AudioController { get; }
+    LevelExporter LevelExporter { get; }
+    System.Collections.Generic.List<LevelObject> SelectedWaves { get; }
+    System.Collections.Generic.List<FrequencyZone> Zones { get; }
+    System.Collections.Generic.List<FrequencyZone> SelectedZones { get; }
+    LevelObject[] CachedLevelObjects { get; }
+    
+    GameObject WavePrefab { get; set; }
+    GameObject CubePrefab { get; set; }
+    bool IsRecording { get; set; }
+    bool ShowHelp { get; set; }
+    
+    void RepaintWindow();
+}

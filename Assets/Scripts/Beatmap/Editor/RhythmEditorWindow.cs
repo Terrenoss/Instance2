@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-public class RhythmEditorWindow : EditorWindow
+public class RhythmEditorWindow : EditorWindow, IRhythmEditorContext
 {
-    public LevelExporter levelExporter;
-    public GameObject wavePrefab; 
-    public GameObject cubePrefab;
-    
     public RhythmAudioController audioController;
+    public LevelExporter levelExporter;
+    
     public RhythmTimelineUI timelineUI;
+    public GameObject wavePrefab;
+    public GameObject cubePrefab;
     
     public bool isRecording = false; 
     public bool showHelp = false; 
@@ -21,6 +21,21 @@ public class RhythmEditorWindow : EditorWindow
 
     public LevelObject[] cachedLevelObjects = new LevelObject[0];
     private Vector2 mainScrollPos;
+
+    // IRhythmEditorContext Implementation
+    public RhythmAudioController AudioController => audioController;
+    public LevelExporter LevelExporter => levelExporter;
+    public List<LevelObject> SelectedWaves => selectedWaves;
+    public List<FrequencyZone> Zones => zones;
+    public List<FrequencyZone> SelectedZones => selectedZones;
+    public LevelObject[] CachedLevelObjects => cachedLevelObjects;
+    
+    public GameObject WavePrefab { get => wavePrefab; set => wavePrefab = value; }
+    public GameObject CubePrefab { get => cubePrefab; set => cubePrefab = value; }
+    public bool IsRecording { get => isRecording; set => isRecording = value; }
+    public bool ShowHelp { get => showHelp; set => showHelp = value; }
+    
+    public void RepaintWindow() => Repaint();
 
     [MenuItem("Tools/Rhythm Editor")]
     public static void ShowWindow()
@@ -39,7 +54,7 @@ public class RhythmEditorWindow : EditorWindow
     private void OnEnable()
     {
         if (audioController == null) audioController = new RhythmAudioController();
-        if (timelineUI == null) timelineUI = new RhythmTimelineUI(this);
+        if (timelineUI == null) timelineUI = new RhythmTimelineUI();
         
         audioController.OnEnable();
         
@@ -58,9 +73,11 @@ public class RhythmEditorWindow : EditorWindow
 
     private void OnHierarchyChanged()
     {
-        GameObject container = GameObject.Find("LevelDesign");
-        if (container != null) cachedLevelObjects = container.GetComponentsInChildren<LevelObject>(true);
-        else cachedLevelObjects = new LevelObject[0];
+        if (levelExporter != null && levelExporter.BlocksParent != null) 
+            cachedLevelObjects = levelExporter.BlocksParent.GetComponentsInChildren<LevelObject>(true);
+        else 
+            cachedLevelObjects = new LevelObject[0];
+            
         Repaint();
     }
 
@@ -75,9 +92,18 @@ public class RhythmEditorWindow : EditorWindow
 
     private void OnGUI()
     {
+        if (Application.isPlaying)
+        {
+            EditorGUILayout.HelpBox("Rhythm Editor is unavailable during Play Mode.", MessageType.Warning);
+            return;
+        }
+
+        if (audioController == null) audioController = new RhythmAudioController();
+        if (timelineUI == null) timelineUI = new RhythmTimelineUI();
+        
         if (timelineUI == null || audioController == null) return;
         
-        timelineUI.interaction.HandleGlobalShortcuts(timelineUI);
+        timelineUI.interaction.HandleGlobalShortcuts(this, ref timelineUI.zoomLevel, ref timelineUI.scrollPosition);
 
         if (Event.current.type == EventType.MouseDown)
         {
@@ -92,25 +118,37 @@ public class RhythmEditorWindow : EditorWindow
                 GameObject newWave = (GameObject)PrefabUtility.InstantiatePrefab(wavePrefab);
                 newWave.transform.position = new Vector3(0, 0, zPos);
                 
-                Transform parent = GameObject.Find("LevelDesign")?.transform; 
-                if (parent != null) newWave.transform.SetParent(parent);
+                if (levelExporter != null && levelExporter.BlocksParent != null) 
+                    newWave.transform.SetParent(levelExporter.BlocksParent);
 
                 Undo.RegisterCreatedObjectUndo(newWave, "Spawn Wave"); 
                 GUI.FocusControl(null); Event.current.Use(); return;
             }
         }
 
+        RhythmInspectorUI.DrawHeader(this);
+
         mainScrollPos = GUILayout.BeginScrollView(mainScrollPos);
 
-        RhythmInspectorUI.DrawHeader(ref showHelp);
+        EditorGUILayout.BeginHorizontal();
+        
+        EditorGUILayout.BeginVertical(GUILayout.Width(350));
         RhythmInspectorUI.DrawSettings(this);
         RhythmInspectorUI.DrawAudioPlayer(this);
+        RhythmInspectorUI.DrawWaveInspector(this);
+        RhythmInspectorUI.DrawZoneInspector(this);
+        RhythmInspectorUI.DrawStatsAndCleanup(this);
+        RhythmInspectorUI.DrawProceduralSection(this);
+        RhythmInspectorUI.DrawActions(this);
+        EditorGUILayout.EndVertical();
 
+        EditorGUILayout.BeginVertical();
         GUILayout.Label("3. Timeline", EditorStyles.boldLabel);
         if (audioController.Clip != null)
         {
             timelineUI.waveformContrast = EditorGUILayout.Slider("Waveform Contrast", timelineUI.waveformContrast, 1f, 20f);
-            timelineUI.DrawTimeline(position);
+            Rect timelineRect = GUILayoutUtility.GetRect(position.width - 380, 200, GUILayout.ExpandWidth(true));
+            timelineUI.DrawTimeline(this, timelineRect);
             
             GUILayout.Space(5);
             EditorGUI.BeginChangeCheck();
@@ -120,13 +158,9 @@ public class RhythmEditorWindow : EditorWindow
             GUILayout.EndHorizontal();
             if (EditorGUI.EndChangeCheck()) audioController.SetAudioTime(newTime);
         }
-        GUILayout.Space(20);
-
-        RhythmInspectorUI.DrawWaveInspector(this);
-        RhythmInspectorUI.DrawZoneInspector(this);
-        RhythmInspectorUI.DrawStatsAndCleanup(this);
-        RhythmInspectorUI.DrawProceduralSection(this);
-        RhythmInspectorUI.DrawActions(this);
+        EditorGUILayout.EndVertical();
+        
+        EditorGUILayout.EndHorizontal();
 
         GUILayout.EndScrollView();
     }
