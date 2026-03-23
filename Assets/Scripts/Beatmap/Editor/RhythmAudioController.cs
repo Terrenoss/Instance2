@@ -25,7 +25,7 @@ public class RhythmAudioController
         int oldPlayerId = SessionState.GetInt("RhythmEditor_HiddenPlayerID", 0);
         if (oldPlayerId != 0)
         {
-            GameObject oldPlayer = EditorUtility.InstanceIDToObject(oldPlayerId) as GameObject;
+            GameObject oldPlayer = EditorUtility.EntityIdToObject(oldPlayerId) as GameObject;
             if (oldPlayer != null) Object.DestroyImmediate(oldPlayer);
         }
         
