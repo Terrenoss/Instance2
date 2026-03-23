@@ -14,7 +14,7 @@ public class Grid : MonoBehaviour
         {
             for (int j = 0; j < _numColumns; j++)
             {
-                Vector3 tilePosition = new Vector3(j * _tileSize.x, transform.position.y, i * _tileSize.y);
+                Vector3 tilePosition = new Vector3((j + transform.position.x) * _tileSize.x, transform.position.y, (i + transform.position.z) * _tileSize.y);
                 Tile newTile = new Tile(i, j, tilePosition);
                 _tileGrid.Add(newTile);
             }
@@ -58,9 +58,9 @@ public class Grid : MonoBehaviour
         Vector3 pos1 = new Vector3();
         for (int i = 0; i <= _numColumns; i++)
         {
-            pos0.x = i*_tileSize.x;
+            pos0.x = (i+transform.position.x)*_tileSize.x;
             pos0.z = 0;
-            pos1.x = i*_tileSize.x;
+            pos1.x = (i + transform.position.x) *_tileSize.x;
             pos1.z = _numRows*_tileSize.y;
             Gizmos.DrawLine(
                 pos0,
@@ -71,9 +71,9 @@ public class Grid : MonoBehaviour
         for (int i = 0; i <= _numRows; i++)
         {
             pos0.x = 0;
-            pos0.z = i*_tileSize.y;
+            pos0.z = (i + transform.position.y) *_tileSize.y;
             pos1.x = _numColumns * _tileSize.x;
-            pos1.z = i*_tileSize.y;
+            pos1.z = (i + transform.position.y) *_tileSize.y;
             Gizmos.DrawLine(
                 pos0,
                 pos1
