@@ -31,7 +31,7 @@ public static class RhythmProceduralGenerator
             }
         }
 
-        foreach (var zone in zones)
+        foreach (FrequencyZone zone in zones)
         {
             if (zone.probability <= 0f) continue;
 

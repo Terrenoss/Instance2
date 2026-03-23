@@ -22,10 +22,9 @@ public class RhythmTimelineInteraction
     {
     }
 
-    private float GetTimeAtMouse(float mouseX, float scrollX, float totalWidth, float clipLength)
+    private float GetTimeAtMouse(float mouseX, float totalWidth, float clipLength)
     {
-        float virtualMouseX = mouseX + scrollX;
-        return (virtualMouseX / totalWidth) * clipLength;
+        return (mouseX / totalWidth) * clipLength;
     }
 
     public void HandleGlobalShortcuts(IRhythmEditorContext context, ref float zoomLevel, ref Vector2 scrollPosition)
@@ -39,6 +38,31 @@ public class RhythmTimelineInteraction
                 Event.current.Use();
                 context.RepaintWindow();
             }
+            else if (Event.current.keyCode == KeyCode.Delete || Event.current.keyCode == KeyCode.Backspace)
+            {
+                if (context.SelectedWaves.Count > 0)
+                {
+                    foreach (LevelObject wave in context.SelectedWaves)
+                    {
+                        if (wave != null && wave.gameObject != null)
+                            Undo.DestroyObjectImmediate(wave.gameObject);
+                    }
+                    context.SelectedWaves.Clear();
+                }
+                
+                if (context.SelectedZones.Count > 0)
+                {
+                    foreach (FrequencyZone zone in context.SelectedZones)
+                    {
+                        context.Zones.Remove(zone);
+                    }
+                    context.SelectedZones.Clear();
+                    if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
+                }
+
+                Event.current.Use();
+                context.RepaintWindow();
+            }
             else if (Event.current.keyCode == KeyCode.LeftArrow || Event.current.keyCode == KeyCode.RightArrow)
             {
                 float nudge = (Event.current.keyCode == KeyCode.RightArrow) ? NUDGE_AMOUNT : -NUDGE_AMOUNT;
@@ -47,7 +71,7 @@ public class RhythmTimelineInteraction
                 if (context.SelectedWaves.Count > 0 && context.LevelExporter != null)
                 {
                     float deltaZ = nudge * context.LevelExporter.Speed;
-                    foreach (var wave in context.SelectedWaves)
+                    foreach (LevelObject wave in context.SelectedWaves)
                     {
                         Undo.RecordObject(wave.transform, "Nudge Wave");
                         wave.transform.position += new Vector3(0, 0, deltaZ);
@@ -57,7 +81,7 @@ public class RhythmTimelineInteraction
                 }
                 else if (context.SelectedZones.Count > 0)
                 {
-                    foreach (var zone in context.SelectedZones)
+                    foreach (FrequencyZone zone in context.SelectedZones)
                     {
                         float duration = zone.endTime - zone.startTime;
                         float maxStart = (context.AudioController.Clip != null) ? context.AudioController.Clip.length - duration : 999f;
@@ -65,6 +89,7 @@ public class RhythmTimelineInteraction
                         zone.startTime = Mathf.Clamp(zone.startTime + nudge, 0f, maxStart);
                         zone.endTime = zone.startTime + duration;
                     }
+                    if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
                     Event.current.Use();
                     context.RepaintWindow();
                 }
@@ -100,10 +125,10 @@ public class RhythmTimelineInteraction
         }
     }
 
-    public void HandleWaveDrag(IRhythmEditorContext context, float totalWidth, float scrollPositionX)
+    public void HandleWaveDrag(IRhythmEditorContext context, float totalWidth)
     {
         Event e = Event.current;
-        var audioClip = context.AudioController.Clip;
+        AudioClip audioClip = context.AudioController.Clip;
         
         if (e.type == EventType.MouseUp)
         {
@@ -114,7 +139,7 @@ public class RhythmTimelineInteraction
 
         if (isDraggingWave && context.SelectedWaves.Count > 0 && e.type == EventType.MouseDrag)
         {
-            float timeAtMouse = GetTimeAtMouse(e.mousePosition.x, scrollPositionX, totalWidth, audioClip.length);
+            float timeAtMouse = GetTimeAtMouse(e.mousePosition.x, totalWidth, audioClip.length);
             float newTime = Mathf.Clamp(timeAtMouse - dragOffsetTime, 0f, audioClip.length);
             float newZPos = newTime * context.LevelExporter.Speed;
             
@@ -122,7 +147,7 @@ public class RhythmTimelineInteraction
             if (active != null)
             {
                 float deltaZ = newZPos - active.transform.position.z;
-                foreach (var wave in context.SelectedWaves)
+                foreach (LevelObject wave in context.SelectedWaves)
                 {
                     Undo.RecordObject(wave.transform, "Move Wave");
                     wave.transform.position = new Vector3(wave.transform.position.x, wave.transform.position.y, wave.transform.position.z + deltaZ);
@@ -134,13 +159,13 @@ public class RhythmTimelineInteraction
         }
     }
 
-    public void HandleZoneDrag(IRhythmEditorContext context, float totalWidth, float scrollPositionX)
+    public void HandleZoneDrag(IRhythmEditorContext context, float totalWidth)
     {
         Event e = Event.current;
         if (draggingZone != null && e.type == EventType.MouseDrag)
         {
-            var audioClip = context.AudioController.Clip;
-            float timeAtMouse = GetTimeAtMouse(e.mousePosition.x, scrollPositionX, totalWidth, audioClip.length);
+            AudioClip audioClip = context.AudioController.Clip;
+            float timeAtMouse = GetTimeAtMouse(e.mousePosition.x, totalWidth, audioClip.length);
 
             if (isDraggingZoneBody)
             {
@@ -150,10 +175,10 @@ public class RhythmTimelineInteraction
                 if (context.SelectedZones.Contains(draggingZone) && context.SelectedZones.Count > 1)
                 {
                     float minStart = 0f;
-                    foreach (var z in context.SelectedZones) if (z.startTime + delta < minStart) minStart = z.startTime + delta;
+                    foreach (FrequencyZone z in context.SelectedZones) if (z.startTime + delta < minStart) minStart = z.startTime + delta;
                     if (minStart < 0f) delta -= minStart; 
 
-                    foreach (var z in context.SelectedZones)
+                    foreach (FrequencyZone z in context.SelectedZones)
                     {
                         float duration = z.endTime - z.startTime;
                         z.startTime += delta;
@@ -176,18 +201,19 @@ public class RhythmTimelineInteraction
                 draggingZone.endTime = Mathf.Clamp(timeAtMouse, draggingZone.startTime + 0.01f, audioClip.length);
             }
             e.Use();
+            if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
             context.RepaintWindow();
         }
     }
 
-    public void HandleClicks(IRhythmEditorContext context, Rect contentRect, float totalWidth, float scrollPositionX)
+    public void HandleClicks(IRhythmEditorContext context, Rect contentRect, float totalWidth)
     {
         Event e = Event.current;
         if (!contentRect.Contains(e.mousePosition) || isDraggingWave || draggingZone != null) return;
         if (e.type != EventType.MouseDown && e.type != EventType.MouseDrag) return;
 
         if (TryHandleWaveClick(context, totalWidth)) return;
-        if (TryHandleZoneClick(context, totalWidth, scrollPositionX)) return;
+        if (TryHandleZoneClick(context, totalWidth)) return;
         
         HandleTimelineBackgroundClick(context, totalWidth);
     }
@@ -198,7 +224,7 @@ public class RhythmTimelineInteraction
         if (Event.current.type != EventType.MouseDown) return false;
 
         Event e = Event.current;
-        var audioClip = context.AudioController.Clip;
+        AudioClip audioClip = context.AudioController.Clip;
 
         foreach (LevelObject obj in context.CachedLevelObjects)
         {
@@ -237,16 +263,16 @@ public class RhythmTimelineInteraction
         return false;
     }
 
-    private bool TryHandleZoneClick(IRhythmEditorContext context, float totalWidth, float scrollPositionX)
+    private bool TryHandleZoneClick(IRhythmEditorContext context, float totalWidth)
     {
         if (Event.current.type != EventType.MouseDown) return false;
 
         Event e = Event.current;
-        var audioClip = context.AudioController.Clip;
+        AudioClip audioClip = context.AudioController.Clip;
 
         for (int i = context.Zones.Count - 1; i >= 0; i--)
         {
-            var zone = context.Zones[i];
+            FrequencyZone zone = context.Zones[i];
             float startXZone = totalWidth * (zone.startTime / audioClip.length);
             float endXZone = totalWidth * (zone.endTime / audioClip.length);
 
@@ -265,7 +291,7 @@ public class RhythmTimelineInteraction
                 draggingZone = zone; isDraggingZoneBody = true;
                 HandleZoneSelection(context, zone, e);
                 
-                dragZoneOffsetTime = GetTimeAtMouse(e.mousePosition.x, scrollPositionX, totalWidth, audioClip.length) - zone.startTime;
+                dragZoneOffsetTime = GetTimeAtMouse(e.mousePosition.x, totalWidth, audioClip.length) - zone.startTime;
                 e.Use(); return true;
             }
         }
@@ -275,7 +301,7 @@ public class RhythmTimelineInteraction
     private void HandleTimelineBackgroundClick(IRhythmEditorContext context, float totalWidth)
     {
         Event e = Event.current;
-        var audioClip = context.AudioController.Clip;
+        AudioClip audioClip = context.AudioController.Clip;
 
         float clickProgress = e.mousePosition.x / totalWidth;
         context.AudioController.SetAudioTime(Mathf.Clamp(clickProgress * audioClip.length, 0f, audioClip.length));

@@ -99,7 +99,7 @@ public static class RhythmInspectorUI
             
             if (EditorGUI.EndChangeCheck())
             {
-                foreach (var wave in context.SelectedWaves)
+                foreach (LevelObject wave in context.SelectedWaves)
                 {
                     Undo.RecordObject(wave, "Change Wave Properties");
                     wave.waveType = newWaveType;
@@ -112,7 +112,7 @@ public static class RhythmInspectorUI
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("🗑️ Delete Selected Waves", GUILayout.Height(25)))
             {
-                foreach (var wave in context.SelectedWaves)
+                foreach (LevelObject wave in context.SelectedWaves)
                 {
                     if (wave != null && wave.gameObject != null)
                         Undo.DestroyObjectImmediate(wave.gameObject);
@@ -147,7 +147,7 @@ public static class RhythmInspectorUI
             
             if (EditorGUI.EndChangeCheck())
             {
-                foreach (var z in context.SelectedZones)
+                foreach (FrequencyZone z in context.SelectedZones)
                 {
                     z.probability = newProb;
                     z.zoneColor = newCol;
@@ -155,6 +155,7 @@ public static class RhythmInspectorUI
                     z.laneOffset = newLane;
                     z.safetyMargin = newSafety;
                 }
+                if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
             }
             GUILayout.Space(20);
         }
@@ -165,7 +166,7 @@ public static class RhythmInspectorUI
         GUILayout.Label("Stats & Clean Up", EditorStyles.boldLabel);
         
         int waveCount = 0;
-        foreach (var obj in context.CachedLevelObjects)
+        foreach (LevelObject obj in context.CachedLevelObjects)
             if (obj != null && obj.type == ObstacleType.wave) waveCount++;
 
         int procBlocksCount = 0;
@@ -180,7 +181,7 @@ public static class RhythmInspectorUI
         GUI.backgroundColor = Color.red;
         if (GUILayout.Button("Clear All Waves", GUILayout.Height(30)))
         {
-            foreach (var obj in context.CachedLevelObjects)
+            foreach (LevelObject obj in context.CachedLevelObjects)
                 if (obj != null && obj.type == ObstacleType.wave) Undo.DestroyObjectImmediate(obj.gameObject);
             context.SelectedWaves.Clear();
         }
@@ -206,7 +207,11 @@ public static class RhythmInspectorUI
             if (DrawZoneElement(context, context.Zones[i], i)) i--;
         }
         
-        if (GUILayout.Button("Add Zone")) context.Zones.Add(new FrequencyZone());
+        if (GUILayout.Button("Add Zone")) 
+        {
+            context.Zones.Add(new FrequencyZone());
+            if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
+        }
 
         GUILayout.Space(10);
         GUI.backgroundColor = new Color(0.2f, 0.8f, 0.2f);
@@ -236,16 +241,19 @@ public static class RhythmInspectorUI
         
         if (GUILayout.Button("▲", GUILayout.Width(25)) && index > 0)
         {
-            var temp = context.Zones[index]; context.Zones[index] = context.Zones[index - 1]; context.Zones[index - 1] = temp;
+            FrequencyZone temp = context.Zones[index]; context.Zones[index] = context.Zones[index - 1]; context.Zones[index - 1] = temp;
+            if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
         }
         if (GUILayout.Button("▼", GUILayout.Width(25)) && index < context.Zones.Count - 1)
         {
-            var temp = context.Zones[index]; context.Zones[index] = context.Zones[index + 1]; context.Zones[index + 1] = temp;
+            FrequencyZone temp = context.Zones[index]; context.Zones[index] = context.Zones[index + 1]; context.Zones[index + 1] = temp;
+            if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
         }
         if (GUILayout.Button("X", GUILayout.Width(25)))
         {
             if (context.SelectedZones.Contains(zone)) context.SelectedZones.Remove(zone);
             context.Zones.RemoveAt(index);
+            if (context.LevelExporter != null) EditorUtility.SetDirty(context.LevelExporter);
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
             return true;
@@ -273,7 +281,11 @@ public static class RhythmInspectorUI
         GUI.backgroundColor = Color.green;
         if (GUILayout.Button("Export Level to JSON", GUILayout.Height(40)))
         {
-            if (context.LevelExporter != null) context.LevelExporter.ExportLevel();
+            if (context.LevelExporter != null) 
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
+                context.LevelExporter.ExportLevel();
+            }
             else Debug.LogWarning("Veuillez assigner le Level Exporter !");
         }
         GUI.backgroundColor = Color.white;

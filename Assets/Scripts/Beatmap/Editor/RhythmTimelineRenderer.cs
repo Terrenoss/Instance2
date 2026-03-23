@@ -14,7 +14,7 @@ public static class RhythmTimelineRenderer
 
     public static void DrawWaveform(IRhythmEditorContext context, float totalWidth, Vector2 scrollPosition, float positionWidth, float waveformContrast)
     {
-        var audioController = context.AudioController;
+        RhythmAudioController audioController = context.AudioController;
         if (Event.current.type != EventType.Repaint || audioController.CachedSamples == null || audioController.Clip == null) return;
 
         Color waveColor = new Color(1f, 0.6f, 0f, 1f);
@@ -51,10 +51,10 @@ public static class RhythmTimelineRenderer
 
     public static void DrawZones(IRhythmEditorContext context, float totalWidth, bool isHoveringWave)
     {
-        var audioClip = context.AudioController.Clip;
+        AudioClip audioClip = context.AudioController.Clip;
         if (audioClip == null) return;
 
-        foreach (var zone in context.Zones)
+        foreach (FrequencyZone zone in context.Zones)
         {
             float startXZone = totalWidth * (zone.startTime / audioClip.length);
             float endXZone = totalWidth * (zone.endTime / audioClip.length);
@@ -89,8 +89,8 @@ public static class RhythmTimelineRenderer
 
     public static void DrawWaves(IRhythmEditorContext context, float totalWidth)
     {
-        var audioClip = context.AudioController.Clip;
-        var levelExporter = context.LevelExporter;
+        AudioClip audioClip = context.AudioController.Clip;
+        LevelExporter levelExporter = context.LevelExporter;
         
         if (levelExporter == null || audioClip == null || Event.current.type != EventType.Repaint) return;
 

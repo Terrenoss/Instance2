@@ -16,8 +16,8 @@ public class RhythmTimelineUI
 
     public void DrawTimeline(IRhythmEditorContext context, Rect position)
     {
-        var audioClip = context.AudioController.Clip;
-        var audioController = context.AudioController;
+        AudioClip audioClip = context.AudioController.Clip;
+        RhythmAudioController audioController = context.AudioController;
         
         if (audioClip != null && audioController.LastProcessedClip != audioClip) 
             audioController.CacheAudioSamples();
@@ -28,7 +28,6 @@ public class RhythmTimelineUI
         Rect scrollViewRect = GUILayoutUtility.GetRect(position.width - 20f, 140);
         Rect contentRect = new Rect(0, 0, totalWidth, 100);
 
-        interaction.HandleWaveDrag(context, totalWidth, scrollPosition.x);
         interaction.HandleScrollAndZoom(context, scrollViewRect, totalWidth, position.width, ref zoomLevel, ref scrollPosition);
 
         scrollPosition = GUI.BeginScrollView(scrollViewRect, scrollPosition, contentRect);
@@ -39,12 +38,13 @@ public class RhythmTimelineUI
         bool isHoveringWave = interaction.IsHoveringWave(context, totalWidth, Event.current);
         RhythmTimelineRenderer.DrawZones(context, totalWidth, isHoveringWave);
 
-        interaction.HandleZoneDrag(context, totalWidth, scrollPosition.x);
+        interaction.HandleWaveDrag(context, totalWidth);
+        interaction.HandleZoneDrag(context, totalWidth);
         
         RhythmTimelineRenderer.DrawPlayhead(context, totalWidth);
         RhythmTimelineRenderer.DrawWaves(context, totalWidth);
         
-        interaction.HandleClicks(context, contentRect, totalWidth, scrollPosition.x);
+        interaction.HandleClicks(context, contentRect, totalWidth);
 
         GUI.EndScrollView();
     }

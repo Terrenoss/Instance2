@@ -3,6 +3,23 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
+public interface IRhythmEditorContext
+{
+    RhythmAudioController AudioController { get; }
+    LevelExporter LevelExporter { get; }
+    List<LevelObject> SelectedWaves { get; }
+    List<FrequencyZone> Zones { get; }
+    List<FrequencyZone> SelectedZones { get; }
+    LevelObject[] CachedLevelObjects { get; }
+    
+    GameObject WavePrefab { get; set; }
+    GameObject CubePrefab { get; set; }
+    bool IsRecording { get; set; }
+    bool ShowHelp { get; set; }
+    
+    void RepaintWindow();
+}
+
 public class RhythmEditorWindow : EditorWindow, IRhythmEditorContext
 {
     public RhythmAudioController audioController;
@@ -16,7 +33,6 @@ public class RhythmEditorWindow : EditorWindow, IRhythmEditorContext
     public bool showHelp = false; 
     
     public List<LevelObject> selectedWaves = new List<LevelObject>();
-    public List<FrequencyZone> zones = new List<FrequencyZone>();
     public List<FrequencyZone> selectedZones = new List<FrequencyZone>(); 
 
     public LevelObject[] cachedLevelObjects = new LevelObject[0];
@@ -26,7 +42,7 @@ public class RhythmEditorWindow : EditorWindow, IRhythmEditorContext
     public RhythmAudioController AudioController => audioController;
     public LevelExporter LevelExporter => levelExporter;
     public List<LevelObject> SelectedWaves => selectedWaves;
-    public List<FrequencyZone> Zones => zones;
+    public List<FrequencyZone> Zones => (levelExporter != null) ? levelExporter.zones : new List<FrequencyZone>();
     public List<FrequencyZone> SelectedZones => selectedZones;
     public LevelObject[] CachedLevelObjects => cachedLevelObjects;
     
