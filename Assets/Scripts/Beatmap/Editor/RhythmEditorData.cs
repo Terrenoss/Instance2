@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class FrequencyZone
@@ -18,9 +19,9 @@ public interface IRhythmEditorContext
 {
     RhythmAudioController AudioController { get; }
     LevelExporter LevelExporter { get; }
-    System.Collections.Generic.List<LevelObject> SelectedWaves { get; }
-    System.Collections.Generic.List<FrequencyZone> Zones { get; }
-    System.Collections.Generic.List<FrequencyZone> SelectedZones { get; }
+    List<LevelObject> SelectedWaves { get; }
+    List<FrequencyZone> Zones { get; }
+    List<FrequencyZone> SelectedZones { get; }
     LevelObject[] CachedLevelObjects { get; }
     
     GameObject WavePrefab { get; set; }
