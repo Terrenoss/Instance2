@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class CasinoScore : MonoBehaviour
 {
+    List<IndividualCasinoScore> individualCasinoScores = new List<IndividualCasinoScore>();
+    [SerializeField] private IndividualCasinoScore unitCasinoScore;
+    [SerializeField] private IndividualCasinoScore tenCasinoScore;
+    [SerializeField] private IndividualCasinoScore hundredCasinoScore;
+
     List<TMP_Text> scores = new List<TMP_Text>();
     [SerializeField] private TMP_Text scoreUnit;
     [SerializeField] private TMP_Text scoreTen;
@@ -22,6 +27,7 @@ public class CasinoScore : MonoBehaviour
 
     private int score = 725;
 
+
     private void Start()
     {
         scores.Add(scoreUnit);
@@ -36,6 +42,10 @@ public class CasinoScore : MonoBehaviour
         scoresTemp.Add(tenTemp);
         scoresTemp.Add(hundredTemp);
 
+        individualCasinoScores.Add(unitCasinoScore);
+        individualCasinoScores.Add(tenCasinoScore);
+        individualCasinoScores.Add(hundredCasinoScore);
+
         int index = 0;
         for (int i = 10; score > i / 10; i *= 10)
         {
@@ -44,8 +54,8 @@ public class CasinoScore : MonoBehaviour
             index++;
         }
         StartCoroutine(WaitALitle());
-        //StartCoroutine(WaitAgain());
-        //StartCoroutine(WaitAgain2());
+        StartCoroutine(WaitAgain());
+        StartCoroutine(WaitAgain2());
         //StartCoroutine(WaitAgain3());
     }
 
@@ -57,7 +67,7 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 929;
+        score = 818;
         SplitScore();
     }
 
@@ -76,7 +86,7 @@ public class CasinoScore : MonoBehaviour
     public IEnumerator WaitAgain2()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 2)
+        while (elapsedTime < 3.42)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -85,17 +95,17 @@ public class CasinoScore : MonoBehaviour
         SplitScore();
     }
 
-    public IEnumerator WaitAgain3()
-    {
-        float elapsedTime = 0;
-        while (elapsedTime < 2.5)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        score = 359;
-        SplitScore();
-    }
+    //public IEnumerator WaitAgain3()
+    //{
+    //    float elapsedTime = 0;
+    //    while (elapsedTime < 2.5)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    score = 359;
+    //    SplitScore();
+    //}
 
     private void SplitScore()
     {
@@ -108,31 +118,47 @@ public class CasinoScore : MonoBehaviour
             scoresInt[index] = (score % i - score % (i / 10)) / (i / 10);
             index++;
         }
-        CheckScoreToAnimated();
+        CheckScoreToAnimate();
     }
 
-    private void CheckScoreToAnimated()
+    private void CheckScoreToAnimate()
     {
         for (int i = 0; i < scoresInt.Count; i++)
         {
             if (scoresInt[i] != scoresTemp[i])
             {
                 int difference = scoresInt[i] - scoresTemp[i];
+
                 if (difference < 0) {
                     difference *= -1;
                 }
                 int initDifference = difference;
-                Debug.Log("scoresInt[i]: " + scoresInt[i]);
-                Debug.Log("scoresTemp[i]: " + scoresTemp[i]);
-                Debug.Log("difference: " + difference);
 
-                StartCoroutine(ScoreAnimationPart1(i, difference, initDifference));
+                ScoreScrolling(i, difference, scoresTemp[i]);
             }
             else {
                 scores[i].text = "" + scoresInt[i];
             }
         }
     }
+
+    public void ScoreScrolling(int whichScore, int difference, int scoreTemp)
+    {
+        individualCasinoScores[whichScore].specialDifference = 10 - scoreTemp;
+        individualCasinoScores[whichScore].difference = difference;
+        individualCasinoScores[whichScore].scoreTemp = scoreTemp;
+        individualCasinoScores[whichScore].scoreValue = (scoresInt[whichScore]);
+        individualCasinoScores[whichScore].scorePositiveAgain = false;
+        individualCasinoScores[whichScore].begining = true;
+
+        individualCasinoScores[whichScore].IndividualScoreScrolling();
+    }
+
+
+
+    // - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
 
     public IEnumerator ScoreAnimationPart1(int whichScore, int difference, int initDifference)
     {
