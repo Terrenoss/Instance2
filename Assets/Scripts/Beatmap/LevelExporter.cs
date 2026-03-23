@@ -11,6 +11,7 @@ public class LevelExporter : MonoBehaviour
 
     public float Speed => speed;
     public Transform BlocksParent => blocksParent;
+    public Transform Player => player;
 
     public void ExportLevel()
     {
