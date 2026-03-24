@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class IndividualCasinoScore : MonoBehaviour
 {
-    //[SerializeField] private CasinoScore casinoScore;
     [SerializeField] private Animator animator;
     [SerializeField] private TMP_Text score;
     public int specialDifference = 0;

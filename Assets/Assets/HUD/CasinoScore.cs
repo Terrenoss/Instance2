@@ -47,8 +47,10 @@ public class CasinoScore : MonoBehaviour
     private int hundredThousandTemp = 0;
     private int millionTemp = 0;
     private int tenMillionTemp = 0;
-    private int hunrdedMillionTemp = 0;
+    private int hundredMillionTemp = 0;
 
+    [SerializeField] private RectTransform rectTransformMask;
+    [SerializeField] private RectTransform rectTransform;
     public int score = 725;
 
 
@@ -82,7 +84,7 @@ public class CasinoScore : MonoBehaviour
         scoresTemp.Add(hundredThousandTemp);
         scoresTemp.Add(millionTemp);
         scoresTemp.Add(tenMillionTemp);
-        scoresTemp.Add(hunrdedMillionTemp);
+        scoresTemp.Add(hundredMillionTemp);
 
         individualCasinoScores.Add(unitCasinoScore);
         individualCasinoScores.Add(tenCasinoScore);
@@ -101,6 +103,14 @@ public class CasinoScore : MonoBehaviour
             scores[index].text = "" + scoresInt[index];
             index++;
         }
+
+        for (int i = 3; i < scores.Count; i++) {
+            scores[i].GetComponent<TextMeshProUGUI>().enabled = false;
+        }
+        rectTransformMask.anchoredPosition = new Vector3(495, 437);
+        rectTransform.localScale = new Vector3(1.8f, 1.8f);
+
+
         StartCoroutine(WaitALitle());
         StartCoroutine(WaitAgain());
         StartCoroutine(WaitAgain2());
@@ -115,19 +125,19 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 8726;
+        score = 1234;
         SplitScore();
     }
 
     public IEnumerator WaitAgain()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 1.5)
+        while (elapsedTime < 2.34)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 895245;
+        score = 456823;
         SplitScore();
     }
 
@@ -139,7 +149,7 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 97248087;
+        score = 15724798;
         SplitScore();
     }
 
@@ -151,7 +161,7 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 197248087;
+        score = 548127576;
         SplitScore();
     }
 
@@ -162,11 +172,9 @@ public class CasinoScore : MonoBehaviour
         for (int i = 0; i < scoresTemp.Count; i++) {
             scoresTemp[i] = scoresInt[i];
         }
-        for (int i = 10; score > i / 10; i *= 10)
+        for (long i = 10; score > i / 10; i *= 10)
         {
-            scoresInt[index] = (score % i - score % (i / 10)) / (i / 10);
-            Debug.Log("scoresInt[index]: " + scoresInt[index]);
-            Debug.Log("index: " + index);
+            scoresInt[index] = (int)((score % i - score % (i / 10)) / (i / 10));
             index++;
         }
         CheckScoreToAnimate();
@@ -203,60 +211,52 @@ public class CasinoScore : MonoBehaviour
         individualCasinoScores[whichScore].isBegining = true;
 
         individualCasinoScores[whichScore].IndividualScoreScrolling();
+
+        CheckScoreSize();
     }
 
-
-
-    // - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-
-    //public IEnumerator ScoreAnimationPart1(int whichScore, int difference, int initDifference)
-    //{
-    //    float scoreAnimSpeed = 1f / initDifference;
-
-
-    //    // PROBLEME La difference entre les deux valeurs de score est de 2 et de 4, c'est pourquoi l'un
-    //    // descends 2x plus vite que l'autre
-
-
-    //    float elapsedTime = 0;
-    //    //while (elapsedTime < 0.5f)
-    //    while (elapsedTime < scoreAnimSpeed)
-    //    {
-    //        scores[whichScore].rectTransform.anchoredPosition = new Vector2(
-    //            scores[whichScore].rectTransform.anchoredPosition.x,
-    //            scores[whichScore].rectTransform.anchoredPosition.y - (800 * scoreAnimSpeed) * Time.deltaTime);
-
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    scores[whichScore].text = "" + (scoresInt[whichScore] - (difference - 1)); // mauvais calcul peut etre
-
-    //    StartCoroutine(ScoreAnimationPart2(whichScore, difference, scoreAnimSpeed, initDifference));
-    //}
-
-    //public IEnumerator ScoreAnimationPart2(int whichScore, int difference, float scoreAnimSpeed, int initDifference)
-    //{
-    //    scores[whichScore].rectTransform.anchoredPosition = new Vector2(
-    //        scores[whichScore].rectTransform.anchoredPosition.x,
-    //        scores[whichScore].rectTransform.anchoredPosition.y + 400 * scoreAnimSpeed);
-
-    //    float elapsedTime = 0;
-    //    //while (elapsedTime < 0.5f)
-    //    while (elapsedTime < scoreAnimSpeed)
-    //        {
-    //        scores[whichScore].rectTransform.anchoredPosition = new Vector2(
-    //            scores[whichScore].rectTransform.anchoredPosition.x,
-    //            scores[whichScore].rectTransform.anchoredPosition.y - (800 * scoreAnimSpeed) * Time.deltaTime);
-
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    difference -= 1;
-    //    if (difference > 0) {
-    //        StartCoroutine(ScoreAnimationPart1(whichScore, difference, initDifference));
-    //    }
-    //}
+    public void CheckScoreSize()
+    {
+        if (score > 999 && score < 10000) {
+            rectTransformMask.anchoredPosition = new Vector3(522, rectTransformMask.anchoredPosition.y);
+            for (int i = 0; i < 4; i++) {
+                scores[i].enabled = true;
+            }
+        }
+        else if (score > 9999 && score < 100000) {
+            rectTransformMask.anchoredPosition = new Vector3(553, rectTransformMask.anchoredPosition.y);
+            rectTransform.localScale = new Vector3(1.65f, 1.65f);
+            for (int i = 0; i < 5; i++) {
+                scores[i].enabled = true;
+            }
+        }
+        else if (score > 99999 && score < 1000000) {
+            rectTransformMask.anchoredPosition = new Vector3(580, rectTransformMask.anchoredPosition.y);
+            rectTransform.localScale = new Vector3(1.45f, 1.45f);
+            for (int i = 0; i < 6; i++) {
+                scores[i].enabled = true;
+            }
+        }
+        else if (score > 999999 && score < 10000000) { 
+            rectTransformMask.anchoredPosition = new Vector3(599, rectTransformMask.anchoredPosition.y);
+            rectTransform.localScale = new Vector3(1.2f, 1.2f);
+            for (int i = 0; i < 7; i++) {
+                scores[i].enabled = true;
+            }
+        }
+        else if (score > 9999999 && score < 100000000) {
+            rectTransformMask.anchoredPosition = new Vector3(612, rectTransformMask.anchoredPosition.y);
+            rectTransform.localScale = new Vector3(1.1f, 1.1f);
+            for (int i = 0; i < 8; i++) {
+                scores[i].enabled = true;
+            }
+        }
+        else if (score > 99999999 && score < 1000000000) {
+            rectTransformMask.anchoredPosition = new Vector3(626, rectTransformMask.anchoredPosition.y);
+            rectTransform.localScale = new Vector3(1f, 1f);
+            for (int i = 0; i < 9; i++) {
+                scores[i].enabled = true;
+            }
+        }
+    }
 }
