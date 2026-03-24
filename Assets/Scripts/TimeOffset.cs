@@ -13,7 +13,7 @@ public class TimeOffset : MonoBehaviour
 
     public float totalTime;
 
-    void Start()
+    void Awake()
     {
         if (splineMover == null)
         {
