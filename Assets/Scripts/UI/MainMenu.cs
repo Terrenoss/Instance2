@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private string scene;
+    [SerializeField] private GameObject credits;
 
     private void Start()
     {
@@ -21,5 +22,10 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ToggleCredit()
+    {
+        credits.gameObject.SetActive(!credits.activeSelf);
     }
 }
