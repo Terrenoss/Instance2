@@ -11,18 +11,17 @@ public class IndividualCasinoScore : MonoBehaviour
     public int scoreTemp = 0;
     public int scoreValue = 0;
     public bool scorePositiveAgain = false;
-    public bool begining = false;
+    public bool isBegining = false;
 
 
     public void IndividualScoreScrolling()
     {
-        if (begining)
+        if (isBegining)
         {
             animator.Play("Empty");
             animator.SetInteger("remainingScrolls", 0);
-            begining = false;
+            isBegining = false;
         }
-
         if (scoreValue <= scoreTemp)
         {
             animator.SetInteger("remainingScrolls", specialDifference);
@@ -30,6 +29,7 @@ public class IndividualCasinoScore : MonoBehaviour
         else { 
             animator.SetInteger("remainingScrolls", difference);
         }
+
         difference -= 1;
         specialDifference -= 1;
     }

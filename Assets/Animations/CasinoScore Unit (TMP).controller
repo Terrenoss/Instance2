@@ -88,7 +88,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ScoreScrollingUnit
-  m_Speed: 4.889
+  m_Speed: 15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5622902141141219400}
