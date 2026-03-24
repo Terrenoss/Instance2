@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
     [SerializeField] private TextMeshProUGUI scoreFinishText;
-    
+    private bool canGainScore = true;
     
     private int actualScore;
 
@@ -49,7 +49,10 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(passiveScoreTimer);
-            AddScore(passiveScore);
+            if (canGainScore)
+            {
+                AddScore(passiveScore);
+            }
         }
     }
 
@@ -121,5 +124,10 @@ public class ScoreManager : MonoBehaviour
         bestScoreMultiplierText.text = bestScoreMultiplier.ToString();
         scoreFinishText.text = actualScore.ToString();
         SaveScore();
+    }
+    
+    public void SetCanGainScore(bool canGain)
+    {
+        canGainScore = canGain;
     }
 }
