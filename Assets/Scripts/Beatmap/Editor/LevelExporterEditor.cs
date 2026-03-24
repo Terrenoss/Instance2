@@ -15,7 +15,7 @@ public class LevelExporterEditor : Editor
         GUIStyle bigButtonStyle = new GUIStyle(GUI.skin.button) { fixedHeight = 40, fontStyle = FontStyle.Bold };
         if (GUILayout.Button("Open Rhythm Editor", bigButtonStyle))
         {
-            RhythmEditorWindow.ShowWindow((LevelExporter)target);
+            RhythmEditorWindow.ShowWindowWithExporter((LevelExporter)target);
         }
     }
 }
