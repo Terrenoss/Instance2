@@ -51,7 +51,7 @@ public class CasinoScore : MonoBehaviour
 
     [SerializeField] private RectTransform rectTransformMask;
     [SerializeField] private RectTransform rectTransform;
-    public int score = 725;
+    public int score = 000;
 
 
     private void Start()
@@ -110,11 +110,11 @@ public class CasinoScore : MonoBehaviour
         rectTransformMask.anchoredPosition = new Vector3(495, 437);
         rectTransform.localScale = new Vector3(1.8f, 1.8f);
 
-
-        StartCoroutine(WaitALitle());
-        StartCoroutine(WaitAgain());
-        StartCoroutine(WaitAgain2());
-        StartCoroutine(WaitAgain3());
+        // to test 
+        //StartCoroutine(WaitALitle());
+        //StartCoroutine(WaitAgain());
+        //StartCoroutine(WaitAgain2());
+        //StartCoroutine(WaitAgain3());
     }
 
     public IEnumerator WaitALitle()
@@ -125,26 +125,26 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 1234;
+        score = 100;
         SplitScore();
     }
 
     public IEnumerator WaitAgain()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 2.34)
+        while (elapsedTime < 2.14)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 456823;
+        score = 1000;
         SplitScore();
     }
 
     public IEnumerator WaitAgain2()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 3.42)
+        while (elapsedTime < 3.97)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -156,7 +156,7 @@ public class CasinoScore : MonoBehaviour
     public IEnumerator WaitAgain3()
     {
         float elapsedTime = 0;
-        while (elapsedTime < 3.97)
+        while (elapsedTime < 5.75)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -165,15 +165,15 @@ public class CasinoScore : MonoBehaviour
         SplitScore();
     }
 
-    private void SplitScore()
+    public void SplitScore()
     {
         int index = 0;
 
         for (int i = 0; i < scoresTemp.Count; i++) {
             scoresTemp[i] = scoresInt[i];
         }
-        for (long i = 10; score > i / 10; i *= 10)
-        {
+        //for (long i = 10; score > i / 10; i *= 10)
+        for (long i = 10; score >= i / 10; i *= 10) {
             scoresInt[index] = (int)((score % i - score % (i / 10)) / (i / 10));
             index++;
         }
@@ -191,8 +191,6 @@ public class CasinoScore : MonoBehaviour
                 if (difference < 0) {
                     difference *= -1;
                 }
-                int initDifference = difference;
-
                 ScoreScrolling(i, difference, scoresTemp[i]);
             }
             else {
@@ -206,7 +204,7 @@ public class CasinoScore : MonoBehaviour
         individualCasinoScores[whichScore].specialDifference = 10 - scoreTemp;
         individualCasinoScores[whichScore].difference = difference;
         individualCasinoScores[whichScore].scoreTemp = scoreTemp;
-        individualCasinoScores[whichScore].scoreValue = (scoresInt[whichScore]);
+        individualCasinoScores[whichScore].scoreValue = ((int)scoresInt[whichScore]);
         individualCasinoScores[whichScore].scorePositiveAgain = false;
         individualCasinoScores[whichScore].isBegining = true;
 
@@ -252,7 +250,7 @@ public class CasinoScore : MonoBehaviour
             }
         }
         else if (score > 99999999 && score < 1000000000) {
-            rectTransformMask.anchoredPosition = new Vector3(626, rectTransformMask.anchoredPosition.y);
+            rectTransformMask.anchoredPosition = new Vector3(629, rectTransformMask.anchoredPosition.y);
             rectTransform.localScale = new Vector3(1f, 1f);
             for (int i = 0; i < 9; i++) {
                 scores[i].enabled = true;

@@ -12,7 +12,6 @@ public class IndividualCasinoScore : MonoBehaviour
     public bool scorePositiveAgain = false;
     public bool isBegining = false;
 
-
     public void IndividualScoreScrolling()
     {
         if (isBegining)

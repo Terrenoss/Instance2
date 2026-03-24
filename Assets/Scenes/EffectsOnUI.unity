@@ -5041,7 +5041,7 @@ MonoBehaviour:
   scoreHundredMillion: {fileID: 1426046642}
   rectTransformMask: {fileID: 1557819240}
   rectTransform: {fileID: 1339172048}
-  score: 725
+  score: 0
 --- !u!1 &1349784400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5591609962418182756, guid: 13f1e7c3b22b9c14d9168ac62cf330a6, type: 3}
@@ -7776,7 +7776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d5335f76e988b094897abdcf667fa1c8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -7863,7 +7863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d5335f76e988b094897abdcf667fa1c8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -8548,6 +8548,7 @@ GameObject:
   - component: {fileID: 5573744598070183230}
   - component: {fileID: 2170413373172335139}
   - component: {fileID: 8773206444954915018}
+  - component: {fileID: 8773206444954915019}
   - component: {fileID: 5933519541950507753}
   m_Layer: 5
   m_Name: UI
@@ -9195,7 +9196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d5335f76e988b094897abdcf667fa1c8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9618,9 +9619,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6939991402695545814}
     - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: casinoScore
+      value: 
+      objectReference: {fileID: 1339172052}
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: multiplierText
       value: 
       objectReference: {fileID: 2548774302158070930}
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: multiplier2Text
+      value: 
+      objectReference: {fileID: 590216459}
     - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: bestScoreText.Array.size
       value: 2
@@ -9820,6 +9829,23 @@ MonoBehaviour:
   healthPoint1: {fileID: 1194551464337326375}
   healthPoint2: {fileID: 6844381589877672414}
   healthPoint3: {fileID: 706187876276348395}
+--- !u!114 &8773206444954915019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272967312451505217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb1393a99b580f418a8b2cfe07a7c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoveHealthPoint
+  playerHealth: {fileID: 637738544}
+  healthPoint1: {fileID: 1194551464337326375}
+  healthPoint2: {fileID: 6844381589877672414}
+  healthPoint3: {fileID: 706187876276348395}
+  destroyDuration: 1.2
 --- !u!1 &8792062659029611223
 GameObject:
   m_ObjectHideFlags: 0
