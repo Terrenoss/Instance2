@@ -170,7 +170,7 @@ public static class RhythmInspectorUI
             if (obj != null && obj.type == ObstacleType.wave) waveCount++;
 
         int procBlocksCount = 0;
-        Transform procBlocksTf = context.LevelExporter != null && context.LevelExporter.BlocksParent != null ? context.LevelExporter.BlocksParent.Find("ProceduralBlocks") : null;
+        Transform procBlocksTf = context.LevelExporter != null ? context.LevelExporter.ProceduralBlocksParent : null;
         if (procBlocksTf != null)
             procBlocksCount = procBlocksTf.childCount;
 
@@ -233,6 +233,12 @@ public static class RhythmInspectorUI
         
         GUILayout.BeginHorizontal();
         GUILayout.Label($"Zone {index + 1}", EditorStyles.boldLabel, GUILayout.Width(60));
+        
+        if (GUILayout.Button(EditorGUIUtility.IconContent("Refresh") ?? new GUIContent("Gen"), GUILayout.Width(30), GUILayout.Height(20)))
+        {
+            RhythmProceduralGenerator.GenerateSingleZone(context.LevelExporter, context.CubePrefab, zone, index, context.CachedLevelObjects);
+        }
+        
         zone.startTime = EditorGUILayout.FloatField(zone.startTime, GUILayout.Width(50));
         GUILayout.Label("-", GUILayout.Width(10));
         zone.endTime = EditorGUILayout.FloatField(zone.endTime, GUILayout.Width(50));

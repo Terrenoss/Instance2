@@ -21,11 +21,17 @@ public class LevelExporter : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private Transform blocksParent;
+    [SerializeField] private Transform proceduralBlocksParent;
     [SerializeField] private float speed = 10f;
     public List<FrequencyZone> zones = new List<FrequencyZone>();
 
     public float Speed => speed;
     public Transform BlocksParent => blocksParent;
+    public Transform ProceduralBlocksParent 
+    {
+        get => proceduralBlocksParent;
+        set => proceduralBlocksParent = value;
+    }
     public Transform Player => player;
 
     public void ExportLevel()

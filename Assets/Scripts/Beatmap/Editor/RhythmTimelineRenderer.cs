@@ -36,7 +36,8 @@ public static class RhythmTimelineRenderer
             float max = 0;
             if (count > 0) 
             {
-                for (int j = sStart; j < sEnd; j++)
+                int step = Mathf.Max(1, count / 64);
+                for (int j = sStart; j < sEnd; j += step)
                 {
                     float val = Mathf.Abs(samples[j]);
                     if (val > max) max = val;
