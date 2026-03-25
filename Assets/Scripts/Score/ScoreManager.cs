@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,12 +18,17 @@ public class ScoreManager : MonoBehaviour
     private int baseScoreMultiplier = 1;
     private int bestScoreMultiplier = 1;
     
-    [SerializeField] private TextMeshProUGUI scoreText;
+    //[SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI multiplierText;
-    
+    [SerializeField] private TextMeshProUGUI multiplier2Text;
+
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
     [SerializeField] private TextMeshProUGUI scoreFinishText;
+
+    //new line
+    [SerializeField] private ScoreMultiplierEffect scoreMultiplierEffect;
+    [SerializeField] private CasinoScore casinoScore;
     private bool canGainScore = true;
     
     private int actualScore;
@@ -40,8 +45,9 @@ public class ScoreManager : MonoBehaviour
         baseScoreMultiplier =  actualScoreMultiplier;
         Debug.Log("Best Score: " + bestScore);
         
-        scoreText.text =  actualScore.ToString();
+        //scoreText.text =  actualScore.ToString();
         multiplierText.text =  actualScoreMultiplier.ToString();
+        multiplier2Text.text =  actualScoreMultiplier.ToString();
     }
 
     IEnumerator PassiveScoreRoutine()
@@ -59,7 +65,9 @@ public class ScoreManager : MonoBehaviour
     private void AddScore(int amount)
     {
         actualScore += amount * actualScoreMultiplier;
-        scoreText.text =  actualScore.ToString();
+        casinoScore.score = actualScore;
+        casinoScore.SplitScore();
+        //scoreText.text =  actualScore.ToString();
     }
 
     public void AddParryScore()
@@ -81,6 +89,8 @@ public class ScoreManager : MonoBehaviour
         }
         
         multiplierText.text =  actualScoreMultiplier.ToString();
+        //new line
+        scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
     }
 
     //call when player take damage
@@ -88,8 +98,11 @@ public class ScoreManager : MonoBehaviour
     {
         actualScoreMultiplier = baseScoreMultiplier;
         multiplierText.text =  actualScoreMultiplier.ToString();
+        multiplier2Text.text =  actualScoreMultiplier.ToString();
+        //new line
+        scoreMultiplierEffect.CheckScoreDecrease();
     }
-    
+
     private void SaveScore()
     {
         SaveableDatas datas = new SaveableDatas("BestScore");
