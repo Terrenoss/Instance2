@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
     [SerializeField] private TextMeshProUGUI scoreFinishText;
 
+    //new line
+    [SerializeField] private ScoreMultiplierEffect scoreMultiplierEffect;
     [SerializeField] private CasinoScore casinoScore;
     private int actualScore;
 
@@ -82,6 +84,9 @@ public class ScoreManager : MonoBehaviour
         }
         
         multiplierText.text =  actualScoreMultiplier.ToString();
+        //new line
+        //Debug.Log("increase multiplier");
+        //scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
     }
 
     //call when player take damage
@@ -90,6 +95,9 @@ public class ScoreManager : MonoBehaviour
         actualScoreMultiplier = baseScoreMultiplier;
         multiplierText.text =  actualScoreMultiplier.ToString();
         multiplier2Text.text =  actualScoreMultiplier.ToString();
+        //new line
+        //Debug.Log("decrease multiplier");
+        //scoreMultiplierEffect.CheckScoreDecrease(actualScoreMultiplier);
     }
 
     private void SaveScore()

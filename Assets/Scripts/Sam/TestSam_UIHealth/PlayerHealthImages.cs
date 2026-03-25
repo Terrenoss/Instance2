@@ -35,7 +35,7 @@ public class PlayerHealthImages : MonoBehaviour
         hitTaken++;
         if (hitTaken <= healthPoints.Count)
         {
-            healthPoints[healthPoints.Count - hitTaken].enabled = false;
+            //healthPoints[healthPoints.Count - hitTaken].enabled = false;
         }
     }
 

@@ -2186,8 +2186,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: -3}
-  m_SizeDelta: {x: 120, y: 50}
+  m_AnchoredPosition: {x: 147.16272, y: -3}
+  m_SizeDelta: {x: 270.3255, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590216459
 MonoBehaviour:
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 177ab622c5132ba489d53621381911ec, type: 2}
   m_sharedMaterial: {fileID: -5789078863187296023, guid: 177ab622c5132ba489d53621381911ec, type: 2}
@@ -2218,7 +2218,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4287865087
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2666,7 +2666,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4287865087
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4760,6 +4760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreMultiplierEffect
   animator: {fileID: 1241097584}
+  rectTransform: {fileID: 1241097583}
+  scoreMultiplier: {fileID: 2548774302158070930}
 --- !u!1 &1293455552
 GameObject:
   m_ObjectHideFlags: 0
@@ -7776,7 +7778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: d5335f76e988b094897abdcf667fa1c8, type: 2}
+  m_Material: {fileID: 2100000, guid: 798473a6a945b084f9ed3868010e0ab5, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -8007,7 +8009,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 0
+    rgba: 2969567232
   m_fontColor: {r: 0, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8117,7 +8119,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 0
+    rgba: 2969567232
   m_fontColor: {r: 0, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8711,8 +8713,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: -6.2999268}
-  m_SizeDelta: {x: 120, y: 50}
+  m_AnchoredPosition: {x: 140.16452, y: -6.2999268}
+  m_SizeDelta: {x: 270.3391, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5206411891402520420
 GameObject:
@@ -9196,7 +9198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: d5335f76e988b094897abdcf667fa1c8, type: 2}
+  m_Material: {fileID: 2100000, guid: d53eca92570cccb4fb7dd671bc2bc8a1, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9631,6 +9633,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 590216459}
     - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
+      propertyPath: scoreMultiplierEffect
+      value: 
+      objectReference: {fileID: 1241097585}
+    - target: {fileID: 1002850040128219824, guid: b7fb098312ebbd84a82411685716f37d, type: 3}
       propertyPath: bestScoreText.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -9845,7 +9851,7 @@ MonoBehaviour:
   healthPoint1: {fileID: 1194551464337326375}
   healthPoint2: {fileID: 6844381589877672414}
   healthPoint3: {fileID: 706187876276348395}
-  destroyDuration: 1.2
+  destroyDuration: 0.8
 --- !u!1 &8792062659029611223
 GameObject:
   m_ObjectHideFlags: 0

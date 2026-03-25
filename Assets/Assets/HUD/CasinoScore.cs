@@ -149,7 +149,7 @@ public class CasinoScore : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        score = 15724798;
+        score = 10100;
         SplitScore();
     }
 
