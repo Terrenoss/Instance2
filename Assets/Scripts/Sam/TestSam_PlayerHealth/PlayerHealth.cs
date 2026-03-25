@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Invincibility")]
     [SerializeField] private float invincibilityDuration = 1.5f;
     private bool isInvincible = false;
+    [SerializeField] private InvincibilityBlink invincibilityEffect;
+    [SerializeField] private ShakeCamera shakeCamera;
+    [SerializeField] private VFXPlayerDamage vfxPlayerDamage;
 
     public event Action OnPlayerHit;
     public event Action OnPlayerDeath;
@@ -20,15 +23,22 @@ public class PlayerHealth : MonoBehaviour
         if (isInvincible) return;
         
         health--;
-        scoreManager.DecreaseMultiplier();
         
         OnPlayerHit?.Invoke();
         
+        shakeCamera.AddTrauma(0.6f);
+        
+        scoreManager.DecreaseMultiplier();
+        
+        vfxPlayerDamage.PlayVfx(health);
+        
         if (health <= 0 ) 
         {
+            shakeCamera.AddTrauma(150f);
             Death();
             return;
         }
+        Debug.Log(health);
         
         StartCoroutine(InvincibilityCoroutine());
     }
@@ -37,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
+        invincibilityEffect.StartInvincibility();
+        
         yield return new WaitForSeconds(invincibilityDuration);
 
         isInvincible = false;

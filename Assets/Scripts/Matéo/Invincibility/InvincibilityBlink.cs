@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InvincibilityBlink : MonoBehaviour
 {
-    [Header("GameObjects à faire clignoter")]
+    [Header("GameObjects a faire clignoter")]
     public List<GameObject> targetObjects = new List<GameObject>();
 
-    [Header("Matériau d'invincibilité")]
+    [Header("Materiau d'invincibilite")]
     public Material blinkMaterial;
 
-    [Header("Paramètres de l'effet")]
+    [Header("Parametres de l'effet")]
     public float invincibilityDuration = 3f;
     public float blinkFrequency = 10f;
     public bool useVisibilityToggle = false;
@@ -19,10 +19,6 @@ public class InvincibilityBlink : MonoBehaviour
     private Coroutine _blinkCoroutine;
     private bool _isBlinking = false;
 
-    private void Start()
-    {
-        StartInvincibility();
-    }
     public void StartInvincibility()
     {
         if (_isBlinking)
@@ -39,6 +35,20 @@ public class InvincibilityBlink : MonoBehaviour
         }
         RestoreAllMaterials();
         _isBlinking = false;
+    }
+    
+    public void RemoveDestroyedObject(GameObject obj)
+    {
+        targetObjects.Remove(obj);
+        
+        var keysToRemove = new List<Renderer>();
+        foreach (var pair in _originalMaterials)
+        {
+            if (pair.Key == null || !targetObjects.Contains(pair.Key.gameObject))
+                keysToRemove.Add(pair.Key);
+        }
+        foreach (var key in keysToRemove)
+            _originalMaterials.Remove(key);
     }
 
     private IEnumerator BlinkRoutine()

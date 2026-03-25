@@ -21,9 +21,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Electricity
-  m_Shader: {fileID: -6465566751694194690, guid: 941c5d4eb10996a449d724b34cc89ba2, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_Shader: {fileID: -6465566751694194690, guid: c2d7cfe04268f74408627439267573ad, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: c2d7cfe04268f74408627439267573ad, type: 3}
+  m_ModifiedSerializedProperties: 6
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -36,26 +36,10 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _GlowStrenght: 15
     - _QueueControl: 0
-    - _QueueOffset: 0
-    m_Colors:
-    - _EmessiveColor: {r: 0.10081175, g: 0.32100573, b: 0.45099998, a: 1}
-    - _NeonColor: {r: 0.101960786, g: 0.32156864, b: 0.4509804, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
