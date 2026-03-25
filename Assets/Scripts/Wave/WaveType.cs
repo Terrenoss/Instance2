@@ -26,11 +26,13 @@ public class WaveType : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameObject waveParryUI;
     [SerializeField] private TextMeshProUGUI waveParryKey;
+    [SerializeField] private VideoSettings videoSettings;
     private string parryKeyString;
     private Dictionary<string, string> _specialCharacters = new Dictionary<string, string>();
     private List<Guid> bindingList = new();
     private List<string> bindingListName = new();
     private Renderer rend;
+    private bool isColorVisible = true;
     
 
     public Dictionary<WaveTypeEnum, WaveData> waveParam = new()
@@ -69,6 +71,14 @@ public class WaveType : MonoBehaviour
         waveParam[WaveTypeEnum.wave2].keyName = bindingListName[1];
         waveParam[WaveTypeEnum.wave3].keyName = bindingListName[2];
         waveParam[WaveTypeEnum.wave4].keyName = bindingListName[3];
+        
+        videoSettings.OnWavesColorChanged += UpdateColor;
+        isColorVisible = videoSettings.showWavesColor;
+    }
+
+    private void Start()
+    {
+        UpdateColor();
     }
 
     public void SetWaveType(WaveTypeSelection waveType)
@@ -79,7 +89,7 @@ public class WaveType : MonoBehaviour
             rend = GetComponent<Renderer>();
         }
 
-        rend.material.color = waveParam[waveTypeEnum].color;    
+        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
     }
 
     public void SetParryKeyVisible(bool isParryKeyVisible)
@@ -96,15 +106,24 @@ public class WaveType : MonoBehaviour
         
         waveParryKey.text= parryKeyString;
     }
-    
 
-    void OnValidate()
+    private void UpdateColor()
     {
         if (rend == null)
-        {
             rend = GetComponent<Renderer>();
-        }
-
-        rend.sharedMaterial.color = waveParam[waveTypeEnum].color;
+        
+        isColorVisible = videoSettings.showWavesColor;
+        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
     }
+    
+
+    // void OnValidate()
+    // {
+    //     if (rend == null)
+    //     {
+    //         rend = GetComponent<Renderer>();
+    //     }
+    //
+    //     rend.sharedMaterial.color = waveParam[waveTypeEnum].color;
+    // }
 }
