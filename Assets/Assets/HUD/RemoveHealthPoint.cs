@@ -49,9 +49,7 @@ public class RemoveHealthPoint : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             destroyStrength = Mathf.Lerp(0.1f, 1, elapsedTime / destroyDuration);
-            //Debug.Log(": "+ hitTaken);
             healthPoints[healthPoints.Count - hitTaken].material.SetFloat("_DestroyStrength", destroyStrength);
-            //Debug.Log("[healthPoints.Count - hitTaken]: " + (healthPoints.Count - hitTaken));
             yield return null;
         }
         healthPoints[healthPoints.Count - hitTaken].enabled = false;

@@ -85,8 +85,7 @@ public class ScoreManager : MonoBehaviour
         
         multiplierText.text =  actualScoreMultiplier.ToString();
         //new line
-        //Debug.Log("increase multiplier");
-        //scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
+        scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
     }
 
     //call when player take damage
@@ -96,8 +95,7 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text =  actualScoreMultiplier.ToString();
         multiplier2Text.text =  actualScoreMultiplier.ToString();
         //new line
-        //Debug.Log("decrease multiplier");
-        //scoreMultiplierEffect.CheckScoreDecrease(actualScoreMultiplier);
+        scoreMultiplierEffect.CheckScoreDecrease();
     }
 
     private void SaveScore()
