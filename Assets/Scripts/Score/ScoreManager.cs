@@ -38,7 +38,6 @@ public class ScoreManager : MonoBehaviour
         LoadScore();
         StartCoroutine(PassiveScoreRoutine());
         baseScoreMultiplier =  actualScoreMultiplier;
-        Debug.Log("Best Score: " + bestScore);
         
         scoreText.text =  actualScore.ToString();
         multiplierText.text =  actualScoreMultiplier.ToString();

@@ -38,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
             Death();
             return;
         }
-        Debug.Log(health);
         
         StartCoroutine(InvincibilityCoroutine());
     }

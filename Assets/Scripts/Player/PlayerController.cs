@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
                 animator.SetInteger("Direction", currentDirection);
                 PlayerMovementEvent.Invoke(new Vector2(currentDirection, mvmntInput.y));
-                Debug.Log(currentDirection);
             }
             catch (InvalidOperationException)
             {
