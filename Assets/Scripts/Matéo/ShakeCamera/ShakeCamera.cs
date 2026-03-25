@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ShakeCamera : MonoBehaviour
 {
-    public static ShakeCamera Instance { get; private set; }
-
     [Header("Trauma")]
     [Range(0f, 2f)] public float traumaDecaySpeed = 0.8f;
 
@@ -22,11 +20,7 @@ public class ShakeCamera : MonoBehaviour
     private float _seed;
     private Vector3 _originLocalPos;
     private Quaternion _originLocalRot;
-
-    private void Start()
-    {
-        AddTrauma(2);
-    }
+    
     public void AddTrauma(float amount)
     {
         _trauma = Mathf.Clamp01(_trauma + amount);
@@ -35,13 +29,6 @@ public class ShakeCamera : MonoBehaviour
     public float Trauma => _trauma;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-            return;
-        }
-        Instance = this;
-
         _seed = Random.Range(0f, 100f);
         _originLocalPos = transform.localPosition;
         _originLocalRot = transform.localRotation;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CircuitTrailManager : MonoBehaviour
 {
-    [Header("Référence Agent")]
+    [Header("RÃ©fÃ©rence Agent")]
     public Transform agent;
 
     [Header("Propagation")]
@@ -24,7 +24,7 @@ public class CircuitTrailManager : MonoBehaviour
     public float signalWidth = 0.04f;    
     public float trailTime = 0.25f;      
 
-    [Header("Durée d'affichage de la piste")]
+    [Header("DurÃ©e d'affichage de la piste")]
     public float trackFadeDelay = 3f;   
 
     [Header("Optimisation")]
@@ -47,6 +47,7 @@ public class CircuitTrailManager : MonoBehaviour
         sharedSignal = new Material(signalMaterial);
         PrewarmPools(maxActiveTrails);
     }
+
     void PrewarmPools(int count)
     {
         for (int i = 0; i < count; i++)
@@ -174,7 +175,8 @@ public class CircuitTrailManager : MonoBehaviour
         TrailRenderer signal = GetSignal();
 
         float angle = Random.Range(-spawnAngleSpread, spawnAngleSpread);
-        Vector3 initialDir = Quaternion.Euler(0f, angle, 0f) * Vector3.left;
+        Vector3 initialDir = Quaternion.Euler(0f, angle, 0f) * Vector3.back;
+        initialDir.y = 0f;
         initialDir.Normalize();
 
         List<Vector3> waypoints = new List<Vector3>();
@@ -184,20 +186,28 @@ public class CircuitTrailManager : MonoBehaviour
         Vector3 dir = initialDir;
         int segments = Random.Range(2, maxSegmentsPerBranch + 1);
 
+        float tanAngle = Mathf.Tan(spawnAngleSpread * Mathf.Deg2Rad);
+
         for (int s = 0; s < segments; s++)
         {
-            if (s == segments - 1) dir = Vector3.left;
+            if (s == segments - 1) dir = Vector3.back;
 
             float segLen = Random.Range(minSegmentLength, maxSegmentLength);
-            cursor.x += dir.x * segLen;
-            cursor.z += dir.z * segLen;
+
+            float newX = cursor.x + dir.x * segLen;
+            float newZ = cursor.z + dir.z * segLen;
+            
+            float zDist = Mathf.Abs(newZ - origin.z);
+            float xLimit = tanAngle * zDist;
+            newX = Mathf.Clamp(newX, origin.x - xLimit, origin.x + xLimit);
+
+            cursor.x = newX;
+            cursor.z = newZ;
             cursor.y = fixedY;
             waypoints.Add(cursor);
 
             if (s < segments - 2)
                 dir = GetPerpendicularDir(dir);
-            else if (s == segments - 2)
-                dir = Vector3.left;
         }
 
         track.positionCount = waypoints.Count;
@@ -226,12 +236,13 @@ public class CircuitTrailManager : MonoBehaviour
         yield return new WaitForSeconds(trackFadeDelay);
         ReturnTrack(track);
     }
-
+    
     static Vector3 GetPerpendicularDir(Vector3 current)
     {
-        if (current == Vector3.left || current.z == 0f)
-            return Random.value > 0.5f ? Vector3.forward : Vector3.back;
-        return Vector3.left;
+        if (Mathf.Abs(current.z) >= Mathf.Abs(current.x))
+            return Random.value > 0.5f ? Vector3.left : Vector3.right;
+
+        return Random.value > 0.5f ? Vector3.forward : Vector3.back;
     }
 
     void OnDestroy()

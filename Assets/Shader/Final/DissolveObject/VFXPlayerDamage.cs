@@ -14,6 +14,7 @@ public class VFXPlayerDamage : MonoBehaviour
     [SerializeField] private List<BodyPartEntry> _bodyPartsSetup;
     [SerializeField] private Material _dissolveMaterial;  
     [SerializeField] private float _destroyDelay = 2f;
+    [SerializeField] private InvincibilityBlink _invincibilityBlink;
 
     public Dictionary<int, List<GameObject>> dissolveMaterials = new Dictionary<int, List<GameObject>>();
 
@@ -23,7 +24,7 @@ public class VFXPlayerDamage : MonoBehaviour
             dissolveMaterials[entry.lifeThreshold] = entry.bodyParts;
     }
 
-    private void PlayVfx(int life)
+    public void PlayVfx(int life)
     {
         if (dissolveMaterials.TryGetValue(life, out List<GameObject> parts))
         {
@@ -34,14 +35,12 @@ public class VFXPlayerDamage : MonoBehaviour
             }
         }
     }
-
+    
     private IEnumerator DissolveAndDestroy(GameObject part)
     {
         MeshRenderer renderer = part.GetComponent<MeshRenderer>();
         if (renderer != null)
-        {
             renderer.material = new Material(_dissolveMaterial);
-        }
 
         DissolveObject dissolve = part.GetComponent<DissolveObject>();
         if (dissolve == null)
@@ -51,7 +50,10 @@ public class VFXPlayerDamage : MonoBehaviour
 
         dissolve.StartDissolve();
 
-        yield return new WaitForSeconds(dissolve.GetDuration() + _destroyDelay);
+        yield return new WaitForSeconds(dissolve.GetDuration());
+        
+        if (_invincibilityBlink != null)
+            _invincibilityBlink.RemoveDestroyedObject(part);
 
         Destroy(renderer.material);
         Destroy(part);
