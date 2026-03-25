@@ -8,13 +8,13 @@ public class ScoreManager : MonoBehaviour
     private int bestScore = 0;
     [SerializeField] private int passiveScore = 10;
     [SerializeField] private float passiveScoreTimer = 1f;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private LevelEnd levelEnd;
     
     [SerializeField] private int parryScore = 200;
     
-    [SerializeField] private int maxMultiplier = 10;
-    [SerializeField] private int scoreMultiplier = 2;
-    [SerializeField] private int actualScoreMultiplier = 1;
+    //[SerializeField] private int maxMultiplier = 10;
+    [SerializeField] private int scoreAdditioner = 1;
+    private int actualScoreMultiplier = 1;
     private int baseScoreMultiplier = 1;
     private int bestScoreMultiplier = 1;
     
@@ -29,13 +29,15 @@ public class ScoreManager : MonoBehaviour
     //new line
     [SerializeField] private ScoreMultiplierEffect scoreMultiplierEffect;
     [SerializeField] private CasinoScore casinoScore;
+    private bool canGainScore = true;
+    
     private int actualScore;
 
     void Start()
     {
-        if (spawner != null)
+        if (levelEnd != null)
         {
-            spawner.OnVictory += CheckBestScore;
+            levelEnd.OnMoveFinished += CheckBestScore;
         }
         
         LoadScore();
@@ -53,7 +55,10 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(passiveScoreTimer);
-            AddScore(passiveScore);
+            if (canGainScore && levelEnd.canGainScore)
+            {
+                AddScore(passiveScore);
+            }
         }
     }
 
@@ -72,11 +77,11 @@ public class ScoreManager : MonoBehaviour
     
     public void IncreaseMultiplier()
     {
-        actualScoreMultiplier *= scoreMultiplier;
-        if (actualScoreMultiplier >= maxMultiplier)
-        {
-            actualScoreMultiplier = maxMultiplier;
-        }
+        actualScoreMultiplier += scoreAdditioner;
+        // if (actualScoreMultiplier >= maxMultiplier)
+        // {
+        //     actualScoreMultiplier = maxMultiplier;
+        // }
 
         if (bestScoreMultiplier < actualScoreMultiplier)
         {
@@ -132,5 +137,10 @@ public class ScoreManager : MonoBehaviour
         bestScoreMultiplierText.text = bestScoreMultiplier.ToString();
         scoreFinishText.text = actualScore.ToString();
         SaveScore();
+    }
+    
+    public void SetCanGainScore(bool canGain)
+    {
+        canGainScore = canGain;
     }
 }

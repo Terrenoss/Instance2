@@ -2,15 +2,37 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
+[System.Serializable]
+public class FrequencyZone
+{
+    public float startTime = 0f;
+    public float endTime = 10f;
+    [Range(0f, 1f)] public float probability = 0.5f;
+    
+    public float beatInterval = 0.5f;
+    public float laneOffset = 2f;
+    public float safetyMargin = 1.5f;
+    
+    public Color zoneColor = new Color(0f, 1f, 0f, 0.3f);
+}
+
 public class LevelExporter : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private Transform blocksParent;
+    [SerializeField] private Transform proceduralBlocksParent;
     [SerializeField] private float speed = 10f;
+    public List<FrequencyZone> zones = new List<FrequencyZone>();
 
     public float Speed => speed;
     public Transform BlocksParent => blocksParent;
+    public Transform ProceduralBlocksParent 
+    {
+        get => proceduralBlocksParent;
+        set => proceduralBlocksParent = value;
+    }
+    public Transform Player => player;
 
     public void ExportLevel()
     {
@@ -27,7 +49,8 @@ public class LevelExporter : MonoBehaviour
                 time = GetTime(block),
                 lane = GetLane(block.position.x),
                 type = levelObj.type,
-                waveType = levelObj.waveType
+                waveType = levelObj.waveType,
+                isParryKeyVisible = levelObj.isParryKeyVisible
             };
 
             data.Add(entry);
@@ -81,6 +104,7 @@ public class ExportData
     public Lane lane;
     public ObstacleType type;
     public WaveTypeSelection waveType;
+    public bool isParryKeyVisible;
 }
 
 [System.Serializable]

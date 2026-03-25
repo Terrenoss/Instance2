@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1896949778994739070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 294027430729587876}
+  - component: {fileID: 8252351917336916017}
+  m_Layer: 0
+  m_Name: CircuitTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &294027430729587876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896949778994739070}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8252351917336916017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896949778994739070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc93c5fa6e99664b8b12895965bc1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CircuitPulseEmitter
+  agent: {fileID: 294027430729587876}
+  maxBranches: 1
+  spawnInterval: 0.2
+  branchSpeed: 20
+  minSegmentLength: 10
+  maxSegmentLength: 10
+  maxSegmentsPerBranch: 3
+  trackMaterial: {fileID: 2100000, guid: 7a462eaa3055a4248b708a78dcda43e1, type: 2}
+  trackWidth: 0.5
+  signalMaterial: {fileID: 2100000, guid: 5335ad1d560273d4bb886505b356cc83, type: 2}
+  signalWidth: 0.75
+  trailTime: 0.5
+  trackFadeDelay: 0.5
+  maxActiveTrails: 5
+  spawnAngleSpread: 45

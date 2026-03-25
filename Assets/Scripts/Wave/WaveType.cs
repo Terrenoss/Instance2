@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
@@ -16,14 +17,22 @@ public class WaveData
 {
     public Color color;
     public Guid keyId;
+    public string keyName;
 }
 
 public class WaveType : MonoBehaviour
 {    
     public WaveTypeEnum waveTypeEnum;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private GameObject waveParryUI;
+    [SerializeField] private TextMeshProUGUI waveParryKey;
+    [SerializeField] private VideoSettings videoSettings;
+    private string parryKeyString;
+    private Dictionary<string, string> _specialCharacters = new Dictionary<string, string>();
     private List<Guid> bindingList = new();
+    private List<string> bindingListName = new();
     private Renderer rend;
+    private bool isColorVisible = true;
     
 
     public Dictionary<WaveTypeEnum, WaveData> waveParam = new()
@@ -36,20 +45,40 @@ public class WaveType : MonoBehaviour
         
     };
 
-    private void Start()
+    private void Awake()
     {
+        _specialCharacters.Add("Up Arrow", "\u2191");
+        _specialCharacters.Add("Down Arrow", "\u2193");
+        _specialCharacters.Add("Left Arrow", "\u2190");
+        _specialCharacters.Add("Right Arrow", "\u2192");
+        
         InputAction action = playerInput.actions["Parry"];
         ReadOnlyArray<InputBinding> bindings = action.bindings;
 
         foreach (InputBinding binding in bindings)
         {
             Guid key = binding.id;
+            string keyName = InputControlPath.ToHumanReadableString(binding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            bindingListName.Add(keyName);
             bindingList.Add(key);
         }
         waveParam[WaveTypeEnum.wave1].keyId = bindingList[0];
         waveParam[WaveTypeEnum.wave2].keyId = bindingList[1];
         waveParam[WaveTypeEnum.wave3].keyId = bindingList[2];
-        waveParam[WaveTypeEnum.wave4].keyId = bindingList[3];
+        waveParam[WaveTypeEnum.wave4].keyId = bindingList[3];        
+        
+        waveParam[WaveTypeEnum.wave1].keyName = bindingListName[0];
+        waveParam[WaveTypeEnum.wave2].keyName = bindingListName[1];
+        waveParam[WaveTypeEnum.wave3].keyName = bindingListName[2];
+        waveParam[WaveTypeEnum.wave4].keyName = bindingListName[3];
+        
+        videoSettings.OnWavesColorChanged += UpdateColor;
+        isColorVisible = videoSettings.showWavesColor;
+    }
+
+    private void Start()
+    {
+        UpdateColor();
     }
 
     public void SetWaveType(WaveTypeSelection waveType)
@@ -60,16 +89,41 @@ public class WaveType : MonoBehaviour
             rend = GetComponent<Renderer>();
         }
 
-        rend.material.color = waveParam[waveTypeEnum].color;    
+        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
     }
 
-    void OnValidate()
+    public void SetParryKeyVisible(bool isParryKeyVisible)
+    {
+        waveParryUI.SetActive(isParryKeyVisible);
+
+        if (!isParryKeyVisible) return;
+        
+        parryKeyString = waveParam[waveTypeEnum].keyName;
+        if (_specialCharacters.ContainsKey(parryKeyString))
+        {
+            parryKeyString = _specialCharacters[parryKeyString];
+        }
+        
+        waveParryKey.text= parryKeyString;
+    }
+
+    private void UpdateColor()
     {
         if (rend == null)
-        {
             rend = GetComponent<Renderer>();
-        }
-
-        rend.sharedMaterial.color = waveParam[waveTypeEnum].color;
+        
+        isColorVisible = videoSettings.showWavesColor;
+        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
     }
+    
+
+    // void OnValidate()
+    // {
+    //     if (rend == null)
+    //     {
+    //         rend = GetComponent<Renderer>();
+    //     }
+    //
+    //     rend.sharedMaterial.color = waveParam[waveTypeEnum].color;
+    // }
 }

@@ -33,10 +33,6 @@ public class Dissolver : MonoBehaviour
             dissolveStrength = Mathf.Lerp(0, 1, elapsedTime / dissolveDuration);
             material.SetFloat("_DissolveStrength", dissolveStrength);
 
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + elapsedTime / dissolveDuration / 20,
-                gameObject.transform.localScale.y + elapsedTime / dissolveDuration / 20,
-                gameObject.transform.localScale.z + elapsedTime / dissolveDuration / 20);
-
             gameObject.transform.position = new Vector3(gameObject.transform.position.x,
                                                      gameObject.transform.position.y - elapsedTime / dissolveDuration / 40,
                                                      gameObject.transform.position.z);

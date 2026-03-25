@@ -55,6 +55,14 @@ public class SplineMover : MonoBehaviour
     public void ResetWave()
     {
         currentSplineProgression = 1f;
+        
+        Vector3 splinePos = splineToFollow.EvaluatePosition(currentSplineProgression);
+        Vector3 up = splineToFollow.EvaluateUpVector(currentSplineProgression);
+        Vector3 forward = splineToFollow.EvaluateTangent(currentSplineProgression);
+
+        transform.position = splinePos + up * offset;
+        transform.rotation = Quaternion.LookRotation(forward, up);
+        
         UpdateWave(true);
         isDisable = false;
     }
@@ -64,14 +72,21 @@ public class SplineMover : MonoBehaviour
         if (!isActive)
         {
             if (poolingSystem != null)
+            {
                 poolingSystem.Release(gameObject);
+            }
         }
 
         BoxCollider collider = GetComponent<BoxCollider>();
-        if (collider) collider.enabled = isActive;
+        if (collider)
+        {
+            collider.enabled = isActive;
+        }
 
         if (rend != null)
+        {
             rend.enabled = isActive;
+        }
 
         isDisable = !isActive;
     }

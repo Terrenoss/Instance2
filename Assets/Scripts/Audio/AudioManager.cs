@@ -22,10 +22,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        PlaySound("MainMusic");
-    }
+    // private void Start()
+    // {
+    //     PlaySound("MainMusic");
+    // }
 
     public void PlaySound(string name)
     {
@@ -135,5 +135,23 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(_sounds, sound => sound.Name == name);
         return s.Source.clip.length;
+    }
+    
+    public void PauseSound(string name)
+    {
+        Sound s = Array.Find(_sounds, sound => sound.Name == name);
+        if (s != null && s.Source.isPlaying)
+        {
+            s.Source.Pause();
+        }
+    }
+
+    public void ResumeSound(string name)
+    {
+        Sound s = Array.Find(_sounds, sound => sound.Name == name);
+        if (s != null)
+        {
+            s.Source.UnPause();
+        }
     }
 }
