@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int bestScore = 0;
     [SerializeField] private int passiveScore = 10;
     [SerializeField] private float passiveScoreTimer = 1f;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private LevelEnd levelEnd;
     
     [SerializeField] private int parryScore = 200;
     
@@ -30,9 +30,9 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        if (spawner != null)
+        if (levelEnd != null)
         {
-            spawner.OnVictory += CheckBestScore;
+            levelEnd.OnMoveFinished += CheckBestScore;
         }
         
         LoadScore();
@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(passiveScoreTimer);
-            if (canGainScore)
+            if (canGainScore && levelEnd.canGainScore)
             {
                 AddScore(passiveScore);
             }
