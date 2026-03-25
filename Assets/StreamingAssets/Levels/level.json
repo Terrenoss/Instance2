@@ -1,136 +1,2027 @@
 {
     "objects": [
         {
-            "time": 1.0,
+            "time": 0.0,
             "lane": 1,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 1.0,
+            "time": 0.6000000238418579,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 2.0,
+            "time": 1.7999999523162842,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 2.4000000953674318,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 2.4000000953674318,
             "lane": 2,
             "type": 0,
-            "waveType": 0
-        },
-        {
-            "time": 2.0,
-            "lane": 0,
-            "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
             "time": 3.0,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 4.199999809265137,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 4.199999809265137,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 4.655816078186035,
             "lane": 1,
             "type": 1,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": true
         },
         {
-            "time": 4.0,
-            "lane": 0,
-            "type": 0,
-            "waveType": 0
-        },
-        {
-            "time": 4.0,
+            "time": 5.999999523162842,
             "lane": 2,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 4.400000095367432,
+            "time": 5.999999523162842,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 4.400000095367432,
-            "lane": 2,
+            "time": 6.59999942779541,
+            "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 4.800000190734863,
+            "time": 6.838282108306885,
             "lane": 1,
             "type": 1,
-            "waveType": 1
+            "waveType": 0,
+            "isParryKeyVisible": true
         },
         {
-            "time": 5.199999809265137,
+            "time": 8.399999618530274,
             "lane": 2,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 5.199999809265137,
-            "lane": 0,
-            "type": 0,
-            "waveType": 0
-        },
-        {
-            "time": 5.599999904632568,
-            "lane": 0,
-            "type": 0,
-            "waveType": 0
-        },
-        {
-            "time": 5.599999904632568,
+            "time": 9.0,
             "lane": 2,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 6.0,
+            "time": 9.071525573730469,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 10.200000762939454,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 6.0,
-            "lane": 2,
+            "time": 10.200000762939454,
+            "lane": 1,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 6.400000095367432,
+            "time": 11.400001525878907,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 6.400000095367432,
+            "time": 12.000001907348633,
             "lane": 2,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 6.800000190734863,
-            "lane": 2,
-            "type": 0,
-            "waveType": 0
-        },
-        {
-            "time": 6.800000190734863,
+            "time": 12.60000228881836,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 7.199999809265137,
+            "time": 13.200002670288086,
             "lane": 0,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
         },
         {
-            "time": 7.199999809265137,
+            "time": 13.380000114440918,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 15.563943862915039,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 15.600004196166993,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 16.800004959106447,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 16.800004959106447,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 17.786945343017579,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 19.20000648498535,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 19.800006866455079,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 19.800006866455079,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 20.400007247924806,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 21.00000762939453,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 21.600008010864259,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 22.092945098876954,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 23.400009155273439,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 23.400009155273439,
             "lane": 2,
             "type": 0,
-            "waveType": 0
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 24.282943725585939,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 25.800012588500978,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 26.400012969970704,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 26.505945205688478,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 27.600011825561525,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 27.600011825561525,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 28.20001220703125,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 29.400012969970704,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 30.000011444091798,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 30.600011825561525,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 30.81194496154785,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 32.4000129699707,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 33.0000114440918,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 33.00194549560547,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 34.200008392333987,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 34.200008392333987,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 34.80000686645508,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 35.224945068359378,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 37.20000076293945,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 37.20000076293945,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 37.79999923706055,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 38.999996185302737,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 39.53094482421875,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 40.799991607666019,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 41.39999008178711,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 41.720947265625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 43.19998550415039,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 43.799983978271487,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 43.943946838378909,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 45.599979400634769,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 45.599979400634769,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 47.39997482299805,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 47.39997482299805,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 47.99997329711914,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 48.24994659423828,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 49.79996871948242,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 50.399967193603519,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 50.399967193603519,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 50.43994903564453,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 52.1999626159668,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 52.66294479370117,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 53.99995803833008,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 54.59995651245117,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 55.19995880126953,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 55.799949645996097,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 55.799949645996097,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 56.39995193481445,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 56.96894454956055,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 56.99995040893555,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 58.19994354248047,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 58.79994583129883,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 58.79994583129883,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 59.1589469909668,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 60.599937438964847,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 61.3819465637207,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 62.99993133544922,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 63.59993362426758,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 64.19993591308594,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 64.79993438720703,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 65.39993286132813,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 65.68794250488281,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 67.1999282836914,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 67.7999267578125,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 67.7999267578125,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 67.87794494628906,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 68.99992370605469,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 69.59992218017578,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 70.10094451904297,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 71.39991760253906,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 71.99991607666016,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 72.59991455078125,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 73.19991302490235,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 73.79991149902344,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 74.39990997314453,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 74.39990997314453,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 74.40694427490235,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 75.59990692138672,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 76.19990539550781,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 76.19990539550781,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 76.59693908691406,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 77.9999008178711,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 78.59989929199219,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 79.19989776611328,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 79.79989624023438,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 80.39989471435547,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 80.39989471435547,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 80.99989318847656,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 82.79988861083985,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 82.79988861083985,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 83.39988708496094,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 83.99988555908203,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 84.59988403320313,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 86.3998794555664,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 86.9998779296875,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 86.9998779296875,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 88.19987487792969,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 88.19987487792969,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 88.79987335205078,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 88.79987335205078,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 89.84342956542969,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 91.19986724853516,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 91.19986724853516,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 92.39986419677735,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 92.39986419677735,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 93.59986114501953,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 93.59986114501953,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 94.14894104003906,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 95.39985656738281,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 95.9998550415039,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 96.33894348144531,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 97.79985046386719,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 98.39984893798828,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 98.39984893798828,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 98.56194305419922,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 100.79984283447266,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 101.39984130859375,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 101.99983978271485,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 102.59983825683594,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 102.59983825683594,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 102.8679428100586,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 104.39982604980469,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 104.99983215332031,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 105.05794525146485,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 106.1998291015625,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 106.7998275756836,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 107.28094482421875,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 108.33162689208985,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 109.15959167480469,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 110.39981842041016,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 110.39981842041016,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 111.37776947021485,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 111.5869369506836,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 112.80403900146485,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 113.62493896484375,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 113.77693939208985,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 115.7998046875,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 115.7998046875,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 115.85093688964844,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 115.99993896484375,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 117.27293395996094,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 118.09893798828125,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 119.85453796386719,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 120.3059310913086,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 121.461181640625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 122.1509017944336,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 122.49593353271485,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 123.59977722167969,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 124.19978332519531,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 124.19978332519531,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 124.3932113647461,
+            "lane": 1,
+            "type": 1,
+            "waveType": 1,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 124.71041107177735,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 125.9997787475586,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 127.7997817993164,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 128.3997802734375,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 128.3997802734375,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 128.99978637695313,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 129.0249481201172,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 130.19979858398438,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 130.7998046875,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 130.7998046875,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 131.21493530273438,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 132.59982299804688,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 133.1998291015625,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 133.4379425048828,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 135.599853515625,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 135.599853515625,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 136.79986572265626,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 137.39987182617188,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 137.39987182617188,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 137.7439422607422,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 139.79989624023438,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 139.79989624023438,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 139.93392944335938,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 142.1569366455078,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 142.19992065429688,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 142.56857299804688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 143.5699462890625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 144.5699462890625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": true
+        },
+        {
+            "time": 145.5699462890625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 146.4629364013672,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 146.5699462890625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 147.5699462890625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 148.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 148.65292358398438,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 149.556640625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 150.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 150.87594604492188,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 151.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 152.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 153.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 154.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 155.18194580078126,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 155.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 156.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 157.3719482421875,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 157.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 158.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 159.59494018554688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 160.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 161.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 162.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 163.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 163.90093994140626,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 164.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 165.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 166.0909423828125,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 166.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 167.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 168.31393432617188,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 168.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 169.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 170.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 171.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 172.6199493408203,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 173.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 174.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 174.8099365234375,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 175.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 176.57492065429688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 2,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 177.03292846679688,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 178.20028686523438,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 178.80029296875,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 178.80029296875,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 180.60031127929688,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 181.2003173828125,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 181.3389434814453,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 183.52894592285157,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 184.80035400390626,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 185.40036010742188,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 185.40036010742188,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 185.75192260742188,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 187.20037841796876,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 187.80038452148438,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 188.400390625,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 189.00039672851563,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 189.60040283203126,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 190.0579376220703,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 191.40042114257813,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 191.40042114257813,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 192.00042724609376,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 192.00042724609376,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 192.24794006347657,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 195.6004638671875,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 196.20046997070313,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 196.80047607421876,
+            "lane": 0,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 196.80047607421876,
+            "lane": 1,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 198.60049438476563,
+            "lane": 2,
+            "type": 0,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 198.77694702148438,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 200.96694946289063,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 203.18994140625,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 207.49594116210938,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
+        },
+        {
+            "time": 209.68594360351563,
+            "lane": 1,
+            "type": 1,
+            "waveType": 0,
+            "isParryKeyVisible": false
         }
     ]
 }
