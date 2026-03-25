@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int bestScore = 0;
     [SerializeField] private int passiveScore = 10;
     [SerializeField] private float passiveScoreTimer = 1f;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private LevelEnd levelEnd;
     
     [SerializeField] private int parryScore = 200;
     
@@ -24,15 +24,15 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
     [SerializeField] private TextMeshProUGUI scoreFinishText;
-    
+    private bool canGainScore = true;
     
     private int actualScore;
 
     void Start()
     {
-        if (spawner != null)
+        if (levelEnd != null)
         {
-            spawner.OnVictory += CheckBestScore;
+            levelEnd.OnMoveFinished += CheckBestScore;
         }
         
         LoadScore();
@@ -49,7 +49,10 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(passiveScoreTimer);
-            AddScore(passiveScore);
+            if (canGainScore && levelEnd.canGainScore)
+            {
+                AddScore(passiveScore);
+            }
         }
     }
 
@@ -121,5 +124,10 @@ public class ScoreManager : MonoBehaviour
         bestScoreMultiplierText.text = bestScoreMultiplier.ToString();
         scoreFinishText.text = actualScore.ToString();
         SaveScore();
+    }
+    
+    public void SetCanGainScore(bool canGain)
+    {
+        canGainScore = canGain;
     }
 }

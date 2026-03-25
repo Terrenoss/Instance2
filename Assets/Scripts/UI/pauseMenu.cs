@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     public bool isGamePaused = false;
     [SerializeField] private string mainMenu;
     [SerializeField] private Settings settingsLogic;
+    [SerializeField] private AudioManager audioManager;
+    public bool isVolumeZero = false;
 
     private void Awake()
     {
@@ -53,6 +55,12 @@ public class PauseMenu : MonoBehaviour
     {
         isGamePaused = true;
         Time.timeScale = 0;
+
+        if (!isVolumeZero)
+        {
+            Debug.Log("can Pause music");
+            audioManager.PauseSound("MainMusic");
+        }
         
         if (settingsLogic != null && settingsLogic.IsSettingsPanelActive())
         {
@@ -72,6 +80,12 @@ public class PauseMenu : MonoBehaviour
         isGamePaused = false;
         Time.timeScale = 1;
         
+        if(!isVolumeZero)
+        { 
+            Debug.Log("can resume music");
+            audioManager.ResumeSound("MainMusic");
+        }
+
         if (settingsLogic != null && settingsLogic.IsSettingsPanelActive())
         {
             settingsLogic.HideSettingsMenu();

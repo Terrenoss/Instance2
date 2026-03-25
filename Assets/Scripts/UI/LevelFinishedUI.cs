@@ -12,7 +12,7 @@ public class LevelFinishedUI : MonoBehaviour
     [SerializeField] private float timeBeforeShowDefeatMenu = 1f;
 
     [SerializeField] private string mainMenu;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private LevelEnd levelEnd;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private PauseMenu pauseMenu;
 
@@ -21,8 +21,8 @@ public class LevelFinishedUI : MonoBehaviour
 
     private void Start()
     {
-        if (spawner != null)
-            spawner.OnVictory += HandleVictory;
+        if (levelEnd != null)
+            levelEnd.OnMoveFinished += HandleVictory;
 
         if (playerHealth != null)
             playerHealth.OnPlayerDeath += HandleDefeat;
@@ -77,8 +77,8 @@ public class LevelFinishedUI : MonoBehaviour
     
     private void OnDestroy()
     {
-        if (spawner != null)
-            spawner.OnVictory -= HandleVictory;
+        if (levelEnd != null)
+            levelEnd.OnMoveFinished -= HandleVictory;
 
         if (playerHealth != null)
             playerHealth.OnPlayerDeath -= HandleDefeat;
