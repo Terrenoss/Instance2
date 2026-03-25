@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ public class VideoSettings : MonoBehaviour
     [SerializeField] private Button showWaveColorButton;
     [SerializeField] private TextMeshProUGUI showWaveColorText;
     private bool isFullScreen = true;
-    private bool showWavesColor = true;
+    public bool showWavesColor = true;
+    public event Action OnWavesColorChanged;
     private SaveableDatas datas = new("VideoSettings");
 
-    private void Start()
+    private void Awake()
     {
         LoadSettings();
-        ToggleWavesColor();
-        ToggleFullScreen();
+        ApplySettings();
         
         _resolutions = Screen.resolutions;
 
@@ -51,9 +52,21 @@ public class VideoSettings : MonoBehaviour
         Screen.SetResolution(_resolutions[_dropdown.value].width, _resolutions[_dropdown.value].height, Screen.fullScreen);
     }
 
+    private void ApplySettings()
+    {
+        showWaveColorText.text = showWavesColor ? "on" : "off";
+        showWaveColorButton.image.sprite = showWavesColor ? SpriteOn : SpriteOff;
+        OnWavesColorChanged?.Invoke();
+
+        fullScreenText.text = isFullScreen ? "on" : "off";
+        fullScreenButton.image.sprite = isFullScreen ? SpriteOn : SpriteOff;
+        Screen.fullScreen = isFullScreen;
+    }
+    
     public void ToggleWavesColor()
     {
         showWavesColor = !showWavesColor;
+        OnWavesColorChanged?.Invoke();
         showWaveColorText.text = showWavesColor ? "on" : "off";
         showWaveColorButton.image.sprite = showWavesColor ? SpriteOn : SpriteOff;
         SaveSettings();
@@ -84,15 +97,13 @@ public class VideoSettings : MonoBehaviour
 
         if (datas != null)
         {
-            isFullScreen = !datas.GetSavedBool("isFullScreen");
-            showWavesColor =  !datas.GetSavedBool("isWavesColorVisible");
+            isFullScreen = datas.GetSavedBool("isFullScreen");
+            showWavesColor =  datas.GetSavedBool("isWavesColorVisible");
         }
         else
         {
-            isFullScreen = false;
-            showWavesColor = false;
+            isFullScreen = true;
+            showWavesColor = true;
         }
-
-        //actualise button
     }
 }
