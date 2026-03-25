@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SplineContainer rightSpline;
     [SerializeField] private SplineMover splineMover;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private Animator animator;
     
     private float levelTime = 0f;
     private float musicTimeStart = 0f;
@@ -98,6 +99,7 @@ public class Spawner : MonoBehaviour
     void Spawn(ExportData data)
     {
         GameObject obj = poolingSystem.GetAvailable(data.type);
+
         if (obj == null)
         {
             Debug.LogWarning("No available object in pool for type " + data.type);
@@ -125,10 +127,10 @@ public class Spawner : MonoBehaviour
             mover.splineToFollow = splineToUse;
             mover.ResetWave();
         }
-        
         WaveType wave = obj.GetComponent<WaveType>();
         if (wave != null)
         {
+            animator.SetTrigger("Spawn");
             wave.SetWaveType(data.waveType);
             wave.SetParryKeyVisible(data.isParryKeyVisible);
         }
