@@ -4,6 +4,7 @@ public class ScoreMultiplierEffect : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private AudioManager audioManager;
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class ScoreMultiplierEffect : MonoBehaviour
         {
             animator.SetInteger("scoreMultiplicator", 1);
         }
+
+        if (audioManager != null) audioManager.PlaySound("Multiplicateur");
     }
 
     public void CheckScoreDecrease()

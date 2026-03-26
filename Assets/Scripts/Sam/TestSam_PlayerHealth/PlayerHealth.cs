@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public int health = 3;
     
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private AudioManager audioManager;
     
     [Header("Invincibility")]
     [SerializeField] private float invincibilityDuration = 1.5f;
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         health--;
         
         OnPlayerHit?.Invoke();
+        if (audioManager != null) audioManager.PlaySound("Degat");
         
         shakeCamera.AddTrauma(0.6f);
         
@@ -55,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
+        if (audioManager != null) audioManager.PlaySound("Mort");
         OnPlayerDeath?.Invoke();
         scoreManager.CheckBestScore();
         gameObject.SetActive(false);

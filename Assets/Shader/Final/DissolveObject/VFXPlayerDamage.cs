@@ -28,7 +28,7 @@ public class VFXPlayerDamage : MonoBehaviour
     {
         if (dissolveMaterials.TryGetValue(life, out List<GameObject> parts))
         {
-            foreach (var part in parts)
+            foreach (GameObject part in parts)
             {
                 if (part != null)
                     StartCoroutine(DissolveAndDestroy(part));

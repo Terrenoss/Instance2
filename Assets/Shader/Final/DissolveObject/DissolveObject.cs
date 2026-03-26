@@ -14,7 +14,7 @@ public class DissolveObject : MonoBehaviour
     private void Awake()
     {
         material = GetComponent<Renderer>().material;
-        var bounds = GetComponent<Renderer>().bounds;
+        Bounds bounds = GetComponent<Renderer>().bounds;
         bottomY = bounds.min.y;
         topY = bounds.max.y;
         SetHeight(topY + noiseStrength);

@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Grid _grid;
+    [SerializeField] private AudioManager audioManager;
 
     private void Start()
     {
@@ -19,5 +20,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position += destination;
         
         _grid.SnapToGrid(transform);
+
+        if (audioManager != null) audioManager.PlaySound("Deplacement");
     }
 }

@@ -55,7 +55,7 @@ public class VolumeZeroLevel : MonoBehaviour
             pauseMenu.isVolumeZero = true;
         }
         
-        foreach (var mover in splineMovers)
+        foreach (SplineMover mover in splineMovers)
         {
             if (mover == null) continue;
                 

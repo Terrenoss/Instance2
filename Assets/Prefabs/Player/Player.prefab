@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331408aef7bb49c4fbe6bf7066fef73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _coolDown: 0.1
   _grid: {fileID: 0}
+  audioManager: {fileID: 0}
 --- !u!54 &2584635041789678968
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -551,8 +551,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b0f4f2b555d1040b6f17a4c7735967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 3
+  health: 100
   scoreManager: {fileID: 7131362050261917977}
+  audioManager: {fileID: 0}
   invincibilityDuration: 1.5
   invincibilityEffect: {fileID: 4576130499890603757}
   shakeCamera: {fileID: 0}
@@ -5744,11 +5745,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   passiveScore: 10
   passiveScoreTimer: 1
-  levelEnd: {fileID: 3451391641828027059}
   parryScore: 200
   scoreAdditioner: 1
-  scoreText: {fileID: 0}
+  scoreMultiplierEffect: {fileID: 0}
+  casinoScore: {fileID: 0}
   multiplierText: {fileID: 0}
+  multiplier2Text: {fileID: 0}
   bestScoreText: {fileID: 0}
   bestScoreMultiplierText: {fileID: 0}
   scoreFinishText: {fileID: 0}
@@ -5767,9 +5769,10 @@ MonoBehaviour:
   spawner: {fileID: 0}
   player: {fileID: 8296429120560987459}
   speed: 2
-  canGainScore: 1
   distance: 10
   playerInput: {fileID: 6132602099913370964}
+  audioManager: {fileID: 0}
+  canGainScore: 1
 --- !u!1 &5965803503072841443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,6 +5913,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   animator: {fileID: 8898725799329353065}
+  movementCooldown: 0.1
+  audioManager: {fileID: 0}
 --- !u!114 &6132602099913370964
 MonoBehaviour:
   m_ObjectHideFlags: 0

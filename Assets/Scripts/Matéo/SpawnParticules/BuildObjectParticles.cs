@@ -50,12 +50,12 @@ public class BuildObjectParticles : MonoBehaviour
     {
         if (targetMeshFilter == null) return;
 
-        foreach (var r in targetMeshFilter.GetComponentsInChildren<Renderer>())
+        foreach (Renderer r in targetMeshFilter.GetComponentsInChildren<Renderer>())
             r.enabled = false;
     }
     static Mesh BuildCubeMesh()
     {
-        var mesh = new Mesh { name = "PCube" };
+        Mesh mesh = new Mesh { name = "PCube" };
         float h = 0.5f;
 
         Vector3[] v = {
@@ -147,7 +147,7 @@ public class BuildObjectParticles : MonoBehaviour
         matrices = new Matrix4x4[particleCount];
 
         Vector3 origin = transform.position;
-        var scale = Vector3.one * cubeSize;
+        Vector3 scale = Vector3.one * cubeSize;
 
         for (int i = 0; i < particleCount; i++)
         {
@@ -161,7 +161,7 @@ public class BuildObjectParticles : MonoBehaviour
 
         float dt = Time.deltaTime * speed;
         float threshold = arrivalThreshold * arrivalThreshold;
-        var scale = Vector3.one * cubeSize;
+        Vector3 scale = Vector3.one * cubeSize;
 
         for (int i = 0; i < particleCount; i++)
         {

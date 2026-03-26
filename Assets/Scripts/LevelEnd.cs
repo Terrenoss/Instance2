@@ -9,6 +9,7 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float distance = 10f;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private AudioManager audioManager;
     
     // Événements d'instance (conservés pour ne pas casser d'autres scripts potentiels)
     public event Action OnMoveFinished;
@@ -56,6 +57,8 @@ public class LevelEnd : MonoBehaviour
             isMoving = false;
             OnMoveFinished?.Invoke();
             GlobalOnMoveFinished?.Invoke(); // Lancement global !
+
+            if (audioManager != null) audioManager.PlaySound("Victoire");
         }
     }
 }

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [Tooltip("Temps de recharge entre deux déplacements (Cooldown)")]
     [SerializeField] private float movementCooldown = 0.1f;
+    [SerializeField] private AudioManager audioManager;
     
     private int currentDirection = 0;
     private float nextMoveTime = 0f;
@@ -66,6 +67,8 @@ public class PlayerController : MonoBehaviour
                 index++;
             }
             WaveParryEvent.Invoke(ctx.action.bindings[index].id);
+
+            if (audioManager != null) audioManager.PlaySound("parry");
         }
     }
 

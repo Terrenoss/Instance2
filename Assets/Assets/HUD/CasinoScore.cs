@@ -59,12 +59,11 @@ public class CasinoScore : MonoBehaviour
             if (oldDigit != newDigit)
             {
                 int difference = Mathf.Abs(newDigit - oldDigit);
-                // Appel à l'animation originale du chiffre !
+                
                 digitScores[i].TriggerAnimatorScroll(difference, oldDigit, newDigit);
             }
             else
             {
-                // Pas de changement = pas d'animation
                 digitScores[i].Init(newDigit);
             }
         }

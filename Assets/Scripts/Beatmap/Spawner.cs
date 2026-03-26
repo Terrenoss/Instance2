@@ -133,6 +133,8 @@ public class Spawner : MonoBehaviour
             animator.SetTrigger("Spawn");
             wave.SetWaveType(data.waveType);
             wave.SetParryKeyVisible(data.isParryKeyVisible);
+
+            if (audioManager != null) audioManager.PlaySound("Spawn");
         }
     }
     

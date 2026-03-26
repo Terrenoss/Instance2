@@ -41,13 +41,13 @@ public class InvincibilityBlink : MonoBehaviour
     {
         targetObjects.Remove(obj);
         
-        var keysToRemove = new List<Renderer>();
-        foreach (var pair in _originalMaterials)
+        List<Renderer> keysToRemove = new List<Renderer>();
+        foreach (KeyValuePair<Renderer, Material[]> pair in _originalMaterials)
         {
             if (pair.Key == null || !targetObjects.Contains(pair.Key.gameObject))
                 keysToRemove.Add(pair.Key);
         }
-        foreach (var key in keysToRemove)
+        foreach (Renderer key in keysToRemove)
             _originalMaterials.Remove(key);
     }
 
@@ -80,11 +80,11 @@ public class InvincibilityBlink : MonoBehaviour
     {
         _originalMaterials.Clear();
 
-        foreach (var go in targetObjects)
+        foreach (GameObject go in targetObjects)
         {
             if (go == null) continue;
 
-            foreach (var rend in go.GetComponentsInChildren<Renderer>(true))
+            foreach (Renderer rend in go.GetComponentsInChildren<Renderer>(true))
             {
                 if (_originalMaterials.ContainsKey(rend)) continue;
 
@@ -107,7 +107,7 @@ public class InvincibilityBlink : MonoBehaviour
             return;
         }
 
-        foreach (var pair in _originalMaterials)
+        foreach (KeyValuePair<Renderer, Material[]> pair in _originalMaterials)
         {
             Renderer rend = pair.Key;
             if (rend == null) continue;
@@ -125,7 +125,7 @@ public class InvincibilityBlink : MonoBehaviour
     {
         if (useVisibilityToggle) { SetRenderersActive(true); return; }
 
-        foreach (var pair in _originalMaterials)
+        foreach (KeyValuePair<Renderer, Material[]> pair in _originalMaterials)
         {
             Renderer rend = pair.Key;
             if (rend == null) continue;
@@ -137,10 +137,10 @@ public class InvincibilityBlink : MonoBehaviour
 
     private void SetRenderersActive(bool active)
     {
-        foreach (var go in targetObjects)
+        foreach (GameObject go in targetObjects)
         {
             if (go == null) continue;
-            foreach (var rend in go.GetComponentsInChildren<Renderer>(true))
+            foreach (Renderer rend in go.GetComponentsInChildren<Renderer>(true))
                 rend.enabled = active;
         }
     }

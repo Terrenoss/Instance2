@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerVFXManager : MonoBehaviour
 {
-    public static PlayerVFXManager Instance { get; private set; }
 
     [Header("Spell Circle VFX")]
     [SerializeField] private GameObject spellCirclePrefab;
@@ -25,8 +24,6 @@ public class PlayerVFXManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
-        Instance = this;
         propBlock = new MaterialPropertyBlock();
         PlaySpellCircle();
     }
