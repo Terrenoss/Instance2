@@ -33,17 +33,79 @@ public class WaveType : MonoBehaviour
     private List<string> bindingListName = new();
     private Renderer rend;
     private bool isColorVisible = true;
-    
+    [SerializeField] private WaveMaterialConfig[] waveConfigs;
+    [SerializeField] private Material material; 
+    private Material runtimeMaterial;
 
     public Dictionary<WaveTypeEnum, WaveData> waveParam = new()
     {
-        //rajouter sons associés à chaque ondes
         { WaveTypeEnum.wave1, new WaveData() {color = Color.red} },
         { WaveTypeEnum.wave2, new WaveData() {color = Color.green} },
         { WaveTypeEnum.wave3, new WaveData() {color = Color.blue} },
         { WaveTypeEnum.wave4, new WaveData() {color = Color.yellow} }
-        
     };
+    
+    private WaveMaterialConfig? GetConfig()
+    {
+        foreach (var config in waveConfigs)
+        {
+            if (config.waveType == waveTypeEnum)
+                return config;
+        }
+        return null;
+    }
+    
+    private void ApplyLocalColor()
+    {
+        var config = GetConfig();
+        if (config == null) return;
+
+        if (rend == null)
+            rend = GetComponent<Renderer>();
+
+        if (runtimeMaterial == null)
+            runtimeMaterial = new Material(config.Value.material);
+
+        if (rend != null)
+            rend.material = runtimeMaterial;
+
+        foreach (var lr in config.Value.targets)
+        {
+            if (lr == null) continue;
+
+            var osc = lr.GetComponent<OscilloscopeObjects>();
+            if (osc != null)
+                osc.Setmaterail(runtimeMaterial);
+            else
+                lr.material = runtimeMaterial;
+        }
+    }
+
+    private void clsColor()
+    {
+        if (rend == null)
+            rend = GetComponent<Renderer>();
+
+        if (runtimeMaterial == null)
+            runtimeMaterial = new Material(material);
+
+        if (rend != null)
+            rend.material = runtimeMaterial;
+
+        var config = GetConfig();
+        if (config == null) return;
+
+        foreach (var lr in config.Value.targets)
+        {
+            if (lr == null) continue;
+
+            var osc = lr.GetComponent<OscilloscopeObjects>();
+            if (osc != null)
+                osc.Setmaterail(runtimeMaterial);
+            else
+                lr.material = runtimeMaterial;
+        }
+    }
 
     private void Awake()
     {
@@ -62,6 +124,7 @@ public class WaveType : MonoBehaviour
             bindingListName.Add(keyName);
             bindingList.Add(key);
         }
+
         waveParam[WaveTypeEnum.wave1].keyId = bindingList[0];
         waveParam[WaveTypeEnum.wave2].keyId = bindingList[1];
         waveParam[WaveTypeEnum.wave3].keyId = bindingList[2];
@@ -76,20 +139,19 @@ public class WaveType : MonoBehaviour
         isColorVisible = videoSettings.showWavesColor;
     }
 
-    private void Start()
-    {
-        UpdateColor();
-    }
-
     public void SetWaveType(WaveTypeSelection waveType)
     {
         waveTypeEnum = (WaveTypeEnum)waveType;
-        if (rend == null)
-        {
-            rend = GetComponent<Renderer>();
-        }
 
-        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
+        if (rend == null)
+            rend = GetComponent<Renderer>();
+
+        runtimeMaterial = null;
+
+        if (isColorVisible)
+            ApplyLocalColor();
+        else
+            clsColor();
     }
 
     public void SetParryKeyVisible(bool isParryKeyVisible)
@@ -100,11 +162,9 @@ public class WaveType : MonoBehaviour
         
         parryKeyString = waveParam[waveTypeEnum].keyName;
         if (_specialCharacters.ContainsKey(parryKeyString))
-        {
             parryKeyString = _specialCharacters[parryKeyString];
-        }
         
-        waveParryKey.text= parryKeyString;
+        waveParryKey.text = parryKeyString;
     }
 
     private void UpdateColor()
@@ -113,17 +173,11 @@ public class WaveType : MonoBehaviour
             rend = GetComponent<Renderer>();
         
         isColorVisible = videoSettings.showWavesColor;
-        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
-    }
-    
+        runtimeMaterial = null;
 
-    // void OnValidate()
-    // {
-    //     if (rend == null)
-    //     {
-    //         rend = GetComponent<Renderer>();
-    //     }
-    //
-    //     rend.sharedMaterial.color = waveParam[waveTypeEnum].color;
-    // }
+        if (isColorVisible)
+            ApplyLocalColor();
+        else
+            clsColor();
+    }
 }

@@ -52,6 +52,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &7239450777870811147
 LineRenderer:
   serializedVersion: 3
@@ -1245,6 +1246,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &3502462082240972722
 LineRenderer:
   serializedVersion: 3
@@ -2438,6 +2440,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &1133339136778563560
 LineRenderer:
   serializedVersion: 3
@@ -3967,6 +3970,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &8685165950832579609
 LineRenderer:
   serializedVersion: 3
@@ -5160,6 +5164,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &4768917307251473972
 LineRenderer:
   serializedVersion: 3
@@ -6353,6 +6358,7 @@ MonoBehaviour:
   frequency: 3
   lineWidth: 0.1
   updateEveryNFrames: 2
+  waveType: {fileID: 5119861339331905956}
 --- !u!120 &6115069289371856562
 LineRenderer:
   serializedVersion: 3
