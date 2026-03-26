@@ -19,13 +19,13 @@ public class AudioManager : MonoBehaviour
             s.Source.pitch = s.Pitch;
             s.Source.loop = s.Loop;
             s.Source.playOnAwake = s.PlayOnAwake;
+
+            if (s.PlayOnAwake)
+            {
+                s.Source.Play();
+            }
         }
     }
-
-    // private void Start()
-    // {
-    //     PlaySound("MainMusic");
-    // }
 
     public void PlaySound(string name)
     {

@@ -1754,6 +1754,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 751753593058978870, guid: bc7ff84c77782ab4ca810910eaf07e53, type: 3}
+      propertyPath: _sounds.Array.data[0].PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 751753593058978870, guid: bc7ff84c77782ab4ca810910eaf07e53, type: 3}
       propertyPath: _sounds.Array.data[1].AudioMixerGroup
       value: 
       objectReference: {fileID: -8487650455222959305, guid: ee485b52756d90a4e94b952b93502d80, type: 2}

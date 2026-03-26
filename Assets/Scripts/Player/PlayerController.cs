@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public void CallPlayerMovement(InputAction.CallbackContext ctx)
     {
+        if (Time.timeScale == 0f) return;
+
         if (ctx.started)
         {
             try
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     public void CallCurentWaveParry(InputAction.CallbackContext ctx)
     {
+        if (Time.timeScale == 0f) return;
+
         if (ctx.started)
         {
             int index = 0;

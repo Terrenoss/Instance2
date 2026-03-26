@@ -13,7 +13,6 @@ public class VFXPlayerDamage : MonoBehaviour
 
     [SerializeField] private List<BodyPartEntry> _bodyPartsSetup;
     [SerializeField] private Material _dissolveMaterial;  
-    [SerializeField] private float _destroyDelay = 2f;
     [SerializeField] private InvincibilityBlink _invincibilityBlink;
 
     public Dictionary<int, List<GameObject>> dissolveMaterials = new Dictionary<int, List<GameObject>>();
