@@ -1,60 +1,58 @@
 using System.Collections;
-//using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int bestScore = 0;
+    private const string BestScoreKey = "BestScore";
+
+    [Header("Score Settings")]
     [SerializeField] private int passiveScore = 10;
     [SerializeField] private float passiveScoreTimer = 1f;
-    [SerializeField] private LevelEnd levelEnd;
-    
     [SerializeField] private int parryScore = 200;
-    
-    //[SerializeField] private int maxMultiplier = 10;
     [SerializeField] private int scoreAdditioner = 1;
-    private int actualScoreMultiplier = 1;
-    private int baseScoreMultiplier = 1;
-    private int bestScoreMultiplier = 1;
+
+    [Header("References")]
+    [SerializeField] private ScoreMultiplierEffect scoreMultiplierEffect;
+    [SerializeField] private CasinoScore casinoScore;
     
-    //[SerializeField] private TextMeshProUGUI scoreText;
+    [Header("UI Text References")]
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private TextMeshProUGUI multiplier2Text;
-
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreMultiplierText;
     [SerializeField] private TextMeshProUGUI scoreFinishText;
 
-    //new line
-    [SerializeField] private ScoreMultiplierEffect scoreMultiplierEffect;
-    [SerializeField] private CasinoScore casinoScore;
+    private int bestScore = 0;
+    private int actualScoreMultiplier = 1;
+    private int baseScoreMultiplier = 1;
+    private int bestScoreMultiplier = 1;
+    private int actualScore = 0;
     private bool canGainScore = true;
-    
-    private int actualScore;
 
-    void Start()
+    private void Start()
     {
-        if (levelEnd != null)
-        {
-            levelEnd.OnMoveFinished += CheckBestScore;
-        }
+        LevelEnd.GlobalOnMoveFinished += CheckBestScore;
         
         LoadScore();
-        StartCoroutine(PassiveScoreRoutine());
-        baseScoreMultiplier =  actualScoreMultiplier;
+        baseScoreMultiplier = actualScoreMultiplier;
         
-        //scoreText.text =  actualScore.ToString();
-        multiplierText.text =  actualScoreMultiplier.ToString();
-        multiplier2Text.text =  actualScoreMultiplier.ToString();
+        UpdateMultiplierUI();
+        StartCoroutine(PassiveScoreRoutine());
     }
 
-    IEnumerator PassiveScoreRoutine()
+    private void OnDestroy()
+    {
+        LevelEnd.GlobalOnMoveFinished -= CheckBestScore;
+    }
+
+    private IEnumerator PassiveScoreRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(passiveScoreTimer);
-            if (canGainScore && levelEnd.canGainScore)
+            
+            if (canGainScore && LevelEnd.GlobalCanGainScore)
             {
                 AddScore(passiveScore);
             }
@@ -64,9 +62,10 @@ public class ScoreManager : MonoBehaviour
     private void AddScore(int amount)
     {
         actualScore += amount * actualScoreMultiplier;
-        casinoScore.score = actualScore;
-        casinoScore.SplitScore();
-        //scoreText.text =  actualScore.ToString();
+        if (casinoScore != null)
+        {
+            casinoScore.SetScore(actualScore);
+        }
     }
 
     public void AddParryScore()
@@ -77,64 +76,56 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseMultiplier()
     {
         actualScoreMultiplier += scoreAdditioner;
-        // if (actualScoreMultiplier >= maxMultiplier)
-        // {
-        //     actualScoreMultiplier = maxMultiplier;
-        // }
-
-        if (bestScoreMultiplier < actualScoreMultiplier)
-        {
-            bestScoreMultiplier = actualScoreMultiplier;
-        }
+        bestScoreMultiplier = Mathf.Max(bestScoreMultiplier, actualScoreMultiplier);
         
-        multiplierText.text =  actualScoreMultiplier.ToString();
-        //new line
-        scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
+        UpdateMultiplierUI();
+        
+        if (scoreMultiplierEffect != null)
+        {
+            scoreMultiplierEffect.CheckScoreIncrease(actualScoreMultiplier);
+        }
     }
 
-    //call when player take damage
     public void DecreaseMultiplier()
     {
         actualScoreMultiplier = baseScoreMultiplier;
-        multiplierText.text =  actualScoreMultiplier.ToString();
-        multiplier2Text.text =  actualScoreMultiplier.ToString();
-        //new line
-        scoreMultiplierEffect.CheckScoreDecrease();
+        UpdateMultiplierUI();
+        
+        if (scoreMultiplierEffect != null)
+        {
+            scoreMultiplierEffect.CheckScoreDecrease();
+        }
+    }
+
+    private void UpdateMultiplierUI()
+    {
+        string formattedMultiplier = "x" + actualScoreMultiplier;
+        
+        if (multiplierText != null) multiplierText.text = formattedMultiplier;
+        if (multiplier2Text != null) multiplier2Text.text = formattedMultiplier;
     }
 
     private void SaveScore()
     {
-        SaveableDatas datas = new SaveableDatas("BestScore");
-
+        SaveableDatas datas = new SaveableDatas(BestScoreKey);
         datas.SaveInt("bestScore", bestScore);
-
         SaveSystem.SaveData(datas);
     }
 
     private void LoadScore()
     {
-        SaveableDatas datas = SaveSystem.LoadDatas("BestScore");
-
-        if (datas != null)
-        {
-            bestScore = datas.GetSavedInt("bestScore");
-        }
-        else
-        {
-            bestScore = 0;
-        }
+        SaveableDatas datas = SaveSystem.LoadDatas(BestScoreKey);
+        bestScore = (datas != null) ? datas.GetSavedInt("bestScore") : 0;
     }
 
     public void CheckBestScore()
     {
-        if (actualScore > bestScore)
-        {
-            bestScore = actualScore;
-        }
+        bestScore = Mathf.Max(bestScore, actualScore);
         
-        bestScoreText.text = bestScore.ToString();
-        bestScoreMultiplierText.text = bestScoreMultiplier.ToString();
-        scoreFinishText.text = actualScore.ToString();
+        if (bestScoreText != null) bestScoreText.text = bestScore.ToString();
+        if (bestScoreMultiplierText != null) bestScoreMultiplierText.text = "x" + bestScoreMultiplier;
+        if (scoreFinishText != null) scoreFinishText.text = actualScore.ToString();
+        
         SaveScore();
     }
     

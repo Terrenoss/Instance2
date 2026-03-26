@@ -1,27 +1,32 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Splines;
 
 public class LevelEnd : MonoBehaviour
 {
     [SerializeField] private Spawner spawner;
     [SerializeField] private Transform player;
     [SerializeField] private float speed = 2f;
-    public event Action OnMoveFinished;
-    [HideInInspector] public bool canGainScore = true;
     [SerializeField] private float distance = 10f;
     [SerializeField] private PlayerInput playerInput;
     
+    // Événements d'instance (conservés pour ne pas casser d'autres scripts potentiels)
+    public event Action OnMoveFinished;
+    [HideInInspector] public bool canGainScore = true;
+
+    // Event Bus statiques pour décourpler avec ScoreManager !
+    public static event Action GlobalOnMoveFinished;
+    public static bool GlobalCanGainScore = true;
     
     private float movedDistance;
-    private float time;
     private bool isMoving;
 
     private void Start()
     {
         spawner.OnVictory += MovePlayer;
+        
+        // Reset l'état statique quand le niveau (re)démarre
+        GlobalCanGainScore = true; 
     }
 
     private void MovePlayer()
@@ -32,6 +37,7 @@ public class LevelEnd : MonoBehaviour
             playerInput.enabled = false;
         
         canGainScore = false;
+        GlobalCanGainScore = false; // Mise à jour globale
         movedDistance = 0f;
         isMoving = true;
     }
@@ -49,6 +55,7 @@ public class LevelEnd : MonoBehaviour
         {
             isMoving = false;
             OnMoveFinished?.Invoke();
+            GlobalOnMoveFinished?.Invoke(); // Lancement global !
         }
     }
 }

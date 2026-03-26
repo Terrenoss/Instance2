@@ -1,31 +1,75 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class IndividualCasinoScore : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private TMP_Text score;
-    public int specialDifference = 0;
-    public int difference = 0;
-    public int scoreTemp = 0;
-    public int scoreValue = 0;
-    public bool scorePositiveAgain = false;
-    public bool isBegining = false;
+    private TMP_Text scoreText;
+    private Animator _animator;
+
+    [HideInInspector] public int specialDifference = 0;
+    [HideInInspector] public int difference = 0;
+    [HideInInspector] public int scoreTemp = 0;
+    [HideInInspector] public int scoreValue = 0;
+    [HideInInspector] public bool scorePositiveAgain = false;
+    [HideInInspector] public bool isBegining = false;
+
+    private void Awake()
+    {
+        scoreText = GetComponent<TMP_Text>();
+        _animator = GetComponent<Animator>();
+    }
+
+    public void Init(int startingDigit)
+    {
+        scoreValue = startingDigit;
+        scoreTemp = startingDigit;
+        if (scoreText != null) 
+        {
+            scoreText.text = startingDigit.ToString();
+        }
+    }
+
+    public void SetActive(bool isActive)
+    {
+        if (scoreText != null)
+        {
+            scoreText.enabled = isActive;
+        }
+    }
+
+    // Nouvelle fonction pour faire le pont exact avec ton ancienne logique animée :
+    public void TriggerAnimatorScroll(int diff, int oldDigit, int newDigit)
+    {
+        difference = diff;
+        scoreTemp = oldDigit;
+        scoreValue = newDigit;
+        specialDifference = 10 - oldDigit;
+        scorePositiveAgain = false;
+        isBegining = true;
+        
+        IndividualScoreScrolling();
+    }
+
+    // --- CES DEUX MÉTHODES SONT CELLES ORIGINALES APPELÉES PAR TON ANIMATOR ---
 
     public void IndividualScoreScrolling()
     {
-        if (isBegining)
+        if (_animator != null)
         {
-            animator.Play("Empty");
-            animator.SetInteger("remainingScrolls", 0);
-            isBegining = false;
-        }
-        if (scoreValue <= scoreTemp)
-        {
-            animator.SetInteger("remainingScrolls", specialDifference);
-        }
-        else { 
-            animator.SetInteger("remainingScrolls", difference);
+            if (isBegining)
+            {
+                _animator.Play("Empty");
+                _animator.SetInteger("remainingScrolls", 0);
+                isBegining = false;
+            }
+
+            if (scoreValue <= scoreTemp)
+            {
+                _animator.SetInteger("remainingScrolls", specialDifference);
+            }
+            else { 
+                _animator.SetInteger("remainingScrolls", difference);
+            }
         }
 
         difference -= 1;
@@ -34,24 +78,26 @@ public class IndividualCasinoScore : MonoBehaviour
 
     public void IndividualScoreUpdate()
     {
+        if (scoreText == null) return;
+
         if (scoreValue <= scoreTemp && !scorePositiveAgain)
         {
             if (specialDifference <= 0)
             {
                 specialDifference = scoreValue;
-                score.text = "" + (scoreValue - specialDifference);
+                scoreText.text = "" + (scoreValue - specialDifference);
                 scorePositiveAgain = true;
             }
             else {
-                score.text = "" + (10 - specialDifference);
+                scoreText.text = "" + (10 - specialDifference);
             }
         }
         else if (scoreValue <= scoreTemp && scorePositiveAgain)
         {
-            score.text = "" + (scoreValue - specialDifference);
+            scoreText.text = "" + (scoreValue - specialDifference);
         }
         else {
-            score.text = "" + (scoreValue - difference);
+            scoreText.text = "" + (scoreValue - difference);
         }
     }
 }
