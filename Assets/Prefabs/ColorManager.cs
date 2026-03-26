@@ -13,6 +13,7 @@ public struct WaveMaterialConfig
 
 public class ColorManager : MonoBehaviour
 {
+    public Material albedo;
     public static ColorManager Instance;
     public WaveMaterialConfig[] waveConfigs;
 
@@ -62,6 +63,14 @@ public class ColorManager : MonoBehaviour
                 osc.Setmaterail(config.material);
             else
                 lr.material = config.material;
+        }
+    }
+
+    public void ApplyEmptyWaves(Material material)
+    {
+        if (material == null) return;
+        {
+            
         }
     }
 

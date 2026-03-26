@@ -130,10 +130,9 @@ public class Spawner : MonoBehaviour
         WaveType wave = obj.GetComponent<WaveType>();
         if (wave != null)
         {
-            //animator.SetTrigger("Spawn");
+            animator.SetTrigger("Spawn");
             wave.SetWaveType(data.waveType);
             wave.SetParryKeyVisible(data.isParryKeyVisible);
-            ColorManager.Instance.Apply(wave.waveTypeEnum);
 
             if (audioManager != null) audioManager.PlaySound("Spawn");
         }

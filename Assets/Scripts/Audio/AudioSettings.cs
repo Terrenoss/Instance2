@@ -23,11 +23,11 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        LoadVolumes();
-        OnVolumeChanged += SaveVolumes;
         masterSliderFills.Reverse();
         musicSliderFills.Reverse();
         sfxSliderFills.Reverse();
+        LoadVolumes();
+        OnVolumeChanged += SaveVolumes;
     }
 
     public void SetMasterGroupAttenuationVolume(float value)
