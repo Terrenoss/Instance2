@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -26,9 +24,14 @@ public class OscilloscopeObjects : MonoBehaviour
         lr.startWidth = lineWidth;
         lr.endWidth = lineWidth;
 
-        positions = new Vector3[sampleSize]; 
-
+        positions = new Vector3[sampleSize];
         frameOffset = GetInstanceID() % updateEveryNFrames;
+    }
+
+    public void Setmaterail(Material mat)
+    {
+        if (lr == null) lr = GetComponent<LineRenderer>();
+        lr.material = mat;
     }
 
     void Update()

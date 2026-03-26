@@ -55,7 +55,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _EmessiveColor: {r: 0, g: 0.8461204, b: 1, a: 1}
-    - _NeonColor: {r: 0, g: 0.08677717, b: 1, a: 1}
+    - _EmessiveColor: {r: 0, g: 1, b: 1, a: 1}
+    - _NeonColor: {r: 0, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

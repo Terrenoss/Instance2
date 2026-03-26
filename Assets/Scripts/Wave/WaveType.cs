@@ -76,11 +76,6 @@ public class WaveType : MonoBehaviour
         isColorVisible = videoSettings.showWavesColor;
     }
 
-    private void Start()
-    {
-        UpdateColor();
-    }
-
     public void SetWaveType(WaveTypeSelection waveType)
     {
         waveTypeEnum = (WaveTypeEnum)waveType;
@@ -89,7 +84,7 @@ public class WaveType : MonoBehaviour
             rend = GetComponent<Renderer>();
         }
 
-        rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
+        //rend.material.color = isColorVisible ? waveParam[waveTypeEnum].color : Color.gray;
     }
 
     public void SetParryKeyVisible(bool isParryKeyVisible)
